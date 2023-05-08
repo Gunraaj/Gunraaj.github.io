@@ -32,6 +32,7 @@ footer:
   copyright: Gunraaj Singh
   social: Around the Web
   credits: Credits to Dr. Henry Jekyll And Yuvraj
+  contact: "Contact Me"
 # Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.)
 social:
   - title: twitter
@@ -47,6 +48,7 @@ social:
 # Credits content
 credits: 'Freelancer is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.'
 
+contact: "Contact Information"
 # Build settings
 markdown: kramdown
 permalink: pretty
