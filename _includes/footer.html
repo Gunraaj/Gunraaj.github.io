@@ -3,16 +3,10 @@
   <div class="footer-above">
     <div class="container">
       <div class="row">
+        <!-- contact me info-->
         <div class="footer-col">
-          <h3>{{ site.footer.social }}</h3>
-          <ul class="list-inline">
-            {% for network in site.social %}
-            <li>
-              <a href="{{ network.url }}" class="btn-social btn-outline"><i
-                  class="fa-brands fa-fw fa-{{ network.title }}"></i></a>
-            </li>
-            {% endfor %}
-          </ul>
+          <h3>{{ site.footer.contact }}</h3>
+          <p>{{ site.contact }}</p>
         </div>
         <div class="footer-col">
           <h3>{{ site.footer.credits }}</h3>
