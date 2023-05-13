@@ -377,11 +377,12 @@ footer .footer-below {
 
 .btn-social {
     display: inline-block;
+    margin: 15px;
     width: 150px;
     height: 150px;
     border: 6px solid #288c9c;
     border-radius: 100%;
-    text-align: justify;
+    text-align: center;
     font-size: 65px;
     line-height: 65px;
 }
