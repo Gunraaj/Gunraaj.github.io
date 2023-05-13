@@ -286,7 +286,6 @@ section.success {
     color: #288c9c;
     background: 0 0;
     transition: all .3s ease-in-out;
-    padding-left: 50 px;
 }
 
 .btn-outline:hover,
