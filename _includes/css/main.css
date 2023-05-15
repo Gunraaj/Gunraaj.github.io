@@ -280,11 +280,9 @@ section.success {
   } */
 
 .btn-outline {
-    margin-top: 90px;
     border: solid 2px #288c9c;
     font-size: 120px;
     color: #288c9c;
-    padding-left: 250px;
     background: 0 0;
     transition: all .3s ease-in-out;
 }
