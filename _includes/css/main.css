@@ -280,6 +280,7 @@ section.success {
   } */
 
 .btn-outline {
+    margin-left: 150px;
     border: solid 2px #288c9c;
     font-size: 120px;
     color: #288c9c;
