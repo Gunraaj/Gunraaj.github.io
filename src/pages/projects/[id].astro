@@ -1,0 +1,184 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { siteConfig } from '../../content/site';
+
+export function getStaticPaths() {
+  return siteConfig.projects.map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+
+// Determine primary color logic based on the project's domain to give them unique vibes
+// Note: This relies on the index of the first domain tag.
+---
+
+<Layout title={`${project.title} - Case Study`} description={project.shortDescription}>
+  <div class="pt-32 pb-24 relative overflow-hidden min-h-screen">
+    
+    <!-- Immersive Background Glow -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[50vh] bg-primary/10 rounded-full mix-blend-screen filter blur-[120px] pointer-events-none -translate-y-1/2"></div>
+
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full animate-fade-in-up">
+      
+      <!-- Back Link -->
+      <a href="/#projects" class="inline-flex items-center text-sm font-medium text-muted hover:text-primary transition-colors mb-8 group">
+        <svg class="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        Back to Overview
+      </a>
+
+      <!-- Hero Header -->
+      <div class="space-y-6 mb-16">
+        <div class="flex flex-wrap gap-2">
+            {project.domainTags.map((tag) => (
+                <span class="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary rounded-full border border-primary/20">
+                    {tag}
+                </span>
+            ))}
+            {project.featured && (
+                <span class="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-accent/10 text-accent rounded-full border border-accent/20">
+                    Featured Work
+                </span>
+            )}
+        </div>
+        
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-heading leading-tight tracking-tight">
+          {project.title}
+        </h1>
+        
+        <p class="text-xl md:text-2xl text-muted font-mono leading-relaxed max-w-3xl">
+          {project.shortDescription}
+        </p>
+
+        <!-- Tech Stack Pills -->
+        <div class="pt-4 flex flex-wrap gap-2">
+             {project.tools.map((tool) => (
+                <span class="px-3 py-1.5 text-sm bg-surface/50 text-text rounded-md border border-card-border/30 shadow-sm backdrop-blur-md">
+                    {tool}
+                </span>
+            ))}
+        </div>
+      </div>
+
+      <!-- TL;DR Executive Summary Block -->
+      <div class="bg-surface/40 backdrop-blur-2xl rounded-3xl p-8 md:p-10 mb-20 border border-card-border/30 shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.1)] relative overflow-hidden group">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none group-hover:opacity-100 transition-opacity duration-500"></div>
+          
+          <h2 class="text-xs tracking-widest uppercase font-bold text-primary mb-4">Executive Summary</h2>
+          <p class="text-lg text-heading leading-relaxed mb-6">
+              {project.details.problem}
+          </p>
+
+          <!-- Core Outcomes -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 pt-8 border-t border-border/50">
+             <div>
+                <h3 class="text-sm tracking-wider uppercase font-semibold text-muted mb-3 flex items-center">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+                    Live Links
+                </h3>
+                <div class="flex flex-col gap-2">
+                    {project.links.length > 0 ? project.links.map(link => (
+                        <a href={link.url} target="_blank" rel="noopener noreferrer" class="text-primary hover:text-heading transition-colors inline-flex items-center group">
+                            {link.label}
+                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                        </a>
+                    )) : (
+                        <span class="text-muted italic text-sm">Deployment pending / Internal or Core Architecture</span>
+                    )}
+                </div>
+             </div>
+             
+             <div>
+                <h3 class="text-sm tracking-wider uppercase font-semibold text-muted mb-3 flex items-center">
+                    <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                    Primary Focus
+                </h3>
+                <ul class="space-y-1">
+                    {project.highlights.slice(0, 3).map(h => (
+                        <li class="text-sm text-text">• {h}</li>
+                    ))}
+                </ul>
+             </div>
+          </div>
+      </div>
+
+      <!-- Deep Dive Storytelling: Architecture & Results -->
+      <article class="prose prose-invert prose-lg max-w-none text-text">
+        
+        {project.details.objectives.length > 0 && (
+            <div class="mb-16 scroll-reveal">
+                <h2 class="text-3xl font-display font-bold text-heading mt-0 mb-6 flex items-center">
+                    <span class="w-8 h-1 bg-primary mr-4 inline-block"></span>
+                    Engineering Objectives
+                </h2>
+                <ul class="space-y-4">
+                    {project.details.objectives.map(obj => (
+                        <li class="pl-4 border-l-2 border-primary/20 bg-surface/20 py-2 pr-4 rounded-r-lg">
+                            {obj}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )}
+
+        {project.details.methodology.length > 0 && (
+             <div class="mb-16 scroll-reveal">
+                <h2 class="text-3xl font-display font-bold text-heading mt-0 mb-6 flex items-center">
+                     <span class="w-8 h-1 bg-accent mr-4 inline-block"></span>
+                     System Architecture & Methodology
+                </h2>
+                <div class="space-y-6 text-lg leading-loose">
+                    {project.details.methodology.map(method => (
+                        <p>{method}</p>
+                    ))}
+                </div>
+            </div>
+        )}
+
+        {project.details.results.length > 0 && (
+            <div class="mb-16 scroll-reveal">
+                <h2 class="text-3xl font-display font-bold text-heading mt-0 mb-6 flex items-center">
+                    <span class="w-8 h-1 bg-gradient-to-r from-primary to-accent mr-4 inline-block"></span>
+                    Quantitative Results
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {project.details.results.map((result, idx) => (
+                        <div class="bg-surface/30 backdrop-blur-lg border border-border/50 p-6 rounded-2xl shadow-inner relative overflow-hidden">
+                            <div class="absolute -right-4 -top-4 text-7xl font-display font-bold text-primary/5 select-none">{idx + 1}</div>
+                            <span class="relative z-10 text-heading font-medium">{result}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        )}
+
+      </article>
+
+      <!-- Let's Connect Footer -->
+      <div class="mt-32 pt-16 border-t border-card-border/10 text-center scroll-reveal">
+          <p class="text-xl text-heading font-display font-semibold mb-6">Interested in discussing the architecture of this system?</p>
+          <a href="mailto:gunraaj.s@example.com" class="inline-flex items-center justify-center px-8 py-4 bg-primary text-background font-bold rounded-xl hover:bg-primary/90 transition-all hover:-translate-y-1 shadow-[0_0_20px_rgba(var(--color-primary),0.3)]">
+              Let's Talk Shop
+          </a>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  /* Local animations specific to the case study load */
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0; 
+  }
+  
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.98); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+</style>

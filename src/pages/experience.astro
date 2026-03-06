@@ -1,0 +1,39 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Section from '../components/Section.astro';
+import { siteConfig } from '../content/site';
+---
+
+<Layout title="Experience">
+  <Section title="Experience & Leadership" class="pt-24 min-h-screen">
+    <div class="max-w-4xl mx-auto space-y-12 relative border-l border-gray-800 ml-4 md:ml-0 pl-8 md:pl-0">
+      {siteConfig.experience.map((exp, index) => (
+        <div class="relative md:pl-12">
+          {/* Timeline Dot */}
+          <div class="absolute -left-[9px] md:left-0 top-0 w-4 h-4 bg-primary rounded-full border-4 border-background transform md:-translate-x-1/2"></div>
+          
+          <div class="bg-surface p-8 rounded-xl border border-gray-800 hover:border-primary transition-all">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
+              <div>
+                <h3 class="text-2xl font-bold text-white">{exp.role}</h3>
+                <p class="text-primary text-lg font-medium">{exp.org}</p>
+              </div>
+              <span class="mt-2 md:mt-0 px-4 py-1 bg-background text-gray-300 rounded-full text-sm border border-gray-700">
+                {exp.date}
+              </span>
+            </div>
+            
+            <ul class="space-y-3">
+              {exp.details.map((detail) => (
+                <li class="flex items-start text-gray-300">
+                  <span class="text-accent mr-3 mt-1.5">•</span>
+                  <span class="leading-relaxed">{detail}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+</Layout>

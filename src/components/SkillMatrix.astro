@@ -1,0 +1,21 @@
+---
+import { siteConfig } from '../content/site';
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {siteConfig.skills.map((skillGroup) => (
+    <div class="bg-surface/30 backdrop-blur-xl p-6 rounded-2xl border border-card-border/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] hover:border-primary/50 transition-all duration-300 group">
+      <h3 class="text-lg font-semibold text-heading mb-4 border-b border-border/50 pb-2 flex items-center justify-between">
+        {skillGroup.category}
+        <span class="w-8 h-1 rounded-full bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></span>
+      </h3>
+      <div class="flex flex-wrap gap-2">
+        {skillGroup.tools.map((tool) => (
+          <span class="px-3 py-1.5 text-sm bg-background/50 text-text rounded-full border border-border/50 shadow-sm hover:text-heading hover:border-primary hover:bg-primary/10 transition-all cursor-default backdrop-blur-sm">
+            {tool}
+          </span>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>

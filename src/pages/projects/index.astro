@@ -1,0 +1,83 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Section from '../../components/Section.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { siteConfig } from '../../content/site';
+
+const allProjects = siteConfig.projects.filter(p => p.enabled);
+const allTags = Array.from(new Set(allProjects.flatMap(p => p.domainTags))).sort();
+---
+
+<Layout title="Projects">
+  <Section title="All Projects" class="min-h-screen pt-24">
+    <div class="mb-10">
+      <h3 class="text-gray-400 mb-4 font-medium">Filter by Domain:</h3>
+      <div class="flex flex-wrap gap-3" id="filters">
+        <button
+          class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-primary text-white border border-primary transition-all"
+          data-filter="all"
+        >
+          All
+        </button>
+        {allTags.map((tag) => (
+          <button
+            class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-surface text-gray-300 border border-gray-700 hover:border-primary hover:text-white transition-all"
+            data-filter={tag}
+          >
+            {tag}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+      {allProjects.map((project) => (
+        <div class="project-item" data-tags={JSON.stringify(project.domainTags)}>
+          <ProjectCard project={project} />
+        </div>
+      ))}
+    </div>
+    
+    <div id="no-results" class="hidden text-center py-20 text-gray-500">
+      <p>No projects found matching the selected filter.</p>
+    </div>
+  </Section>
+</Layout>
+
+<script>
+  const buttons = document.querySelectorAll('.filter-btn');
+  const items = document.querySelectorAll('.project-item');
+  const noResults = document.getElementById('no-results');
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Update active state
+      buttons.forEach(b => {
+        b.classList.remove('bg-primary', 'text-white', 'border-primary');
+        b.classList.add('bg-surface', 'text-gray-300', 'border-gray-700');
+      });
+      btn.classList.remove('bg-surface', 'text-gray-300', 'border-gray-700');
+      btn.classList.add('bg-primary', 'text-white', 'border-primary');
+
+      const filter = btn.getAttribute('data-filter');
+      let visibleCount = 0;
+
+      items.forEach((item) => {
+        const itemElement = item as HTMLElement;
+        const tags = JSON.parse(itemElement.getAttribute('data-tags') || '[]');
+        
+        if (filter === 'all' || tags.includes(filter)) {
+          itemElement.style.display = 'block';
+          // Add animation/fade in if desired
+          visibleCount++;
+        } else {
+          itemElement.style.display = 'none';
+        }
+      });
+      
+      if (noResults) {
+        noResults.classList.toggle('hidden', visibleCount > 0);
+      }
+    });
+  });
+</script>
