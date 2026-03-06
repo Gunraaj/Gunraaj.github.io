@@ -37,11 +37,11 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
     profile: {
         name: "Gunraaj Singh",
-        title: "Hardware & AI Software Engineer",
+        title: "AI Software Engineer",
         identityLine: "Bridging Power Electronics, Control Systems, and AI-Driven Architecture.",
         philosophy: "Building intelligent physical systems that scale.",
         social: {
-            email: "mailto:[ADD_EMAIL_HERE]",
+            email: "mailto:gunraj1singh@gmail.com",
             linkedin: "https://www.linkedin.com/in/gunraaj-singh/",
             github: "https://github.com/Gunraaj",
             resume: "/resume.pdf"
