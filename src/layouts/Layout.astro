@@ -87,8 +87,18 @@ const { title, description = siteConfig.profile.identityLine } = Astro.props;
 					observer.observe(element);
 				});
 
+				const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+				const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
+
+				// Custom cursor should only run for mouse/trackpad users who don't request reduced motion.
+				if (!hasFinePointer || prefersReducedMotion) {
+					document.documentElement.classList.add('native-cursor');
+					return;
+				}
+
 				// Custom Cursor & Ambient Glow Logic Custom Physics Loop
 				if(!window.cursorInitialized) {
+					document.documentElement.classList.remove('native-cursor');
 					const dot = document.getElementById('cursor-dot');
 					const ring = document.getElementById('cursor-ring');
 					const ambientGlow = document.getElementById('ambient-glow');
@@ -173,8 +183,8 @@ const { title, description = siteConfig.profile.identityLine } = Astro.props;
 </html>
 
 <style is:global>
-	/* Hide native cursor globally to replace with custom one */
-	* {
+	/* Hide native cursor globally when custom cursor is enabled */
+	html:not(.native-cursor) * {
 		cursor: none !important;
 	}
 
