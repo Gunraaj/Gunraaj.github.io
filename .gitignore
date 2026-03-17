@@ -29,3 +29,9 @@ pnpm-debug.log*
 
 # Explicitly allow the public resume to be tracked and deployed
 !public/resume.pdf
+
+# Local utility scripts and extension files
+*.vsix
+fix_astro_extension.py
+read_docx.py
+COMPLETION_REPORT.md

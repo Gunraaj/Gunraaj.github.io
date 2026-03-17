@@ -1,15 +1,20 @@
 ---
-import { siteConfig } from '../content/site';
-import Navbar from '../components/Navbar.astro';
-import { ViewTransitions } from 'astro:transitions';
-import '../styles/global.css';
+import { siteConfig } from "../content/site";
+import Navbar from "../components/Navbar.astro";
+import { ViewTransitions } from "astro:transitions";
+import "../styles/global.css";
 
 interface Props {
 	title: string;
 	description?: string;
+	showPreloader?: boolean;
 }
 
-const { title, description = siteConfig.profile.identityLine } = Astro.props;
+const {
+	title,
+	description = siteConfig.profile.identityLine,
+	showPreloader = false,
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -20,185 +25,408 @@ const { title, description = siteConfig.profile.identityLine } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
-		
+
 		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-		
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&family=Outfit:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
+			rel="stylesheet"
+		/>
+
 		<ViewTransitions />
 
 		<script is:inline>
-			// Set theme on initial load
 			const setTheme = () => {
-				if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-					document.documentElement.classList.add('dark');
+				if (
+					localStorage.getItem("color-theme") === "dark" ||
+					(!("color-theme" in localStorage) &&
+						window.matchMedia("(prefers-color-scheme: dark)")
+							.matches)
+				) {
+					document.documentElement.classList.add("dark");
 				} else {
-					document.documentElement.classList.remove('dark');
+					document.documentElement.classList.remove("dark");
 				}
 			};
 			setTheme();
-			
-			// Re-apply theme immediately after Astro ViewTransition DOM swap
-			document.addEventListener('astro:after-swap', setTheme);
+			document.addEventListener("astro:after-swap", setTheme);
 		</script>
 
 		<title>{title} | {siteConfig.profile.name}</title>
 	</head>
-	<body class="bg-background text-text font-sans antialiased selection:bg-primary selection:text-white">
+	<body
+		class="bg-background text-text font-sans antialiased selection:bg-primary selection:text-white"
+	>
 		<Navbar />
-		
-		<!-- S-Tier Custom Interactive Cursor -->
-		<div id="cursor-dot" transition:persist class="fixed top-0 left-0 w-2 h-2 rounded-full bg-primary mix-blend-screen pointer-events-none z-[9999] opacity-0 transition-opacity duration-300" style="transform: translate(-50%, -50%);"></div>
-		<div id="cursor-ring" transition:persist class="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/50 mix-blend-screen pointer-events-none z-[9998] opacity-0 transition-opacity duration-300" style="transform: translate(-50%, -50%);"></div>
 
-		<!-- Ambient Background Glow -->
-		<div id="ambient-glow" transition:persist class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-300 opacity-0 mix-blend-screen" style="background: radial-gradient(600px circle at 0px 0px, rgba(var(--color-primary) / 0.15), transparent 40%);"></div>
+		{
+			showPreloader && (
+				<div
+					id="preloader"
+					class="fixed inset-0 z-[10000] bg-background flex items-center justify-center overflow-hidden pointer-events-auto transition-opacity duration-500"
+				>
+					<div class="absolute inset-x-0 top-0 h-full opacity-[0.03] select-none pointer-events-none font-serif text-[8vw] leading-none whitespace-nowrap overflow-hidden flex flex-col items-center">
+						<div class="animate-marquee-left py-4">
+							ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ
+							ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥
+						</div>
+						<div class="animate-marquee-right py-4 text-primary">
+							ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ
+							ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥
+						</div>
+						<div class="animate-marquee-left py-4">
+							ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ
+							ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥
+						</div>
+					</div>
+					<div class="relative z-10 text-center px-6">
+						<div class="h-32 flex items-center justify-center mb-8">
+							<div
+								id="loader-text"
+								class="text-6xl md:text-8xl font-serif italic text-heading transition-all duration-200 transform translate-y-4 opacity-0 scale-90"
+							/>
+						</div>
+						<div
+							id="loader-quote"
+							class="max-w-2xl mx-auto opacity-0 transition-opacity duration-500"
+						>
+							<p class="text-lg md:text-xl font-serif text-muted italic leading-relaxed">
+								"Recognize the whole human race as one."
+							</p>
+						</div>
+					</div>
+					<div class="absolute bottom-16 left-1/2 -translate-x-1/2 w-48 h-[2px] bg-white/5 overflow-hidden">
+						<div
+							id="loader-progress"
+							class="h-full bg-primary w-0 transition-all duration-[1800ms] ease-linear"
+						/>
+					</div>
+				</div>
+			)
+		}
 
-		<main class="min-h-screen relative z-10">
+		<!-- Fluid Aura Cursor -->
+		<div
+			id="cursor-dot"
+			transition:persist
+			class="fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-[9999] opacity-0 transition-opacity duration-300 shadow-[0_0_15px_rgba(var(--color-primary)/0.5)]"
+			style="transform: translate(-50%, -50%);"
+		>
+		</div>
+		<div
+			id="cursor-aura-1"
+			transition:persist
+			class="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/20 pointer-events-none z-[9998] opacity-0 transition-opacity duration-300 bg-primary/5 blur-[1px]"
+			style="transform: translate(-50%, -50%);"
+		>
+		</div>
+		<div
+			id="cursor-aura-2"
+			transition:persist
+			class="fixed top-0 left-0 w-16 h-16 rounded-full border border-primary/10 pointer-events-none z-[9997] opacity-0 transition-opacity duration-500 bg-white/5 blur-[4px]"
+			style="transform: translate(-50%, -50%);"
+		>
+		</div>
+		<div
+			id="ambient-glow"
+			transition:persist
+			class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-500 opacity-0 bg-[radial-gradient(1000px_circle_at_var(--x)_var(--y),rgba(var(--color-primary)/0.06),transparent_50%)]"
+		>
+		</div>
+
+		<main
+			id="main-content"
+			class:list={[
+				"min-h-screen relative z-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+				showPreloader ? "opacity-0 scale-[0.98]" : "",
+			]}
+		>
 			<slot />
 		</main>
-		<footer class="bg-surface py-8 mt-12 border-t border-card-border/10 relative z-10">
-			<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted">
-				<p>© {new Date().getFullYear()} {siteConfig.profile.name}. All rights reserved.</p>
-				<p class="mt-2 text-sm">Built with Astro, TypeScript, and Tailwind CSS.</p>
+		<footer
+			class="bg-surface py-8 mt-12 border-t border-card-border/10 relative z-10"
+		>
+			<div
+				class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted"
+			>
+				<p>
+					&copy; {new Date().getFullYear()}
+					{siteConfig.profile.name}. All rights reserved.
+				</p>
+				<p class="mt-2 text-sm">
+					⚡ Built with Astro, TypeScript, and Tailwind CSS.
+				</p>
+				<p
+					class="mt-1 text-[10px] font-mono text-muted/30 tracking-widest"
+					title="Changing the world with electricity and code"
+				>
+					電気とコードで世界を変える
+				</p>
 			</div>
 		</footer>
 
+		<!-- Konami Code Easter Egg Overlay -->
+		<div
+			id="easter-egg-overlay"
+			class="fixed inset-0 z-[99999] pointer-events-none opacity-0 transition-opacity duration-300 flex items-center justify-center"
+		>
+			<div class="absolute inset-0 bg-primary/20 animate-pulse"></div>
+			<div
+				id="easter-egg-text"
+				class="relative text-6xl md:text-9xl font-serif italic text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.8)] scale-0 transition-transform duration-500 select-none"
+			>
+				⚡ PLUS ULTRA ⚡
+			</div>
+		</div>
+
 		<script>
-			// Intersection Observer for scroll animations
-			function initAnimationsAndCursor() {
-				const observerOptions = {
-					root: null,
-					rootMargin: '0px',
-					threshold: 0.1
-				};
+			// Preloader: random words from a pool, always ending with WAHEGURU
+			const wordPool = [
+				"Engineer",
+				"Creator",
+				"Designer",
+				"\u0928\u092E\u0938\u094D\u0924\u0947",
+				"\u0A74 \u0A38\u0A24\u0A3F\u0A28\u0A3E\u0A2E",
+				"\u3053\u3093\u306B\u3061\u306F",
+				"Voltage",
+				"Pixel",
+				"Respawn",
+				"\u0950",
+				"Circuit",
+				"Build",
+				"Ctrl+Z",
+				"GG",
+			];
+			function shuffle(arr) {
+				for (let i = arr.length - 1; i > 0; i--) {
+					const j = Math.floor(Math.random() * (i + 1));
+					[arr[i], arr[j]] = [arr[j], arr[i]];
+				}
+				return arr;
+			}
+			const picked = shuffle([...wordPool]).slice(0, 4);
+			picked.push("\u0A35\u0A3E\u0A39\u0A3F\u0A17\u0A41\u0A30\u0A42"); // WAHEGURU in Gurmukhi
 
-				const observer = new IntersectionObserver((entries, observer) => {
-					entries.forEach(entry => {
-						if (entry.isIntersecting) {
-							entry.target.classList.add('is-visible');
-							observer.unobserve(entry.target);
+			function initCore() {
+				const preloader = document.getElementById("preloader");
+				const loaderText = document.getElementById("loader-text");
+				const loaderQuote = document.getElementById("loader-quote");
+				const progress = document.getElementById("loader-progress");
+				const mainContent = document.getElementById("main-content");
+				const dot = document.getElementById("cursor-dot");
+				const aura1 = document.getElementById("cursor-aura-1");
+				const aura2 = document.getElementById("cursor-aura-2");
+				const ambientGlow = document.getElementById("ambient-glow");
+
+				// --- PRELOADER (only runs if element exists = home page) ---
+				if (preloader && loaderText) {
+					let idx = 0;
+					if (progress) progress.style.width = "100%";
+
+					const cycle = () => {
+						loaderText.style.opacity = "0";
+						loaderText.style.transform =
+							"translateY(6px) scale(0.97)";
+						setTimeout(() => {
+							loaderText.innerText = picked[idx];
+							loaderText.style.opacity = "1";
+							loaderText.style.transform =
+								"translateY(0) scale(1.02)";
+							idx++;
+							if (idx < picked.length) setTimeout(cycle, 250);
+							else setTimeout(finishPreloader, 250);
+						}, 80);
+					};
+
+					const finishPreloader = () => {
+						preloader.style.opacity = "0";
+						preloader.style.pointerEvents = "none";
+						if (mainContent) {
+							mainContent.style.opacity = "1";
+							mainContent.style.transform = "scale(1)";
 						}
-					});
-				}, observerOptions);
-
-				document.querySelectorAll('.scroll-reveal').forEach((element) => {
-					observer.observe(element);
-				});
-
-				const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-				const hasFinePointer = window.matchMedia('(pointer: fine)').matches;
-
-				// Custom cursor should only run for mouse/trackpad users who don't request reduced motion.
-				if (!hasFinePointer || prefersReducedMotion) {
-					document.documentElement.classList.add('native-cursor');
-					return;
+						setTimeout(() => preloader.remove(), 500);
+					};
+					setTimeout(() => {
+						if (loaderQuote) loaderQuote.style.opacity = "1";
+						cycle();
+					}, 80);
 				}
 
-				// Custom Cursor & Ambient Glow Logic Custom Physics Loop
-				if(!window.cursorInitialized) {
-					document.documentElement.classList.remove('native-cursor');
-					const dot = document.getElementById('cursor-dot');
-					const ring = document.getElementById('cursor-ring');
-					const ambientGlow = document.getElementById('ambient-glow');
-					
-					let mouseX = 0, mouseY = 0;
-					let ringX = 0, ringY = 0;
+				// --- CURSOR ---
+				if (!window.cursorInitialized) {
+					let mouseX = 0,
+						mouseY = 0;
+					let dots = [
+						{ x: 0, y: 0, el: dot, lag: 0.6 },
+						{ x: 0, y: 0, el: aura1, lag: 0.25 },
+						{ x: 0, y: 0, el: aura2, lag: 0.12 },
+					];
 					let isHovering = false;
-					let isMoving = false;
-					let moveTimeout;
 
-					// Listen for all links and buttons for hover states
-					const attachHoverListeners = () => {
-						document.querySelectorAll('a, button, input').forEach(el => {
-							el.addEventListener('mouseenter', () => isHovering = true);
-							el.addEventListener('mouseleave', () => isHovering = false);
-						});
+					const attach = () => {
+						document
+							.querySelectorAll(
+								'a, button, [role="button"], input, .tilt-card-parent',
+							)
+							.forEach((el) => {
+								el.addEventListener(
+									"mouseenter",
+									() => (isHovering = true),
+								);
+								el.addEventListener(
+									"mouseleave",
+									() => (isHovering = false),
+								);
+							});
 					};
-					attachHoverListeners();
-					
-					// Re-attach on Astro ViewTransitions
-					document.addEventListener('astro:after-swap', attachHoverListeners);
+					attach();
+					document.addEventListener("astro:after-swap", attach);
 
-					window.addEventListener('mousemove', (e) => {
+					window.addEventListener("mousemove", (e) => {
 						mouseX = e.clientX;
 						mouseY = e.clientY;
-						
-						// Instant dot update
-						if (dot) {
-							dot.style.opacity = '1';
-							dot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
-						}
-						
-						// Reveal ring and glow
-						if (ring) ring.style.opacity = '1';
+						dots.forEach((d) => {
+							if (d.el) d.el.style.opacity = "1";
+						});
 						if (ambientGlow) {
-							ambientGlow.style.opacity = '1';
-							ambientGlow.style.background = `radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(var(--color-primary) / 0.12), transparent 40%)`;
+							ambientGlow.style.opacity = "1";
+							document.documentElement.style.setProperty(
+								"--x",
+								`${mouseX}px`,
+							);
+							document.documentElement.style.setProperty(
+								"--y",
+								`${mouseY}px`,
+							);
 						}
-
-						clearTimeout(moveTimeout);
-						isMoving = true;
-						moveTimeout = setTimeout(() => {
-							isMoving = false;
-							if (ambientGlow) ambientGlow.style.opacity = '0.5';
-						}, 1500);
 					});
 
-					// Physics loop for the trailing ring
-					const renderCursor = () => {
-						// Lerp the ring towards the mouse
-						ringX += (mouseX - ringX) * 0.2; // Snappy follow
-						ringY += (mouseY - ringY) * 0.2;
-						
-						if (ring) {
-							const scale = isHovering ? 2 : 1;
-							const border = isHovering ? 'rgba(var(--color-accent) / 0.8)' : 'rgba(var(--color-primary) / 0.5)';
-							const bg = isHovering ? 'rgba(var(--color-accent) / 0.1)' : 'transparent';
-							
-							ring.style.transform = `translate(calc(${ringX}px - 50%), calc(${ringY}px - 50%)) scale(${scale})`;
-							ring.style.borderColor = border;
-							ring.style.backgroundColor = bg;
-						}
-						
-						requestAnimationFrame(renderCursor);
+					const run = () => {
+						dots.forEach((d) => {
+							if (!d.el) return;
+							d.x += (mouseX - d.x) * d.lag;
+							d.y += (mouseY - d.y) * d.lag;
+							const scale = isHovering ? 1.5 + d.lag * 5 : 1;
+							d.el.style.transform = `translate(calc(${d.x}px - 50%), calc(${d.y}px - 50%)) scale(${scale})`;
+						});
+						requestAnimationFrame(run);
 					};
-					renderCursor();
-
-					window.addEventListener('mouseout', () => {
-						if (dot) dot.style.opacity = '0';
-						if (ring) ring.style.opacity = '0';
-						if (ambientGlow) ambientGlow.style.opacity = '0';
-					});
-					
+					run();
 					window.cursorInitialized = true;
 				}
+
+				// --- SCROLL REVEAL ---
+				const observer = new IntersectionObserver(
+					(entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting)
+								entry.target.classList.add("is-visible");
+						});
+					},
+					{ threshold: 0.1 },
+				);
+				document
+					.querySelectorAll(".scroll-reveal")
+					.forEach((el) => observer.observe(el));
+
+				// --- KONAMI CODE EASTER EGG (↑↑↓↓←→←→BA) ---
+				if (!window.konamiInitialized) {
+					const konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+					let ki = 0;
+					window.addEventListener("keydown", (e) => {
+						if (e.keyCode === konamiCode[ki]) {
+							ki++;
+							if (ki === konamiCode.length) {
+								ki = 0;
+								const ov =
+									document.getElementById(
+										"easter-egg-overlay",
+									);
+								const tx =
+									document.getElementById("easter-egg-text");
+								if (ov && tx) {
+									ov.style.opacity = "1";
+									setTimeout(
+										() =>
+											(tx.style.transform =
+												"scale(1) rotate(-3deg)"),
+										100,
+									);
+									setTimeout(() => {
+										tx.style.transform = "scale(0)";
+										ov.style.opacity = "0";
+									}, 2500);
+								}
+							}
+						} else {
+							ki = 0;
+						}
+					});
+					window.konamiInitialized = true;
+				}
 			}
-			
-			// Run on initial load and subsequent view transitions
-			document.addEventListener('astro:page-load', initAnimationsAndCursor);
+
+			document.addEventListener("astro:page-load", initCore);
+			initCore();
 		</script>
 	</body>
 </html>
 
 <style is:global>
-	/* Hide native cursor globally when custom cursor is enabled */
-	html:not(.native-cursor) * {
+	* {
 		cursor: none !important;
+	}
+
+	body {
+		font-family: "Outfit", sans-serif;
+	}
+	h1,
+	h2,
+	h3,
+	h4,
+	.font-serif {
+		font-family: "Bricolage Grotesque", serif;
 	}
 
 	.scroll-reveal {
 		opacity: 0;
 		transform: translateY(40px) scale(0.98);
-		transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+		transition:
+			opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+			transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 	.scroll-reveal.is-visible {
 		opacity: 1;
 		transform: translateY(0) scale(1);
 	}
 
-	/* S-Tier selection styling */
+	@keyframes marquee-left {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+	@keyframes marquee-right {
+		0% {
+			transform: translateX(-50%);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+	.animate-marquee-left {
+		animation: marquee-left 40s linear infinite;
+		display: inline-block;
+	}
+	.animate-marquee-right {
+		animation: marquee-right 40s linear infinite;
+		display: inline-block;
+	}
+
 	::selection {
 		background-color: rgba(var(--color-primary) / 0.3);
 		color: rgb(var(--color-heading));

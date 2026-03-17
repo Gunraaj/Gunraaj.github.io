@@ -1,184 +1,436 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { siteConfig } from '../../content/site';
+import Layout from "../../layouts/Layout.astro";
+import { siteConfig } from "../../content/site";
 
 export function getStaticPaths() {
-  return siteConfig.projects.map((project) => ({
-    params: { id: project.id },
-    props: { project },
-  }));
+    return siteConfig.projects.map((project) => ({
+        params: { id: project.id },
+        props: { project },
+    }));
 }
 
 const { project } = Astro.props;
-
-// Determine primary color logic based on the project's domain to give them unique vibes
-// Note: This relies on the index of the first domain tag.
 ---
 
-<Layout title={`${project.title} - Case Study`} description={project.shortDescription}>
-  <div class="pt-32 pb-24 relative overflow-hidden min-h-screen">
-    
-    <!-- Immersive Background Glow -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80vw] h-[50vh] bg-primary/10 rounded-full mix-blend-screen filter blur-[120px] pointer-events-none -translate-y-1/2"></div>
+<Layout
+    title={`${project.title} - Case Study`}
+    description={project.shortDescription}
+>
+    <div class="pt-24 pb-24 relative overflow-hidden min-h-screen">
+        <!-- Hero Image Background Layer -->
+        {
+            project.heroImage && (
+                <div class="absolute inset-x-0 top-0 h-[70vh] w-full z-0 overflow-hidden select-none">
+                    <div class="absolute inset-0 bg-gradient-to-b from-background/30 via-background/80 to-background z-10 pointer-events-none mix-blend-multiply" />
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[120vw] h-[80vh] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] pointer-events-none -translate-y-1/2 z-10" />
+                    <img
+                        src={project.heroImage}
+                        alt=""
+                        class="w-full h-full object-cover opacity-[0.25] transform scale-105"
+                        onerror="this.parentElement.style.display='none'"
+                    />
+                </div>
+            )
+        }
 
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full animate-fade-in-up">
-      
-      <!-- Back Link -->
-      <a href="/#projects" class="inline-flex items-center text-sm font-medium text-muted hover:text-primary transition-colors mb-8 group">
-        <svg class="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        Back to Overview
-      </a>
+        <div
+            class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full animate-fade-in-up mt-8"
+        >
+            <!-- Back Link -->
+            <a
+                href="/#projects"
+                class="inline-flex items-center text-sm font-medium text-muted hover:text-primary transition-colors mb-8 group bg-surface/50 backdrop-blur-md px-4 py-2 rounded-full border border-card-border/30"
+            >
+                <svg
+                    class="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                </svg>
+                Back to Overview
+            </a>
 
-      <!-- Hero Header -->
-      <div class="space-y-6 mb-16">
-        <div class="flex flex-wrap gap-2">
-            {project.domainTags.map((tag) => (
-                <span class="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-primary/10 text-primary rounded-full border border-primary/20">
-                    {tag}
-                </span>
-            ))}
-            {project.featured && (
-                <span class="px-3 py-1 text-xs font-semibold tracking-wider uppercase bg-accent/10 text-accent rounded-full border border-accent/20">
-                    Featured Work
-                </span>
-            )}
-        </div>
-        
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-heading leading-tight tracking-tight">
-          {project.title}
-        </h1>
-        
-        <p class="text-xl md:text-2xl text-muted font-mono leading-relaxed max-w-3xl">
-          {project.shortDescription}
-        </p>
+            <!-- Hero Header -->
+            <div class="space-y-6 mb-16 relative">
+                <div class="flex flex-wrap gap-2">
+                    {
+                        project.domainTags.map((tag) => (
+                            <span class="px-3 py-1 text-xs font-bold tracking-wider uppercase bg-primary/10 text-primary rounded-full border border-primary/20 backdrop-blur-sm shadow-[0_0_15px_rgba(var(--color-primary),0.2)]">
+                                {tag}
+                            </span>
+                        ))
+                    }
+                    {
+                        project.featured && (
+                            <span class="px-3 py-1 text-xs font-bold tracking-wider uppercase bg-accent/10 text-accent rounded-full border border-accent/20 backdrop-blur-sm shadow-[0_0_15px_rgba(var(--color-accent),0.2)]">
+                                Featured Work
+                            </span>
+                        )
+                    }
+                </div>
 
-        <!-- Tech Stack Pills -->
-        <div class="pt-4 flex flex-wrap gap-2">
-             {project.tools.map((tool) => (
-                <span class="px-3 py-1.5 text-sm bg-surface/50 text-text rounded-md border border-card-border/30 shadow-sm backdrop-blur-md">
-                    {tool}
-                </span>
-            ))}
-        </div>
-      </div>
+                <h1
+                    class="text-5xl md:text-6xl lg:text-7xl font-display font-black text-white leading-[1.1] tracking-tight drop-shadow-2xl"
+                >
+                    {project.title}
+                </h1>
 
-      <!-- TL;DR Executive Summary Block -->
-      <div class="bg-surface/40 backdrop-blur-2xl rounded-3xl p-8 md:p-10 mb-20 border border-card-border/30 shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.1)] relative overflow-hidden group">
-          <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent pointer-events-none group-hover:opacity-100 transition-opacity duration-500"></div>
-          
-          <h2 class="text-xs tracking-widest uppercase font-bold text-primary mb-4">Executive Summary</h2>
-          <p class="text-lg text-heading leading-relaxed mb-6">
-              {project.details.problem}
-          </p>
+                <p
+                    class="text-xl md:text-2xl text-muted font-mono leading-relaxed max-w-3xl border-l-4 border-primary pl-6"
+                >
+                    {project.shortDescription}
+                </p>
 
-          <!-- Core Outcomes -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8 pt-8 border-t border-border/50">
-             <div>
-                <h3 class="text-sm tracking-wider uppercase font-semibold text-muted mb-3 flex items-center">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
-                    Live Links
+                <!-- Tech Stack Pills -->
+                <div class="pt-6 flex flex-wrap gap-3">
+                    {
+                        project.tools.map((tool) => (
+                            <span class="px-4 py-2 text-sm font-semibold bg-surface/60 text-heading text-white rounded-lg border border-white/10 shadow-lg backdrop-blur-xl hover:bg-surface transition-colors cursor-default">
+                                {tool}
+                            </span>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- TL;DR Executive Summary Block -->
+            <div
+                class="bg-surface/30 backdrop-blur-3xl rounded-[2.5rem] p-8 md:p-12 mb-20 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.3),inset_0_1px_1px_rgba(255,255,255,0.1)] relative overflow-hidden group"
+            >
+                <div
+                    class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-accent/5 pointer-events-none group-hover:opacity-100 transition-opacity duration-700"
+                >
+                </div>
+
+                <h2
+                    class="text-sm tracking-[0.2em] uppercase font-black text-primary mb-6 flex items-center"
+                >
+                    <span class="w-12 h-0.5 bg-primary/50 mr-4"></span>
+                    Executive Summary
+                </h2>
+                <p
+                    class="text-xl text-heading leading-relaxed mb-6 font-medium text-white/90"
+                >
+                    {project.details.problem}
+                </p>
+
+                <!-- Core Outcomes -->
+                <div
+                    class:list={[
+                        "grid grid-cols-1 gap-8 mt-10 pt-10 border-t border-white/10",
+                        project.links.length > 0
+                            ? "md:grid-cols-2"
+                            : "md:grid-cols-1",
+                    ]}
+                >
+                    {
+                        project.links.length > 0 && (
+                            <div class="bg-black/20 rounded-2xl p-6 border border-white/5">
+                                <h3 class="text-sm tracking-wider uppercase font-bold text-muted mb-4 flex items-center">
+                                    <svg
+                                        class="w-5 h-5 mr-3 text-primary"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+                                        />
+                                    </svg>
+                                    Live Links & Assets
+                                </h3>
+                                <div class="flex flex-col gap-3">
+                                    {project.links.map((link) => (
+                                        <a
+                                            href={link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="text-white hover:text-primary transition-all inline-flex items-center group font-medium text-lg bg-white/5 hover:bg-white/10 p-3 rounded-lg"
+                                        >
+                                            {link.label}
+                                            <svg
+                                                class="w-5 h-5 ml-auto transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                                />
+                                            </svg>
+                                        </a>
+                                    ))}
+                                </div>
+                            </div>
+                        )
+                    }
+
+                    <div
+                        class="bg-black/20 rounded-2xl p-6 border border-white/5"
+                    >
+                        <h3
+                            class="text-sm tracking-wider uppercase font-bold text-muted mb-4 flex items-center"
+                        >
+                            <svg
+                                class="w-5 h-5 mr-3 text-accent"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                ><path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path></svg
+                            >
+                            Primary Highlights
+                        </h3>
+                        <ul class="space-y-3">
+                            {
+                                project.highlights.slice(0, 4).map((h) => (
+                                    <li class="text-base text-text flex items-start">
+                                        <span class="text-accent mr-3 mt-1 text-lg leading-none">
+                                            •
+                                        </span>
+                                        <span class="text-white/80 leading-snug">
+                                            {h}
+                                        </span>
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deep Dive Storytelling: Architecture & Results -->
+            <article class="prose prose-invert prose-lg max-w-none text-text">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    <!-- Left Column: Content -->
+                    <div class="lg:col-span-12 space-y-16">
+                        {
+                            project.details.objectives.length > 0 && (
+                                <div class="scroll-reveal group">
+                                    <h2 class="text-3xl font-display font-bold text-white mt-0 mb-8 flex items-center">
+                                        <span class="w-10 h-1 bg-primary mr-6 inline-block rounded-full group-hover:w-16 transition-all duration-300" />
+                                        Engineering Objectives
+                                    </h2>
+                                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 not-prose">
+                                        {project.details.objectives.map(
+                                            (obj, i) => (
+                                                <li class="bg-surface/40 backdrop-blur border border-white/5 p-5 rounded-xl flex items-start shadow-md hover:-translate-y-1 transition-transform">
+                                                    <span class="text-primary font-black font-mono text-xl mr-4 opacity-50">
+                                                        0{i + 1}
+                                                    </span>
+                                                    <span class="text-white/80">
+                                                        {obj}
+                                                    </span>
+                                                </li>
+                                            ),
+                                        )}
+                                    </ul>
+                                </div>
+                            )
+                        }
+
+                        {/* Media Gallery / Feature Section if images exist */}
+                        {
+                            project.gallery && project.gallery.length > 0 && (
+                                <div class="scroll-reveal w-full overflow-hidden rounded-3xl not-prose my-16 shadow-2xl border border-white/10 group gallery-container">
+                                    {project.gallery.length === 1 ? (
+                                        <img
+                                            src={project.gallery[0]}
+                                            alt={`${project.title} Visual`}
+                                            title={`${project.title} Visual`}
+                                            class="w-full h-auto object-cover max-h-[600px] group-hover:scale-105 transition-transform duration-700"
+                                            onerror="this.closest('.gallery-container').style.display='none'"
+                                        />
+                                    ) : (
+                                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2 bg-white/5 p-2">
+                                            {project.gallery.map((img) => (
+                                                <div class="overflow-hidden rounded-xl relative group/img cursor-crosshair">
+                                                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover/img:opacity-100 transition-opacity duration-300 z-10 pointer-events-none" />
+                                                    <img
+                                                        src={img}
+                                                        alt={`${project.title} Visual`}
+                                                        class="w-full h-64 object-cover transform group-hover/img:scale-110 transition-transform duration-500 ease-out"
+                                                        onerror="this.parentElement.style.display='none'"
+                                                    />
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            )
+                        }
+
+                        {
+                            project.details.methodology.length > 0 && (
+                                <div class="scroll-reveal group">
+                                    <h2 class="text-3xl font-display font-bold text-white mt-0 mb-8 flex items-center">
+                                        <span class="w-10 h-1 bg-accent mr-6 inline-block rounded-full group-hover:w-16 transition-all duration-300" />
+                                        System Architecture
+                                    </h2>
+                                    <div class="space-y-6 text-lg leading-relaxed text-white/70 bg-gradient-to-r from-surface/50 to-transparent p-8 rounded-2xl border-l-2 border-accent/50">
+                                        {project.details.methodology.map(
+                                            (method) => (
+                                                <p class="m-0 pl-2">{method}</p>
+                                            ),
+                                        )}
+                                    </div>
+                                </div>
+                            )
+                        }
+
+                        {
+                            project.details.codeSnippet && (
+                                <div class="scroll-reveal group my-16">
+                                    <h2 class="text-3xl font-display font-bold text-white mt-0 mb-8 flex items-center">
+                                        <span class="w-10 h-1 bg-primary mr-6 inline-block rounded-full group-hover:w-16 transition-all duration-300" />
+                                        Core Implementation
+                                    </h2>
+                                    <div class="rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#0d1117]">
+                                        <div class="flex items-center px-4 py-3 border-b border-white/10 bg-white/5">
+                                            <div class="flex space-x-2 mr-4">
+                                                <div class="w-3 h-3 rounded-full bg-red-500/80" />
+                                                <div class="w-3 h-3 rounded-full bg-yellow-500/80" />
+                                                <div class="w-3 h-3 rounded-full bg-green-500/80" />
+                                            </div>
+                                            <span class="text-xs font-mono text-white/50">
+                                                {
+                                                    project.details.codeSnippet
+                                                        .filename
+                                                }
+                                            </span>
+                                            <span class="ml-auto text-xs font-medium uppercase tracking-wider text-primary/70">
+                                                {
+                                                    project.details.codeSnippet
+                                                        .language
+                                                }
+                                            </span>
+                                        </div>
+                                        <div class="p-4 overflow-x-auto">
+                                            <pre class="!bg-transparent !m-0 !p-0">
+                                                <code class="text-sm font-mono text-white/80 whitespace-pre scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent pb-2">
+                                                    {
+                                                        project.details
+                                                            .codeSnippet.code
+                                                    }
+                                                </code>
+                                            </pre>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                        {
+                            project.details.results.length > 0 && (
+                                <div class="scroll-reveal group">
+                                    <h2 class="text-3xl font-display font-bold text-white mt-0 mb-8 flex items-center">
+                                        <span class="w-10 h-1 bg-gradient-to-r from-primary to-accent mr-6 inline-block rounded-full group-hover:w-16 transition-all duration-300" />
+                                        Quantitative Results
+                                    </h2>
+                                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 not-prose">
+                                        {project.details.results.map(
+                                            (result, idx) => (
+                                                <div class="bg-surface/60 backdrop-blur-xl border border-border/50 p-8 rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.2)] relative overflow-hidden group/card hover:border-primary/50 transition-colors duration-300">
+                                                    <div class="absolute -right-4 -top-8 text-8xl font-display font-black text-white/5 select-none group-hover/card:text-primary/10 transition-colors duration-300">
+                                                        {idx + 1}
+                                                    </div>
+                                                    <span class="relative z-10 text-white font-medium text-lg leading-snug block">
+                                                        {result}
+                                                    </span>
+                                                </div>
+                                            ),
+                                        )}
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
+                </div>
+            </article>
+
+            <!-- Let's Connect Footer -->
+            <div
+                class="mt-32 pt-20 border-t border-white/5 text-center scroll-reveal relative"
+            >
+                <div
+                    class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-primary/50 to-transparent"
+                >
+                </div>
+                <h3
+                    class="text-3xl text-white font-display font-bold mb-8 drop-shadow-md"
+                >
+                    Interested in discussing the architecture?
                 </h3>
-                <div class="flex flex-col gap-2">
-                    {project.links.length > 0 ? project.links.map(link => (
-                        <a href={link.url} target="_blank" rel="noopener noreferrer" class="text-primary hover:text-heading transition-colors inline-flex items-center group">
-                            {link.label}
-                            <svg class="w-4 h-4 ml-1 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                        </a>
-                    )) : (
-                        <span class="text-muted italic text-sm">Deployment pending / Internal or Core Architecture</span>
-                    )}
-                </div>
-             </div>
-             
-             <div>
-                <h3 class="text-sm tracking-wider uppercase font-semibold text-muted mb-3 flex items-center">
-                    <svg class="w-4 h-4 mr-2 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                    Primary Focus
-                </h3>
-                <ul class="space-y-1">
-                    {project.highlights.slice(0, 3).map(h => (
-                        <li class="text-sm text-text">• {h}</li>
-                    ))}
-                </ul>
-             </div>
-          </div>
-      </div>
-
-      <!-- Deep Dive Storytelling: Architecture & Results -->
-      <article class="prose prose-invert prose-lg max-w-none text-text">
-        
-        {project.details.objectives.length > 0 && (
-            <div class="mb-16 scroll-reveal">
-                <h2 class="text-3xl font-display font-bold text-heading mt-0 mb-6 flex items-center">
-                    <span class="w-8 h-1 bg-primary mr-4 inline-block"></span>
-                    Engineering Objectives
-                </h2>
-                <ul class="space-y-4">
-                    {project.details.objectives.map(obj => (
-                        <li class="pl-4 border-l-2 border-primary/20 bg-surface/20 py-2 pr-4 rounded-r-lg">
-                            {obj}
-                        </li>
-                    ))}
-                </ul>
+                <a
+                    href="mailto:gunraj1singh@gmail.com"
+                    class="inline-flex items-center justify-center px-10 py-5 bg-white text-black font-black text-lg tracking-wide uppercase rounded-2xl hover:bg-primary hover:text-white transition-all duration-300 hover:-translate-y-2 shadow-[0_10px_40px_rgba(255,255,255,0.15)] hover:shadow-[0_15px_50px_rgba(var(--color-primary),0.4)]"
+                >
+                    Let's Talk Shop
+                    <svg
+                        class="w-6 h-6 ml-3"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        ><path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2.5"
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg
+                    >
+                </a>
             </div>
-        )}
-
-        {project.details.methodology.length > 0 && (
-             <div class="mb-16 scroll-reveal">
-                <h2 class="text-3xl font-display font-bold text-heading mt-0 mb-6 flex items-center">
-                     <span class="w-8 h-1 bg-accent mr-4 inline-block"></span>
-                     System Architecture & Methodology
-                </h2>
-                <div class="space-y-6 text-lg leading-loose">
-                    {project.details.methodology.map(method => (
-                        <p>{method}</p>
-                    ))}
-                </div>
-            </div>
-        )}
-
-        {project.details.results.length > 0 && (
-            <div class="mb-16 scroll-reveal">
-                <h2 class="text-3xl font-display font-bold text-heading mt-0 mb-6 flex items-center">
-                    <span class="w-8 h-1 bg-gradient-to-r from-primary to-accent mr-4 inline-block"></span>
-                    Quantitative Results
-                </h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {project.details.results.map((result, idx) => (
-                        <div class="bg-surface/30 backdrop-blur-lg border border-border/50 p-6 rounded-2xl shadow-inner relative overflow-hidden">
-                            <div class="absolute -right-4 -top-4 text-7xl font-display font-bold text-primary/5 select-none">{idx + 1}</div>
-                            <span class="relative z-10 text-heading font-medium">{result}</span>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        )}
-
-      </article>
-
-      <!-- Let's Connect Footer -->
-      <div class="mt-32 pt-16 border-t border-card-border/10 text-center scroll-reveal">
-          <p class="text-xl text-heading font-display font-semibold mb-6">Interested in discussing the architecture of this system?</p>
-          <a href="mailto:gunraaj.s@example.com" class="inline-flex items-center justify-center px-8 py-4 bg-primary text-background font-bold rounded-xl hover:bg-primary/90 transition-all hover:-translate-y-1 shadow-[0_0_20px_rgba(var(--color-primary),0.3)]">
-              Let's Talk Shop
-          </a>
-      </div>
-
+        </div>
     </div>
-  </div>
 </Layout>
 
 <style>
-  /* Local animations specific to the case study load */
-  .animate-fade-in-up {
-    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0; 
-  }
-  
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px) scale(0.98); }
-    to { opacity: 1; transform: translateY(0) scale(1); }
-  }
+    .animate-fade-in-up {
+        animation: fadeInUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        opacity: 0;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(40px) scale(0.96);
+            filter: blur(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+    }
+
+    .scroll-reveal {
+        animation: revealScroll 0.8s ease-out forwards;
+        animation-timeline: view();
+        animation-range: entry 10% cover 30%;
+    }
+
+    @keyframes revealScroll {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
 </style>

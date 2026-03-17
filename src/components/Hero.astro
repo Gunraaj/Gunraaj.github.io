@@ -1,32 +1,117 @@
 ---
-import { siteConfig } from '../content/site';
+import { siteConfig } from "../content/site";
 ---
 
-<section class="relative min-h-screen flex items-center justify-center bg-background overflow-hidden py-32 sm:py-0">
+<section
+  class="relative min-h-screen flex items-center justify-center bg-background overflow-hidden py-32 sm:py-0"
+>
   <!-- Glowing ambient background orbs -->
-  <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"></div>
-  <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"></div>
+  <div
+    class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] animate-blob"
+  >
+  </div>
+  <div
+    class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent/10 rounded-full mix-blend-screen filter blur-[100px] animate-blob animation-delay-2000"
+  >
+  </div>
 
   <!-- Subtle grid pattern -->
   <div class="absolute inset-0 opacity-10">
-    <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"></div>
-    <div class="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,transparent_0%,#050505_100%)]"></div>
+    <div
+      class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px]"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-background [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,transparent_0%,#050505_100%)]"
+    >
+    </div>
   </div>
-  
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-8">
+
+  <!-- Subtle Circuit Trace Easter Egg -->
+  <svg
+    class="absolute bottom-12 right-12 w-48 h-48 opacity-[0.04] text-primary"
+    viewBox="0 0 200 200"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.5"
+  >
+    <path
+      d="M20 180 L20 120 L60 120 L60 80 L100 80"
+      class="animate-circuit-draw"></path>
+    <path
+      d="M100 80 L140 80 L140 40 L180 40"
+      class="animate-circuit-draw"
+      style="animation-delay: 0.5s"></path>
+    <path
+      d="M60 120 L60 160 L120 160 L120 120"
+      class="animate-circuit-draw"
+      style="animation-delay: 1s"></path>
+    <circle cx="60" cy="120" r="4" fill="currentColor" class="animate-pulse"
+    ></circle>
+    <circle
+      cx="100"
+      cy="80"
+      r="4"
+      fill="currentColor"
+      class="animate-pulse"
+      style="animation-delay: 0.5s"></circle>
+    <circle
+      cx="140"
+      cy="80"
+      r="3"
+      fill="currentColor"
+      class="animate-pulse"
+      style="animation-delay: 1s"></circle>
+    <circle
+      cx="120"
+      cy="160"
+      r="3"
+      fill="currentColor"
+      class="animate-pulse"
+      style="animation-delay: 1.5s"></circle>
+    <rect
+      x="170"
+      y="32"
+      width="16"
+      height="16"
+      rx="2"
+      stroke="currentColor"
+      stroke-width="1"></rect>
+  </svg>
+
+  <div
+    class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full flex flex-col md:flex-row items-center justify-between gap-12 lg:gap-8"
+  >
     <!-- Left Column: Text -->
-    <div class="flex-1 text-center md:text-left flex flex-col items-center md:items-start">
-      <h1 class="text-5xl sm:text-7xl md:text-8xl font-display font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-heading via-heading to-muted mb-6 animate-fade-in-up delay-100 leading-tight">
+    <div
+      class="flex-1 text-center md:text-left flex flex-col items-center md:items-start"
+    >
+      <p
+        class="text-lg sm:text-xl font-mono text-muted mb-4 animate-fade-in-up delay-100"
+      >
+        <span id="typewriter-text"></span><span
+          class="animate-blink text-primary">|</span
+        >
+      </p>
+      <h1
+        class="text-5xl sm:text-7xl md:text-8xl font-display font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-br from-heading via-heading to-muted mb-6 animate-fade-in-up delay-100 leading-tight"
+      >
         {siteConfig.profile.name}
       </h1>
-      <h2 class="text-xl sm:text-3xl md:text-4xl font-display font-medium text-primary mb-8 animate-fade-in-up delay-200">
+      <h2
+        class="text-xl sm:text-3xl md:text-4xl font-display font-medium text-primary mb-8 animate-fade-in-up delay-200"
+      >
         {siteConfig.profile.title}
       </h2>
-      <p class="text-lg sm:text-xl text-muted max-w-2xl mb-10 font-mono animate-fade-in-up delay-300">
+      <p
+        class="text-lg sm:text-xl text-muted max-w-2xl mb-10 font-mono animate-fade-in-up delay-300"
+      >
         {siteConfig.profile.identityLine}
       </p>
-      
-      <div class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 animate-fade-in-up delay-400 mt-4 w-full sm:w-auto">
+
+      <div
+        class="flex flex-col sm:flex-row justify-center md:justify-start gap-4 animate-fade-in-up delay-400 mt-4 w-full sm:w-auto"
+      >
         <a
           href={siteConfig.profile.social.resume}
           class="px-8 py-4 bg-heading text-background hover:bg-heading/90 font-semibold rounded-xl shadow-[0_0_20px_rgba(var(--color-heading),0.1)] transition-all transform hover:-translate-y-1 hover:shadow-[0_0_30px_rgba(var(--color-heading),0.2)]"
@@ -43,55 +128,111 @@ import { siteConfig } from '../content/site';
     </div>
 
     <!-- Right Column: 3D Avatar -->
-    <div class="flex-1 flex justify-center perspective-[1200px] shrink-0 pointer-events-auto mt-12 md:mt-0 delay-400 animate-fade-in-up">
-      <div id="hero-avatar-container" class="relative group w-64 h-64 sm:w-80 sm:h-80 lg:w-[400px] lg:h-[400px] rounded-[3rem] p-1" style="transform-style: preserve-3d;">
+    <div
+      class="flex-1 flex justify-center perspective-[1200px] shrink-0 pointer-events-auto mt-12 md:mt-0 delay-400 animate-fade-in-up"
+    >
+      <div
+        id="hero-avatar-container"
+        class="relative group w-64 h-64 sm:w-80 sm:h-80 lg:w-[400px] lg:h-[400px] rounded-[3rem] p-1"
+        style="transform-style: preserve-3d;"
+      >
         <!-- Animated Border Glow -->
-        <div class="absolute -inset-2 bg-gradient-to-tr from-primary via-accent to-primary rounded-[3rem] opacity-40 blur-2xl group-hover:opacity-100 transition-opacity duration-700 animate-[spin_4s_linear_infinite] mix-blend-screen -z-10"></div>
-        
+        <div
+          class="absolute -inset-2 bg-gradient-to-tr from-primary via-accent to-primary rounded-[3rem] opacity-40 blur-2xl group-hover:opacity-100 transition-opacity duration-700 animate-[spin_4s_linear_infinite] mix-blend-screen -z-10"
+        >
+        </div>
+
         <!-- Glass Core -->
-        <div class="absolute inset-0 bg-surface/40 backdrop-blur-2xl rounded-[3rem] border border-card-border/30 overflow-hidden shadow-[inset_0_2px_20px_rgba(255,255,255,0.1)]">
-           <img src="/profile.jpg" alt="Profile" class="w-full h-full object-cover object-top filter contrast-105 brightness-105 z-10 relative pointer-events-none" id="hero-avatar-img"/>
-           
-           <!-- Lighting overlay -->
-           <div id="avatar-glare" class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 mix-blend-overlay z-20 transition-opacity duration-300 pointer-events-none transform scale-150"></div>
-           
-           <!-- Bottom fade -->
-           <div class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/90 to-transparent z-20 pointer-events-none"></div>
+        <div
+          class="absolute inset-0 bg-surface/40 backdrop-blur-2xl rounded-[3rem] border border-card-border/30 overflow-hidden shadow-[inset_0_2px_20px_rgba(255,255,255,0.1)]"
+        >
+          <img
+            src="/profile.jpg"
+            alt="Profile"
+            class="w-full h-full object-cover object-top filter contrast-105 brightness-105 z-10 relative pointer-events-none"
+            id="hero-avatar-img"
+          />
+
+          <!-- Lighting overlay -->
+          <div
+            id="avatar-glare"
+            class="absolute inset-0 bg-gradient-to-tr from-transparent via-white/20 to-transparent opacity-0 mix-blend-overlay z-20 transition-opacity duration-300 pointer-events-none transform scale-150"
+          >
+          </div>
+
+          <!-- Bottom fade -->
+          <div
+            class="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-background/90 to-transparent z-20 pointer-events-none"
+          >
+          </div>
         </div>
 
         <!-- Floating Glass Badges (Extruding in 3D) -->
-        <div id="badge-1" class="absolute -top-6 -right-10 bg-surface/60 backdrop-blur-3xl border border-white/20 px-6 py-3 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-30 transition-shadow pointer-events-none">
-           <div class="flex items-center gap-3">
-             <div class="w-3 h-3 rounded-full bg-accent animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.8)]"></div>
-             <span class="text-heading font-display font-bold text-sm tracking-widest uppercase">AI/ML Specialist</span>
-           </div>
+        <div
+          id="badge-1"
+          class="absolute -top-6 -right-10 bg-surface/60 backdrop-blur-3xl border border-white/20 px-6 py-3 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-30 transition-shadow pointer-events-none"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-3 h-3 rounded-full bg-accent animate-pulse shadow-[0_0_10px_rgba(16,185,129,0.8)]"
+            >
+            </div>
+            <span
+              class="text-heading font-display font-bold text-sm tracking-widest uppercase"
+              >AI/ML Specialist</span
+            >
+          </div>
         </div>
 
-        <div id="badge-2" class="absolute -bottom-8 -left-12 bg-surface/60 backdrop-blur-3xl border border-white/20 px-6 py-4 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-30 transition-shadow pointer-events-none">
-           <div class="flex items-center gap-4">
-             <div class="bg-primary/20 p-2 rounded-xl border border-primary/30 text-primary">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-             </div>
-             <div class="flex flex-col">
-               <span class="text-heading font-bold text-sm">Data Analysis</span>
-               <span class="text-muted text-xs font-mono">1M+ Data Points Processed</span>
-             </div>
-           </div>
+        <div
+          id="badge-2"
+          class="absolute -bottom-8 -left-12 bg-surface/60 backdrop-blur-3xl border border-white/20 px-6 py-4 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.5)] z-30 transition-shadow pointer-events-none"
+        >
+          <div class="flex items-center gap-4">
+            <div
+              class="bg-primary/20 p-2 rounded-xl border border-primary/30 text-primary"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                ></path>
+              </svg>
+            </div>
+            <div class="flex flex-col">
+              <span class="text-heading font-bold text-sm">Data Analysis</span>
+              <span class="text-muted text-xs font-mono"
+                >1M+ Data Points Processed</span
+              >
+            </div>
+          </div>
         </div>
-
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .delay-100 { animation-delay: 100ms; }
-  .delay-200 { animation-delay: 200ms; }
-  .delay-300 { animation-delay: 300ms; }
-  .delay-400 { animation-delay: 400ms; }
-  
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  .delay-400 {
+    animation-delay: 400ms;
+  }
+
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -102,25 +243,27 @@ import { siteConfig } from '../content/site';
       transform: translateY(0);
     }
   }
-  
+
   .animate-fade-in-up {
     animation: fadeInUp 0.8s ease-out forwards;
-    opacity: 0; 
+    opacity: 0;
   }
 </style>
 
 <script>
   function initHeroTilt() {
-    const container = document.getElementById('hero-avatar-container');
-    const glare = document.getElementById('avatar-glare');
-    const badge1 = document.getElementById('badge-1');
-    const badge2 = document.getElementById('badge-2');
-    const heroSection = container?.closest('section');
-    
+    const container = document.getElementById("hero-avatar-container");
+    const glare = document.getElementById("avatar-glare");
+    const badge1 = document.getElementById("badge-1");
+    const badge2 = document.getElementById("badge-2");
+    const heroSection = container?.closest("section");
+
     if (!container || !heroSection || !glare) return;
 
-    let targetX = 0, targetY = 0;
-    let currentX = 0, currentY = 0;
+    let targetX = 0,
+      targetY = 0;
+    let currentX = 0,
+      currentY = 0;
     let isHovering = false;
     let animationFrameId;
 
@@ -134,31 +277,33 @@ import { siteConfig } from '../content/site';
       // Apply 3D transforms
       container.style.transform = `perspective(1200px) rotateX(${currentX}deg) rotateY(${currentY}deg) scale3d(${scale}, ${scale}, ${scale})`;
       glare.style.transform = `translate(${currentY * 2}px, ${currentX * 2}px) scale(1.5)`;
-      
+
       // Floating badges parallax in opposite directions
-      if(badge1) badge1.style.transform = `translateZ(60px) translate(${currentY * -1}px, ${-currentX * -1}px)`;
-      if(badge2) badge2.style.transform = `translateZ(90px) translate(${currentY * 1.5}px, ${-currentX * 1.5}px)`;
+      if (badge1)
+        badge1.style.transform = `translateZ(60px) translate(${currentY * -1}px, ${-currentX * -1}px)`;
+      if (badge2)
+        badge2.style.transform = `translateZ(90px) translate(${currentY * 1.5}px, ${-currentX * 1.5}px)`;
 
       animationFrameId = requestAnimationFrame(lerp);
     }
 
-    heroSection.addEventListener('mousemove', (e) => {
+    heroSection.addEventListener("mousemove", (e) => {
       const rect = container.getBoundingClientRect();
       const x = e.clientX - rect.left - rect.width / 2;
       const y = e.clientY - rect.top - rect.height / 2;
-      
+
       // Calculate rotation based on cursor position (hardware locked limit: 8 degrees)
       targetX = 8 * (-y / (rect.height / 2));
       targetY = 8 * (x / (rect.width / 2));
       isHovering = true;
-      glare.style.opacity = '1';
+      glare.style.opacity = "1";
     });
-    
-    heroSection.addEventListener('mouseleave', () => {
+
+    heroSection.addEventListener("mouseleave", () => {
       targetX = 0;
       targetY = 0;
       isHovering = false;
-      glare.style.opacity = '0';
+      glare.style.opacity = "0";
     });
 
     // Start physical loop
@@ -167,5 +312,41 @@ import { siteConfig } from '../content/site';
   }
 
   initHeroTilt();
-  document.addEventListener('astro:page-load', initHeroTilt);
+  document.addEventListener("astro:page-load", initHeroTilt);
+
+  // Typewriter effect for "Hi, I am Gunraaj _"
+  function initTypewriter() {
+    const el = document.getElementById("typewriter-text");
+    if (!el || el.dataset.typed) return;
+    el.dataset.typed = "true";
+    const text = "Hey, I am";
+    let i = 0;
+    el.textContent = "";
+    const type = () => {
+      if (i < text.length) {
+        el.textContent += text.charAt(i);
+        i++;
+        setTimeout(type, 70);
+      }
+    };
+    // Delay start to let preloader finish if present
+    setTimeout(type, 2200);
+  }
+  initTypewriter();
+  document.addEventListener("astro:page-load", initTypewriter);
 </script>
+
+<style>
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+</style>

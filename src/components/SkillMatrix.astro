@@ -1,21 +1,82 @@
 ---
-import { siteConfig } from '../content/site';
+import { siteConfig } from "../content/site";
 ---
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-  {siteConfig.skills.map((skillGroup) => (
-    <div class="bg-surface/30 backdrop-blur-xl p-6 rounded-2xl border border-card-border/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)] hover:border-primary/50 transition-all duration-300 group">
-      <h3 class="text-lg font-semibold text-heading mb-4 border-b border-border/50 pb-2 flex items-center justify-between">
-        {skillGroup.category}
-        <span class="w-8 h-1 rounded-full bg-gradient-to-r from-primary to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></span>
-      </h3>
-      <div class="flex flex-wrap gap-2">
-        {skillGroup.tools.map((tool) => (
-          <span class="px-3 py-1.5 text-sm bg-background/50 text-text rounded-full border border-border/50 shadow-sm hover:text-heading hover:border-primary hover:bg-primary/10 transition-all cursor-default backdrop-blur-sm">
-            {tool}
-          </span>
-        ))}
+<div class="max-w-5xl mx-auto">
+  <!-- Animated skill bars by category -->
+  {
+    siteConfig.skills.map((skillGroup, groupIdx) => (
+      <div
+        class:list={["mb-16", groupIdx > 0 && "pt-8 border-t border-border/20"]}
+      >
+        <div class="flex items-center gap-4 mb-8">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-mono text-xs font-bold">
+            {String(groupIdx + 1).padStart(2, "0")}
+          </div>
+          <h3 class="text-2xl font-serif italic text-heading">
+            {skillGroup.category}
+          </h3>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {skillGroup.tools.map((tool, toolIdx) => (
+            <div class="skill-bar-item group relative overflow-hidden rounded-xl border border-border/30 bg-surface/30 backdrop-blur-sm hover:border-primary/40 transition-all duration-500 p-5">
+              {/* Animated fill bar */}
+              <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out" />
+
+              <div class="relative z-10 flex items-center justify-between">
+                <span class="text-[15px] text-text font-medium group-hover:text-heading transition-colors duration-300">
+                  {tool}
+                </span>
+                <div class="flex items-center gap-2">
+                  <div class="w-6 h-[2px] rounded-full bg-primary/20 group-hover:bg-primary/60 transition-all duration-500 group-hover:w-10" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  ))}
+    ))
+  }
 </div>
+
+<style>
+  .skill-bar-item {
+    animation: skillFadeIn 0.6s ease-out both;
+  }
+  .skill-bar-item:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .skill-bar-item:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .skill-bar-item:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+  .skill-bar-item:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+  .skill-bar-item:nth-child(5) {
+    animation-delay: 0.25s;
+  }
+  .skill-bar-item:nth-child(6) {
+    animation-delay: 0.3s;
+  }
+  .skill-bar-item:nth-child(7) {
+    animation-delay: 0.35s;
+  }
+  .skill-bar-item:nth-child(8) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes skillFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

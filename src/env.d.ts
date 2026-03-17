@@ -3,4 +3,5 @@
 
 interface Window {
   cursorInitialized?: boolean;
+  konamiInitialized?: boolean;
 }

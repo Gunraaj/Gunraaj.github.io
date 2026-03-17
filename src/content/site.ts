@@ -8,12 +8,19 @@ export interface Project {
     links: { label: string; url: string; icon?: string }[];
     featured: boolean;
     enabled: boolean;
+    heroImage?: string;
+    gallery?: string[];
     details: {
         problem: string;
         objectives: string[];
         methodology: string[];
         results: string[];
         visuals: string[];
+        codeSnippet?: {
+            language: string;
+            code: string;
+            filename: string;
+        };
     };
 }
 
@@ -30,7 +37,7 @@ export interface SiteConfig {
     domains: { title: string; items: string[] }[];
     skills: { category: string; tools: string[] }[];
     projects: Project[];
-    experience: { role: string; org: string; date: string; details: string[] }[];
+    experience: { org: string; location: string; roles: { title: string; category: string; date: string; details: string[] }[] }[];
     design: { category: string; items: string[] }[];
 }
 
@@ -109,7 +116,7 @@ export const siteConfig: SiteConfig = {
     skills: [
         {
             category: "Programming Languages",
-            tools: ["Python", "C / C++", "MATLAB"]
+            tools: ["Python", "C / C++", "MATLAB", "TypeScript", "JavaScript"]
         },
         {
             category: "Engineering & Simulation Tools",
@@ -117,16 +124,70 @@ export const siteConfig: SiteConfig = {
         },
         {
             category: "Software & Dev Tools",
-            tools: ["OpenCV", "NumPy, SciPy", "Git & GitHub", "VS Code", "Arduino", "LaTeX (IEEE formatting)"]
+            tools: ["React", "Astro", "Tailwind CSS", "OpenCV", "NumPy", "Git", "VS Code", "LaTeX"]
         }
     ],
     projects: [
+        {
+            id: "kairo-ai-productivity",
+            title: "KAIRO: AI-Powered Productivity & Brainwave Tuning",
+            domainTags: ["Web App", "AI Integration", "UX Engineering"],
+            tools: ["React", "TypeScript", "Tailwind CSS", "Gemini AI", "Web Audio API"],
+            shortDescription: "A next-generation productivity dashboard featuring AI-driven task breakdown and an embedded real-time audio brainwave entrainment engine.",
+            heroImage: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&w=1200&q=80",
+            gallery: [
+                "https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
+            ],
+            highlights: [
+                "Automated task breakdowns leveraging Gemini AI",
+                "Dynamic binaural beat generator mapping brainwaves to work states",
+                "Immersive dark-mode UI with beautiful neon accents",
+                "Local-first state management with Zustand and LocalStorage"
+            ],
+            links: [],
+            featured: true,
+            enabled: true,
+            details: {
+                problem: "Traditional productivity tools track tasks but fail to manage cognitive load or biological focus. Users often struggle with large abstract tasks and environmental distractions.",
+                objectives: [
+                    "Develop a local-first React dashboard that eliminates context switching.",
+                    "Integrate Google's Gemini AI to automatically deconstruct complex goals into actionable micro-tasks.",
+                    "Implement a Web Audio API-based DJ system to synthesize focusing binaural beats (Alpha/Beta waves) depending on the task type."
+                ],
+                methodology: [
+                    "UI Construction: Designed a highly visual 'Bento Box' layout using Tailwind CSS.",
+                    "AI Analysis: Used the Gemini API to rapidly categorize workloads into deep focus vs creative tasks.",
+                    "Audio Engine: Generated uncompressed raw sine wave oscialltors matched precisely to cognitive enhancement frequencies (e.g. 14Hz Beta)."
+                ],
+                results: [
+                    "Drastically reduced user paralysis on starting large projects.",
+                    "Created an immersive flow-state environment seamlessly managed within a single browser tab.",
+                    "Optimized the AI response time to near-instant task generation."
+                ],
+                visuals: [
+                    "UI Dashboard Overview",
+                    "Task Breakdown Flow",
+                    "Audio DJ Frequency Control Panel"
+                ],
+                codeSnippet: {
+                    language: "tsx",
+                    filename: "App.tsx",
+                    code: `useEffect(() => {\n    if (activeTask && audioSettings.engineEnabled) {\n      console.log("Analyzing task:", activeTask.name);\n      analyzeBrainwaveMode(activeTask.name).then(mode => {\n        console.log("Setting mode to:", mode);\n        setActiveMode(mode);\n        // Automate mixing console\n        setAudioSettings(prev => {\n          let freq = 14; // Beta (Focus)\n          if (mode === 'creativity') freq = 10; // Alpha\n          if (mode === 'deep') freq = 6; // Theta\n          return { ...prev, beatFrequency: freq };\n        });\n      });\n    }\n  }, [activeTask?.name, audioSettings.engineEnabled]);`
+                }
+            }
+        },
         {
             id: "vibration-analysis-system",
             title: "Vibration Analysis System (Computer Vision Based)",
             domainTags: ["Signal Processing", "Mechanical Diagnostics", "Computer Vision"],
             tools: ["Python", "OpenCV", "NumPy", "SciPy", "FFT", "Butterworth Filters"],
             shortDescription: "Non-contact vibration analysis using video input to extract meaningful frequency-domain and statistical features.",
+            heroImage: "https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?auto=format&fit=crop&w=1200&q=80",
+            gallery: [
+                "https://images.unsplash.com/photo-1543286386-713bdd548b25?auto=format&fit=crop&w=800&q=80",
+                "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80"
+            ],
             highlights: [
                 "ROI-based motion tracking from video",
                 "Time-domain signal extraction",
@@ -134,9 +195,7 @@ export const siteConfig: SiteConfig = {
                 "Harmonic identification",
                 "Statistical feature extraction (RMS, skewness, kurtosis)"
             ],
-            links: [
-                { label: "Report", url: "/projects/vibration-report.pdf" } // GH link removed per request
-            ],
+            links: [],
             featured: true,
             enabled: true,
             details: {
@@ -163,8 +222,13 @@ export const siteConfig: SiteConfig = {
                     "GIF of ROI tracking overlay",
                     "Displacement-time plot",
                     "FFT spectrum with labeled peaks",
-                    "A “before vs after filtering” comparison plot"
-                ]
+                    "A 'before vs after filtering' comparison plot"
+                ],
+                codeSnippet: {
+                    language: "python",
+                    filename: "vibration_analyzer_v11.py",
+                    code: `def _analyze_signal(self, data_log, fps):\n    # Preprocessing\n    sig_x = x_series - np.mean(x_series)\n    if self.cfg.DETREND: sig_x = detrend(sig_x)\n    if self.cfg.FILTER_TYPE: sig_x = self._apply_filter(sig_x, fps)\n\n    # FFT Computation\n    n = len(sig_x)\n    freqs = fftfreq(n, 1/fps)\n    fft_x = fft(sig_x)\n    mag_x = np.abs(fft_x)\n    \n    # Peak Detection\n    pos_mask = freqs >= 0\n    pos_freqs = freqs[pos_mask]\n    pos_mag_x = mag_x[pos_mask]\n    \n    idx_x = np.argmax(pos_mag_x[1:]) + 1\n    peak_x = pos_freqs[idx_x]`
+                }
             }
         },
         {
@@ -173,6 +237,10 @@ export const siteConfig: SiteConfig = {
             domainTags: ["Power Electronics"],
             tools: ["MATLAB", "Simulink"],
             shortDescription: "Design and simulation of a synchronous buck converter with efficiency optimization.",
+            heroImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+            gallery: [
+                "https://images.unsplash.com/photo-1553335520-2c700947ba96?auto=format&fit=crop&w=800&q=80"
+            ],
             highlights: [
                 "Derivation of output voltage relationship",
                 "Inductor and capacitor sizing",
@@ -180,7 +248,7 @@ export const siteConfig: SiteConfig = {
                 "Efficiency optimization using synchronous rectification"
             ],
             links: [],
-            featured: true,
+            featured: false,
             enabled: true,
             details: {
                 problem: "Efficient DC–DC conversion is critical for modern power systems, requiring stable regulation under severe line and load transients without massive thermal dissipation.",
@@ -217,6 +285,8 @@ export const siteConfig: SiteConfig = {
             domainTags: ["Electrical Machines", "Control Systems", "AI"],
             tools: ["MATLAB", "Simulink"],
             shortDescription: "Hybrid ANN + PI controller for closed-loop speed control of PM-BLDC motor.",
+            heroImage: "https://images.unsplash.com/photo-1581092334243-d25089ce2413?auto=format&fit=crop&w=1200&q=80",
+            gallery: [],
             highlights: [
                 "Closed-loop speed control",
                 "Hybrid ANN + PI controller",
@@ -252,42 +322,44 @@ export const siteConfig: SiteConfig = {
             }
         },
         {
-            id: "ev-charging-station",
-            title: "EV Charging Station with Q-Learning & Dynamic Pricing",
-            domainTags: ["Power Systems", "AI", "Optimization"],
-            tools: ["MATLAB", "Reinforcement Learning"],
-            shortDescription: "Dynamic pricing model for EV charging using reinforcement learning.",
+            id: "ecopoints-sustainability",
+            title: "EcoPoints: Gamified Sustainability Platform",
+            domainTags: ["Hackathon", "Web Platform", "Sustainability"],
+            tools: ["Web Core", "Gamification Architecture"],
+            shortDescription: "A hackathon application built to incentivize daily eco-friendly actions using a rich progression and points-based gamification loop.",
+            heroImage: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80",
+            gallery: [
+                "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80"
+            ],
             highlights: [
-                "Dynamic pricing model",
-                "Reinforcement learning-based decision making",
-                "Demand-aware charging logic"
+                "Actionable reward system mapping carbon footprint offset to digital currency",
+                "Community engagement leaderboards and social tracking",
+                "Architected during a restricted timeline for the Sparkathon challenge"
             ],
             links: [],
             featured: false,
             enabled: true,
             details: {
-                problem: "EV charging stations face violently fluctuating grid demand; static pricing fails to influence load balancing, leading to capacity bottlenecks and lost revenue.",
+                problem: "Climate change and sustainability are often viewed as macro-level issues, detaching the average consumer from feeling their personal impact. There is a lack of immediate incentive for eco-friendly habits.",
                 objectives: [
-                    "Define a Markov Decision Process (MDP) outlining state (queue length, time-of-day), actions (price levels), and rewards (utilization density).",
-                    "Train a Q-learning RL policy to handle dynamic pricing.",
-                    "Compare RL outcomes against a baseline heuristic pricing model."
+                    "Create an intuitive web application providing instant feedback and rewards for sustainable habits.",
+                    "Build a scalable data model to track various user actions (recycling, commute changes, energy reduction).",
+                    "Ensure the platform remains beginner-friendly, heavily focusing on accessibility and clear UI patterns."
                 ],
                 methodology: [
-                    "Environment Setup: Built a custom simulation environment mimicking stochastic EV arrival rates.",
-                    "Algorithm: Implemented tabular Q-Learning with an epsilon-greedy exploration strategy.",
-                    "Training: Simulated 10,000+ episodes of daily charging cycles to converge the Q-table."
+                    "Conceptualization: Drafted a core game-loop around real-world actions resulting in digital token generation.",
+                    "Design System: Kept visual noise low, utilizing calm, natural hues to contrast standard application design.",
+                    "Implementation: Engineered core modules strictly following the Sparkathon guidelines to highlight feasibility over feature-creep."
                 ],
                 results: [
-                    "Reduced average customer wait time by 22% during peak hours.",
-                    "Increased mean station utilization by 18% throughout the day.",
-                    "Demonstrated consistent, stable policy convergence across multiple random seeds.",
-                    "Optimized the overall revenue proxy by smoothing out demand spikes."
+                    "Developed a fully functional prototype capturing the essential proof of concept.",
+                    "Outlined a projected 15% increase in user retention via the leaderboard module (simulated).",
+                    "Highlighted the power of behavioral economics applied to software engineering."
                 ],
                 visuals: [
-                    "MDP State Transition Diagram",
-                    "Q-Learning Reward curve over episodes",
-                    "Price vs Demand elasticity plot",
-                    "Performance Comparison: Baseline vs RL Agent"
+                    "Leaderboard Implementation",
+                    "Carbon Offset Tracker Graph",
+                    "Point Conversion Screen"
                 ]
             }
         },
@@ -297,6 +369,8 @@ export const siteConfig: SiteConfig = {
             domainTags: ["Electrical Machines", "Control Systems"],
             tools: ["MATLAB", "Simulink"],
             shortDescription: "Adaptive speed regulation for PMSM based on temperature.",
+            heroImage: "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80",
+            gallery: [],
             highlights: [
                 "Temperature-dependent control logic",
                 "Adaptive speed regulation"
@@ -331,15 +405,85 @@ export const siteConfig: SiteConfig = {
     ],
     experience: [
         {
-            role: "Vice President & Head of Design / Video",
-            org: "Anirveda (TechnoEconomics Club, PDEU)",
-            date: "Present", // PDF doesn't specify dates, assuming current role or recent
-            details: [
-                "Led and coordinated 7 sub-committees",
-                "Oversaw branding, publicity, and creative direction",
-                "Managed cross-team collaboration",
-                "Executed large-scale technical and entrepreneurial events",
-                "Major Events: INTROVIA, ECONOMANIA, TEX (Techno-Economic Exchange), BREACH Hackathon"
+            org: "Anirveda PDEU",
+            location: "Gandhinagar, Gujarat",
+            roles: [
+                {
+                    title: "Vice President",
+                    category: "Leadership & Strategy",
+                    date: "Jun 2025 – Present",
+                    details: [
+                        "Architecting the club's long-term vision and operational roadmap.",
+                        "Directly managing 7 distinct sub-committees to ensure cross-functional synergy.",
+                        "Spearheading flagship events like BREACH Hackathon and INTROVIA.",
+                        "Overseeing resource allocation and strategic organizational growth."
+                    ]
+                },
+                {
+                    title: "Graphic Designing & Video Editing HEAD",
+                    category: "Creative Direction",
+                    date: "Sep 2024 – Jun 2025",
+                    details: [
+                        "Defined the visual language and brand identity for the entire organization.",
+                        "Mentored a team of 15+ designers and video editors.",
+                        "Produced high-production value aftermovies and promotional reels.",
+                        "Optimized digital workflows for rapid creative asset deployment."
+                    ]
+                },
+                {
+                    title: "Graphic Designing SUBCOM",
+                    category: "Visual Design",
+                    date: "Sep 2023 – Sep 2024",
+                    details: [
+                        "Designed over 50+ unique digital and print assets for club campaigns.",
+                        "Executed precise motion typography and visual storytelling.",
+                        "Maintained consistent brand guidelines across social media channels.",
+                        "Collaborated with the publicity team for maximize student engagement."
+                    ]
+                }
+            ]
+        },
+        {
+            org: "Google Developer Group on Campus, PDEU",
+            location: "Gandhinagar, Gujarat",
+            roles: [
+                {
+                    title: "Graphic Designing Core",
+                    category: "Community Design",
+                    date: "Oct 2024 – Aug 2025",
+                    details: [
+                        "Creating specialized design assets to bridge the gap between complex tech and student audience.",
+                        "Designing event identities for workshops, seminars, and hackathons.",
+                        "Producing technical motion graphics for event teasers.",
+                        "Collaborating on UI/UX assets for community-driven projects."
+                    ]
+                }
+            ]
+        },
+        {
+            org: "Respawn - The Gaming Club of PDEU",
+            location: "Gandhinagar, Gujarat",
+            roles: [
+                {
+                    title: "GD Advisor",
+                    category: "Advisory",
+                    date: "Aug 2025 – Present",
+                    details: [
+                        "Providing expert oversight on high-stakes event visual identity.",
+                        "Reviewing and critiquing design workflows for the current sub-committee.",
+                        "Ensuring visual consistency with Respawn's high-energy brand vibe."
+                    ]
+                },
+                {
+                    title: "Graphic Designing Subcom",
+                    category: "Design Execution",
+                    date: "Aug 2024 – Aug 2025",
+                    details: [
+                        "Developed the visual identity for major university gaming tournaments.",
+                        "Integrated gaming-specific aesthetics with clean typography for posters.",
+                        "Assisted in live event visual management and stream overlays."
+                    ]
+                }
             ]
         }
     ],
