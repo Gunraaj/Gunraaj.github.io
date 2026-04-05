@@ -1,0 +1,66 @@
+---
+import { siteConfig } from "../content/site";
+---
+
+<div class="max-w-5xl mx-auto space-y-16">
+  {siteConfig.ethics.map((study, i) => (
+    <div class="scroll-reveal glass-card p-8 md:p-10 relative overflow-hidden group hover:border-primary/30 transition-all duration-500">
+      <!-- Background Icon -->
+      <div class="absolute -right-4 -top-4 text-[120px] opacity-[0.03] group-hover:opacity-[0.06] transition-opacity select-none pointer-events-none leading-none">
+        {study.icon}
+      </div>
+
+      <!-- Header -->
+      <div class="flex items-start gap-5 mb-8">
+        <div class="w-14 h-14 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center text-3xl flex-shrink-0 group-hover:scale-110 transition-transform">
+          {study.icon}
+        </div>
+        <div>
+          <span class="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-2 block">Case Study {String(i + 1).padStart(2, '0')}</span>
+          <h3 class="text-2xl md:text-3xl font-display font-semibold text-heading leading-tight">{study.title}</h3>
+        </div>
+      </div>
+
+      <!-- Scenario -->
+      <div class="mb-8 pl-6 border-l-2 border-primary/20">
+        <span class="text-xs font-mono uppercase tracking-widest text-muted mb-2 block">Scenario</span>
+        <p class="text-text/80 leading-relaxed">{study.scenario}</p>
+      </div>
+
+      <!-- Ethical Dilemma -->
+      <div class="mb-8 glass-card p-6 bg-warning/5 border-warning/20">
+        <span class="text-xs font-mono uppercase tracking-widest text-warning mb-3 block flex items-center gap-2">
+          <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+          Ethical Dilemma
+        </span>
+        <p class="text-heading/80 text-base leading-relaxed">{study.ethicalDilemma}</p>
+      </div>
+
+      <!-- Analysis -->
+      <div class="mb-8">
+        <span class="text-xs font-mono uppercase tracking-widest text-muted mb-4 block">Analysis</span>
+        <div class="space-y-4">
+          {study.analysis.map((point) => {
+            const [title, ...rest] = point.split(': ');
+            const desc = rest.join(': ');
+            return (
+              <div class="flex items-start gap-4">
+                <span class="w-2 h-2 rounded-full bg-primary/50 mt-2 flex-shrink-0"></span>
+                <div>
+                  <span class="text-sm font-semibold text-heading">{title}:</span>
+                  <span class="text-sm text-text/80 ml-1">{desc}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <!-- Personal Reflection -->
+      <div class="relative pl-6 border-l-2 border-accent/30">
+        <span class="text-xs font-mono uppercase tracking-widest text-accent mb-3 block">Personal Reflection</span>
+        <p class="text-text/80 leading-relaxed">{study.personalReflection}</p>
+      </div>
+    </div>
+  ))}
+</div>

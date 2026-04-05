@@ -26,11 +26,11 @@ const {
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 
-		<!-- Google Fonts -->
+		<!-- Google Fonts — Premium Stack -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&family=Outfit:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&display=swap"
 			rel="stylesheet"
 		/>
 
@@ -58,6 +58,7 @@ const {
 	<body
 		class="bg-background text-text font-sans antialiased selection:bg-primary selection:text-white"
 	>
+		<div id="scroll-progress" style="width: 0%"></div>
 		<Navbar />
 
 		{
@@ -106,25 +107,18 @@ const {
 			)
 		}
 
-		<!-- Fluid Aura Cursor -->
+		<!-- Professional Cursor -->
 		<div
 			id="cursor-dot"
 			transition:persist
-			class="fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-[9999] opacity-0 transition-opacity duration-300 shadow-[0_0_15px_rgba(var(--color-primary)/0.5)]"
+			class="fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-[9999] opacity-0 transition-opacity duration-300 shadow-[0_0_10px_rgba(var(--color-primary)/0.6)] mix-blend-screen"
 			style="transform: translate(-50%, -50%);"
 		>
 		</div>
 		<div
 			id="cursor-aura-1"
 			transition:persist
-			class="fixed top-0 left-0 w-8 h-8 rounded-full border border-primary/20 pointer-events-none z-[9998] opacity-0 transition-opacity duration-300 bg-primary/5 blur-[1px]"
-			style="transform: translate(-50%, -50%);"
-		>
-		</div>
-		<div
-			id="cursor-aura-2"
-			transition:persist
-			class="fixed top-0 left-0 w-16 h-16 rounded-full border border-primary/10 pointer-events-none z-[9997] opacity-0 transition-opacity duration-500 bg-white/5 blur-[4px]"
+			class="fixed top-0 left-0 w-8 h-8 border border-primary/20 bg-primary/[0.02] rounded-full pointer-events-none z-[9998] opacity-0 transition-opacity duration-300 mix-blend-screen"
 			style="transform: translate(-50%, -50%);"
 		>
 		</div>
@@ -181,32 +175,11 @@ const {
 		</div>
 
 		<script>
-			// Preloader: random words from a pool, always ending with WAHEGURU
-			const wordPool = [
-				"Engineer",
-				"Creator",
-				"Designer",
-				"\u0928\u092E\u0938\u094D\u0924\u0947",
-				"\u0A74 \u0A38\u0A24\u0A3F\u0A28\u0A3E\u0A2E",
-				"\u3053\u3093\u306B\u3061\u306F",
-				"Voltage",
-				"Pixel",
-				"Respawn",
-				"\u0950",
-				"Circuit",
-				"Build",
-				"Ctrl+Z",
-				"GG",
+			const picked = [
+				"ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ",
+				"Gunraaj Singh",
+				"\u0A35\u0A3E\u0A39\u0A3F\u0A17\u0A41\u0A30\u0A42" // WAHEGURU
 			];
-			function shuffle(arr) {
-				for (let i = arr.length - 1; i > 0; i--) {
-					const j = Math.floor(Math.random() * (i + 1));
-					[arr[i], arr[j]] = [arr[j], arr[i]];
-				}
-				return arr;
-			}
-			const picked = shuffle([...wordPool]).slice(0, 4);
-			picked.push("\u0A35\u0A3E\u0A39\u0A3F\u0A17\u0A41\u0A30\u0A42"); // WAHEGURU in Gurmukhi
 
 			function initCore() {
 				const preloader = document.getElementById("preloader");
@@ -216,7 +189,6 @@ const {
 				const mainContent = document.getElementById("main-content");
 				const dot = document.getElementById("cursor-dot");
 				const aura1 = document.getElementById("cursor-aura-1");
-				const aura2 = document.getElementById("cursor-aura-2");
 				const ambientGlow = document.getElementById("ambient-glow");
 
 				// --- PRELOADER (only runs if element exists = home page) ---
@@ -260,8 +232,7 @@ const {
 						mouseY = 0;
 					let dots = [
 						{ x: 0, y: 0, el: dot, lag: 0.6 },
-						{ x: 0, y: 0, el: aura1, lag: 0.25 },
-						{ x: 0, y: 0, el: aura2, lag: 0.12 },
+						{ x: 0, y: 0, el: aura1, lag: 0.25 }
 					];
 					let isHovering = false;
 
@@ -330,6 +301,9 @@ const {
 				document
 					.querySelectorAll(".scroll-reveal")
 					.forEach((el) => observer.observe(el));
+				document
+					.querySelectorAll(".stagger-fade")
+					.forEach((el) => observer.observe(el));
 
 				// --- KONAMI CODE EASTER EGG (↑↑↓↓←→←→BA) ---
 				if (!window.konamiInitialized) {
@@ -375,31 +349,37 @@ const {
 </html>
 
 <style is:global>
-	* {
-		cursor: none !important;
+	@media (pointer: fine) {
+		* {
+			cursor: none !important;
+		}
 	}
 
 	body {
-		font-family: "Outfit", sans-serif;
+		font-family: "Inter", "Outfit", sans-serif;
+		letter-spacing: -0.01em;
 	}
 	h1,
 	h2,
 	h3,
-	h4,
-	.font-serif {
-		font-family: "Bricolage Grotesque", serif;
+	h4 {
+		font-family: "Space Grotesk", "Bricolage Grotesque", sans-serif;
+		letter-spacing: -0.02em;
+	}
+	.font-display {
+		font-family: "Space Grotesk", "Bricolage Grotesque", sans-serif;
 	}
 
 	.scroll-reveal {
 		opacity: 0;
-		transform: translateY(40px) scale(0.98);
+		transform: translateY(24px);
 		transition:
-			opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
-			transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+			opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+			transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 	.scroll-reveal.is-visible {
 		opacity: 1;
-		transform: translateY(0) scale(1);
+		transform: translateY(0);
 	}
 
 	@keyframes marquee-left {
@@ -420,11 +400,13 @@ const {
 	}
 	.animate-marquee-left {
 		animation: marquee-left 40s linear infinite;
-		display: inline-block;
+		display: flex;
+		width: max-content;
 	}
 	.animate-marquee-right {
 		animation: marquee-right 40s linear infinite;
-		display: inline-block;
+		display: flex;
+		width: max-content;
 	}
 
 	::selection {

@@ -1,257 +1,353 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Hero from "../components/Hero.astro";
-import Section from "../components/Section.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import SkillMatrix from "../components/SkillMatrix.astro";
+import ResumeSection from "../components/ResumeSection.astro";
+import EthicsSection from "../components/EthicsSection.astro";
+import SwotAnalysis from "../components/SwotAnalysis.astro";
+import LeadershipSection from "../components/LeadershipSection.astro";
+import TestimonialCard from "../components/TestimonialCard.astro";
+import FutureRoadmap from "../components/FutureRoadmap.astro";
 import { siteConfig } from "../content/site";
-
-const featuredProjects = siteConfig.projects.filter(
-  (p) => p.featured && p.enabled,
-);
 ---
 
-<Layout title="Home" showPreloader={true}>
+<Layout title="Portfolio" showPreloader={true}>
+  <!-- ═══ HERO ═══ -->
   <Hero />
 
-  <Section id="about" class="bg-surface">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-      <div class="lg:col-span-5">
-        <span
-          class="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-4 block"
-          >01 — About</span
-        >
-        <h2
-          class="text-4xl md:text-5xl font-serif italic text-heading leading-tight mb-6"
-        >
-          Who I Am
-        </h2>
-        <div class="w-16 h-0.5 bg-primary/30 mb-6"></div>
-        <p
-          class="text-lg text-muted italic font-serif leading-relaxed border-l-2 border-primary/20 pl-6"
-        >
-          "Building intelligent physical systems that scale."
-        </p>
-      </div>
-      <div class="lg:col-span-7 space-y-6">
-        {
-          siteConfig.about.map((paragraph) => (
-            <p class="text-[16px] leading-[1.8] text-text/80">{paragraph}</p>
-          ))
-        }
-      </div>
+  <!-- Submission Bar -->
+  <div class="border-y border-border/40 py-2.5 bg-surface/20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs font-mono text-muted">
+      <span>{siteConfig.profile.program}</span>
+      <span class="w-1 h-1 rounded-full bg-primary/30 hidden sm:block"></span>
+      <span>{siteConfig.profile.institution}</span>
+      <span class="w-1 h-1 rounded-full bg-primary/30 hidden sm:block"></span>
+      <span>Submitted: {siteConfig.profile.submissionDate}</span>
     </div>
-  </Section>
+  </div>
 
-  <Section id="domains" class="bg-background">
-    <div class="mb-12">
-      <span
-        class="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-3 block"
-        >02 — Expertise</span
-      >
-      <h2 class="text-4xl md:text-5xl font-serif italic text-heading">
-        Core Domains
-      </h2>
+  <!-- ═══ TABLE OF CONTENTS — Compact strip ═══ -->
+  <section id="toc" class="py-10 border-b border-border/30">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-wrap items-center justify-center gap-2">
+        {[
+          { num: "01", label: "Philosophy", href: "#philosophy" },
+          { num: "02", label: "Resume", href: "#resume" },
+          { num: "03", label: "Projects", href: "#projects" },
+          { num: "04", label: "Skills", href: "#skills" },
+          { num: "05", label: "Leadership", href: "#leadership" },
+          { num: "06", label: "Ethics", href: "#ethics" },
+          { num: "07", label: "Future", href: "#future" },
+          { num: "08", label: "Reflection", href: "#conclusion" },
+          { num: "09", label: "Testimonials", href: "#testimonials" },
+        ].map((item) => (
+          <a href={item.href} class="group px-3 py-1.5 rounded-full text-xs font-medium text-muted hover:text-primary hover:bg-primary/5 transition-all">
+            <span class="text-primary/30 group-hover:text-primary/60 font-mono mr-1">{item.num}</span>{item.label}
+          </a>
+        ))}
+      </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-1">
-      {
-        siteConfig.domains.map((domain, i) => (
-          <div class="group relative p-8 border border-border/10 hover:border-primary/20 transition-all duration-500 hover:bg-surface/30">
-            <span class="text-[64px] font-serif italic text-heading/5 absolute top-4 right-6 select-none group-hover:text-primary/10 transition-colors duration-500">
-              {String(i + 1).padStart(2, "0")}
-            </span>
-            <h3 class="text-xl font-serif text-heading mb-6 relative z-10 group-hover:text-primary transition-colors duration-300">
-              {domain.title}
-            </h3>
-            <ul class="space-y-2 relative z-10">
-              {domain.items.map((item) => (
-                <li class="text-sm text-muted/70 group-hover:text-muted transition-colors duration-300 flex items-start">
-                  <span class="text-primary/30 mr-3 mt-1.5 group-hover:text-primary/60 transition-colors">
-                    —
-                  </span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PHILOSOPHY — Asymmetric layout with big quote block    -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="philosophy" class="py-20 relative overflow-hidden">
+    <span class="big-number">01</span>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="scroll-reveal mb-10">
+        <span class="section-label">Introduction</span>
+        <h2 class="section-title">Learning Philosophy</h2>
+      </div>
+
+      <!-- Journey — first paragraph large, rest normal -->
+      <div class="scroll-reveal mb-12">
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
+          <!-- Main text — takes 3 cols -->
+          <div class="lg:col-span-3 space-y-4">
+            {siteConfig.learningPhilosophy.journey.map((paragraph, i) => (
+              <p class:list={["leading-relaxed", i === 0 ? "text-lg text-heading font-medium" : "text-text/80 text-sm"]}>
+                {paragraph}
+              </p>
+            ))}
           </div>
-        ))
-      }
-    </div>
-  </Section>
-
-  <Section id="projects" class="bg-surface">
-    <div class="mb-12">
-      <span
-        class="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-3 block"
-        >03 — Work</span
-      >
-      <h2 class="text-4xl md:text-5xl font-serif italic text-heading">
-        Featured Projects
-      </h2>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {featuredProjects.map((project) => <ProjectCard project={project} />)}
-    </div>
-    <div class="mt-16 text-center">
-      <a
-        href="/projects"
-        class="inline-flex items-center px-10 py-4 text-sm font-mono uppercase tracking-[0.2em] text-background bg-heading hover:bg-primary hover:text-white rounded-full transition-all duration-500 shadow-xl hover:shadow-primary/20 group"
-      >
-        All Projects
-        <svg
-          class="ml-3 w-4 h-4 transform group-hover:translate-x-1 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-        </svg>
-      </a>
-    </div>
-  </Section>
-
-  <Section id="skills" class="bg-background">
-    <div class="mb-12">
-      <span
-        class="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-3 block"
-        >04 — Tools</span
-      >
-      <h2 class="text-4xl md:text-5xl font-serif italic text-heading">
-        Skills & Toolchain
-      </h2>
-    </div>
-    <SkillMatrix />
-  </Section>
-
-  <Section id="leadership" class="bg-surface">
-    <div class="mb-12">
-      <span
-        class="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-3 block"
-        >05 — Leadership</span
-      >
-      <h2 class="text-4xl md:text-5xl font-serif italic text-heading">
-        Experience & Impact
-      </h2>
-    </div>
-    <div class="space-y-16">
-      {
-        siteConfig.experience.slice(0, 2).map((company) => (
-          <div>
-            <div class="flex items-center gap-4 mb-8">
-              <div class="w-10 h-10 rounded-xl bg-surface border border-primary/20 flex items-center justify-center text-primary font-serif font-bold italic shadow-sm">
-                {company.org.charAt(0)}
-              </div>
-              <h3 class="text-2xl font-serif italic text-heading">
-                {company.org}
-              </h3>
-            </div>
-
-            <div class="space-y-12 relative border-l border-surface/50 ml-5 pl-10">
-              {company.roles.map((role) => (
-                <div class="relative group">
-                  <div class="absolute -left-[46px] top-2 w-3 h-3 bg-background border-2 border-primary rounded-sm transition-transform duration-300 group-hover:rotate-45 group-hover:bg-primary/20" />
-                  <div class="mb-4">
-                    <div class="flex items-center gap-3 mb-1">
-                      <span class="text-[9px] font-mono uppercase tracking-widest text-primary/60">
-                        {role.category}
-                      </span>
-                      <span class="w-1 h-1 rounded-full bg-border" />
-                      <span class="text-[10px] font-mono text-muted uppercase tracking-tighter">
-                        {role.date}
-                      </span>
-                    </div>
-                    <h4 class="text-xl font-serif text-text">{role.title}</h4>
-                  </div>
-                  <ul class="space-y-3">
-                    {role.details.slice(0, 2).map((detail) => (
-                      <li class="flex items-start text-sm text-muted/80 group-hover:text-muted transition-colors">
-                        <span class="text-primary/30 mr-4 mt-1.5 group-hover:text-primary/60 transition-colors">
-                          —
-                        </span>
-                        <span class="leading-relaxed">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
+          <!-- Core Values — takes 2 cols, offset -->
+          <div class="lg:col-span-2 space-y-3 stagger-fade">
+            {siteConfig.learningPhilosophy.coreValues.map((value) => (
+              <div class="glass-card p-4 group">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="text-lg">{value.icon}</span>
+                  <h4 class="text-xs font-semibold text-heading group-hover:text-primary transition-colors uppercase tracking-wide">{value.title}</h4>
                 </div>
-              ))}
-            </div>
+                <p class="text-xs text-muted leading-relaxed">{value.description}</p>
+              </div>
+            ))}
           </div>
-        ))
-      }
-    </div>
-    <div class="mt-20 text-center">
-      <a
-        href="/experience"
-        class="inline-flex items-center px-10 py-4 text-sm font-mono uppercase tracking-[0.2em] rounded-full text-background bg-heading hover:bg-primary hover:text-white transition-all duration-500 shadow-xl hover:shadow-primary/20 group"
-      >
-        View Full Journey
-        <svg
-          class="ml-3 w-4 h-4 transform group-hover:translate-x-1 transition-transform"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-        </svg>
-      </a>
-    </div>
-  </Section>
+        </div>
+      </div>
 
-  <Section id="contact" class="bg-background">
-    <div class="max-w-3xl mx-auto text-center">
-      <span
-        class="text-[10px] font-mono uppercase tracking-[0.3em] text-primary mb-3 block"
-        >06 — Contact</span
-      >
-      <h2 class="text-4xl md:text-5xl font-serif italic text-heading mb-6">
-        Let's Connect
-      </h2>
-      <p class="text-text/70 mb-12 text-lg leading-relaxed max-w-xl mx-auto">
-        Whether you have a question or just want to say hi, I'll try my best to
-        get back to you!
-      </p>
-      <div class="flex flex-col sm:flex-row justify-center gap-4">
-        <a
-          href={siteConfig.profile.social.email}
-          class="inline-flex items-center justify-center px-8 py-4 text-sm font-mono uppercase tracking-widest bg-surface hover:bg-surface/80 text-heading rounded-full border border-border/30 hover:border-primary/30 transition-all duration-500 group"
-        >
-          <svg
-            class="w-5 h-5 mr-3 group-hover:text-primary transition-colors"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-            ></path>
-          </svg>
-          Say Hello
-        </a>
-        <a
-          href={siteConfig.profile.social.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center justify-center px-8 py-4 text-sm font-mono uppercase tracking-widest bg-primary/10 hover:bg-primary text-primary hover:text-white rounded-full border border-primary/20 transition-all duration-500 group"
-        >
-          <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
-            <path
-              d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-            ></path>
-          </svg>
-          LinkedIn
-        </a>
+      <!-- Academic Philosophy — Quote block -->
+      <div class="scroll-reveal">
+        <div class="quote-block">
+          <div class="flex flex-col gap-5">
+            <div class="pb-5 border-b border-border/30">
+              <p class="text-xl md:text-2xl font-display text-primary mb-1.5 font-medium tracking-wide">ਮਨਿ ਜੀਤੈ ਜਗੁ ਜੀਤੁ</p>
+              <p class="text-sm text-text/70 italic mb-3">Conquer your mind, and you conquer the world</p>
+              <p class="text-[10px] text-muted font-mono uppercase tracking-widest">— Sri Guru Granth Sahib Ji</p>
+            </div>
+            <p class="text-base text-heading/80 leading-relaxed">
+              {siteConfig.learningPhilosophy.academicPhilosophy}
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </Section>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- RESUME — Full width bento treatment                    -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="resume" class="py-20 section-alt relative overflow-hidden">
+    <span class="big-number" style="left: auto; right: -1rem;">02</span>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="scroll-reveal mb-12">
+        <span class="section-label">Resume</span>
+        <h2 class="section-title">Curriculum Vitae</h2>
+        <p class="section-subtitle">Academic background, work experience, certifications, and engagement.</p>
+      </div>
+      <div class="scroll-reveal">
+        <ResumeSection />
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- PROJECTS — Feature first project large, rest grid      -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="projects" class="py-20 relative overflow-hidden">
+    <span class="big-number">03</span>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="scroll-reveal flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <div>
+          <span class="section-label">Projects</span>
+          <h2 class="section-title">Research & Projects</h2>
+        </div>
+        <p class="text-sm text-muted max-w-sm">Interdisciplinary case studies with methodology, results, and working code.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {siteConfig.projects.filter(p => p.enabled).map((project) => (
+          <div class="scroll-reveal">
+            <ProjectCard project={project} />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- SKILLS — Bento grid with mixed card sizes               -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="skills" class="py-20 section-alt relative overflow-hidden">
+    <span class="big-number" style="left: auto; right: -1rem;">04</span>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="scroll-reveal mb-12">
+        <span class="section-label">Skills</span>
+        <h2 class="section-title">Skill Development</h2>
+        <p class="section-subtitle">Technical proficiencies, soft skills, and creative abilities — each with evidence.</p>
+      </div>
+
+      <div class="scroll-reveal">
+        <SkillMatrix />
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- LEADERSHIP — Left-aligned header, timeline right        -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="leadership" class="py-20 relative overflow-hidden">
+    <span class="big-number">05</span>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="scroll-reveal mb-12">
+        <span class="section-label">Leadership</span>
+        <h2 class="section-title">Leadership & Collaboration</h2>
+        <p class="section-subtitle">Team dynamics, conflict resolution, and cross-functional leadership.</p>
+      </div>
+
+      <!-- Extracted unique high-fidelity UI component -->
+      <div class="scroll-reveal">
+        <LeadershipSection />
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- ETHICS — Full width with colored cards                  -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="ethics" class="py-20 section-alt relative overflow-hidden">
+    <span class="big-number" style="left: auto; right: -1rem;">06</span>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="scroll-reveal flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
+        <div>
+          <span class="section-label">Ethics</span>
+          <h2 class="section-title">Global Awareness & Ethics</h2>
+        </div>
+        <p class="text-sm text-muted max-w-xs">Ethical dimensions in engineering — data privacy, AI bias, sustainability.</p>
+      </div>
+      <EthicsSection />
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- FUTURE — Horizontal timeline + bento grid                -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="future" class="py-20 relative overflow-hidden">
+    <span class="big-number">07</span>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="scroll-reveal mb-12">
+        <span class="section-label">Future</span>
+        <h2 class="section-title">Future Aspirations</h2>
+        <p class="section-subtitle">A roadmap for growth — short-term goals to long-term engineering vision.</p>
+      </div>
+      <div class="scroll-reveal">
+        <FutureRoadmap />
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <!-- CONCLUSION & SWOT — Split layout                        -->
+  <!-- ═══════════════════════════════════════════════════════ -->
+  <section id="conclusion" class="py-20 section-alt relative overflow-hidden">
+    <span class="big-number" style="left: auto; right: -1rem;">08</span>
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="scroll-reveal mb-12">
+        <span class="section-label">Conclusion</span>
+        <h2 class="section-title">Self-Assessment & Reflection</h2>
+      </div>
+
+      <!-- Summary — no italic -->
+      <div class="scroll-reveal mb-12">
+        <div class="space-y-3">
+          {siteConfig.conclusion.summary.map((paragraph, i) => (
+            <p class:list={["leading-relaxed", i === 0 ? "text-lg text-heading font-medium" : "text-sm text-text/80"]}>
+              {paragraph}
+            </p>
+          ))}
+        </div>
+      </div>
+
+      <!-- Lessons + Growth — asymmetric 3/2 -->
+      <div class="scroll-reveal grid grid-cols-1 lg:grid-cols-5 gap-5 mb-12">
+        <div class="lg:col-span-3 glass-card p-5">
+          <h3 class="text-base font-semibold text-heading mb-3 flex items-center gap-2">
+            <span class="text-primary">📖</span> Lessons Learned
+          </h3>
+          <ul class="space-y-2">
+            {siteConfig.conclusion.lessonsLearned.map((lesson) => (
+              <li class="flex items-start gap-2 text-sm text-text/80">
+                <span class="text-primary/50 mt-0.5 text-xs">▸</span>
+                <span>{lesson}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="lg:col-span-2 glass-card p-5">
+          <h3 class="text-base font-semibold text-heading mb-3 flex items-center gap-2">
+            <span class="text-accent">📈</span> Growth Areas
+          </h3>
+          <ul class="space-y-2">
+            {siteConfig.conclusion.growthAreas.map((area) => (
+              <li class="flex items-start gap-2 text-sm text-text/80">
+                <span class="text-accent/50 mt-0.5 text-xs">▸</span>
+                <span>{area}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <!-- Self-Evaluation — Quote block -->
+      <div class="scroll-reveal mb-14">
+        <div class="quote-block">
+          <h3 class="text-sm font-mono uppercase tracking-wider text-primary/60 mb-2">Self-Evaluation</h3>
+          <p class="text-base text-heading/80 leading-relaxed">
+            {siteConfig.conclusion.selfEvaluation}
+          </p>
+        </div>
+      </div>
+
+      <!-- SWOT -->
+      <div class="scroll-reveal">
+        <h3 class="text-xl font-display font-semibold text-heading mb-6 text-center">SWOT Analysis</h3>
+        <SwotAnalysis />
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══ TESTIMONIALS ═══ -->
+  <section id="testimonials" class="py-20 relative overflow-hidden">
+    <span class="big-number">09</span>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="scroll-reveal text-center mb-12">
+        <span class="section-label">Testimonials</span>
+        <h2 class="section-title">Recommendations</h2>
+        <p class="section-subtitle mx-auto">What mentors, faculty, and peers say about working with me.</p>
+      </div>
+      <TestimonialCard />
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ═══ CTA ═══ -->
+  <section class="py-20 section-alt">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="scroll-reveal">
+        <h2 class="section-title mb-4">Let's <span class="gradient-text">Connect</span></h2>
+        <p class="text-sm text-muted mb-8 max-w-md mx-auto">Interested in collaboration, research, or just want to chat about engineering?</p>
+        <div class="flex flex-wrap justify-center gap-3">
+          <a href={siteConfig.profile.social.email} class="group px-6 py-3 bg-primary text-white hover:bg-primary/90 font-semibold rounded-lg transition-all hover:-translate-y-0.5 shadow-lg shadow-primary/20 flex items-center gap-2">
+            Send Email
+            <svg class="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+          </a>
+          <a href={siteConfig.profile.social.linkedin} target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-surface border border-border text-heading font-semibold rounded-lg transition-all hover:-translate-y-0.5 hover:border-primary/30">
+            LinkedIn
+          </a>
+          <a href={siteConfig.profile.social.github} target="_blank" rel="noopener noreferrer" class="px-6 py-3 bg-surface border border-border text-heading font-semibold rounded-lg transition-all hover:-translate-y-0.5 hover:border-primary/30">
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ FOOTER ═══ -->
+  <footer class="py-6 border-t border-border/40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted">
+      <p>© {new Date().getFullYear()} {siteConfig.profile.name}</p>
+      <div class="flex items-center gap-4">
+        <a href={siteConfig.profile.social.github} target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
+        <a href={siteConfig.profile.social.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">LinkedIn</a>
+        <a href={siteConfig.profile.social.email} class="hover:text-primary transition-colors">Email</a>
+      </div>
+    </div>
+  </footer>
 </Layout>

@@ -1,0 +1,152 @@
+---
+import { siteConfig } from "../content/site";
+
+const allTools = siteConfig.skills.flatMap(s => s.tools);
+
+// Basic mapping of common tools to their devicon names
+const devIconMap: Record<string, string> = {
+  "Python": "python-plain",
+  "React": "react-original",
+  "TypeScript": "typescript-plain",
+  "Astro": "astro-plain",
+  "Tailwind CSS": "tailwindcss-original",
+  "Git": "git-plain",
+  "NumPy": "numpy-plain",
+  "VS Code": "vscode-plain",
+  "C/C++": "cplusplus-plain",
+  "MATLAB / Simulink": "matlab-plain",
+};
+---
+
+<div class="relative w-full max-w-[600px] mx-auto aspect-square flex items-center justify-center perspective-1000">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  
+  <div id="globe-container" class="relative w-full h-full transform-style-3d transition-transform duration-1000">
+    <div class="absolute inset-0 rounded-full border border-primary/20 bg-primary/[0.02] shadow-[inset_0_0_80px_rgba(var(--color-primary)/0.1)]"></div>
+    <!-- Core Glow -->
+    <div class="absolute inset-[30%] rounded-full bg-primary/20 blur-[60px] animate-pulse"></div>
+    
+    <div id="tags-cloud" class="absolute inset-0">
+      {allTools.map((tool, i) => {
+        const iconClass = devIconMap[tool] ? `devicon-${devIconMap[tool]}` : null;
+        return (
+          <div class="tag-item absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-sm md:text-base font-mono font-semibold whitespace-nowrap cursor-pointer transition-colors duration-300 hover:text-primary hover:scale-125 hover:z-50 select-none px-3 py-1.5 rounded-full bg-surface/80 backdrop-blur-md border border-border/50 text-text/90 shadow-lg flex items-center gap-2" data-index={i}>
+            {iconClass && <i class={`${iconClass} text-xl w-5 h-5 flex items-center justify-center`}></i>}
+            {!iconClass && <span class="text-primary opacity-60">#</span>}
+            {tool}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</div>
+
+<script>
+  function initGlobe() {
+    const container = document.getElementById('globe-container');
+    const tags = document.querySelectorAll('.tag-item');
+    if (!container || tags.length === 0) return;
+
+    const radius = container.offsetWidth / 2.2;
+    const items = Array.from(tags) as HTMLElement[];
+    const maxSpeed = 0.02;
+    let baseSpeedX = 0.005;
+    let baseSpeedY = 0.005;
+    let speedX = baseSpeedX;
+    let speedY = baseSpeedY;
+    let mouseX = 0;
+    let mouseY = 0;
+    let active = false;
+
+    // Distribute points on a sphere (Fibonacci lattice)
+    const phi = Math.PI * (3 - Math.sqrt(5)); // golden angle
+    const sphereData = items.map((_, i) => {
+      const y = 1 - (i / (items.length - 1)) * 2; 
+      const r = Math.sqrt(1 - y * y);
+      const theta = phi * i;
+
+      const x = Math.cos(theta) * r;
+      const z = Math.sin(theta) * r;
+
+      return { x, y, z };
+    });
+
+    let currentRotationX = 0;
+    let currentRotationY = 0;
+
+    function render() {
+      currentRotationX += speedX;
+      currentRotationY += speedY;
+
+      if (!active) {
+        speedX += (baseSpeedX - speedX) * 0.05;
+        speedY += (baseSpeedY - speedY) * 0.05;
+      }
+
+      const sinX = Math.sin(currentRotationX);
+      const cosX = Math.cos(currentRotationX);
+      const sinY = Math.sin(currentRotationY);
+      const cosY = Math.cos(currentRotationY);
+
+      items.forEach((item, i) => {
+        let x = sphereData[i].x;
+        let y = sphereData[i].y;
+        let z = sphereData[i].z;
+
+        // Rotate around Y axis
+        let x1 = x * cosY + z * sinY;
+        let z1 = -x * sinY + z * cosY;
+
+        // Rotate around X axis
+        let y2 = y * cosX - z1 * sinX;
+        let z2 = y * sinX + z1 * cosX;
+
+        // 3D to 2D projection
+        const scale = 150 / (150 + z2 * 50);
+        const alpha = (z2 + 1) / 2; // fade out points in back
+
+        item.style.transform = `translate3d(-50%, -50%, 0) translate3d(${x1 * radius}px, ${y2 * radius}px, ${z2 * radius}px) scale(${scale})`;
+        
+        // Depth styling
+        item.style.opacity = Math.max(0.2, alpha).toString();
+        item.style.filter = `blur(${(1 - alpha) * 4}px)`;
+        item.style.zIndex = Math.floor(scale * 100).toString();
+      });
+
+      requestAnimationFrame(render);
+    }
+
+    // Interactivity
+    const parent = container.parentElement;
+    parent?.addEventListener('mousemove', (e) => {
+      active = true;
+      const rect = parent.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      speedY = (x / rect.width) * maxSpeed;
+      speedX = (y / rect.height) * maxSpeed;
+    });
+
+    parent?.addEventListener('mouseleave', () => {
+      active = false;
+    });
+
+    render();
+  }
+
+  // Initialize on page load and view transitions
+  document.addEventListener('astro:page-load', initGlobe);
+  // Ensure it runs if injected directly
+  if (document.readyState === 'complete') initGlobe();
+  else window.addEventListener('load', initGlobe);
+</script>
+
+<style>
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+</style>

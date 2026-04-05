@@ -1,82 +1,144 @@
 ---
 import { siteConfig } from "../content/site";
+
+// Map tool strings to actual Devicon classes
+const getDevIcon = (tool: string) => {
+  const map: Record<string, string> = {
+    "Python": "python-plain",
+    "React": "react-original",
+    "TypeScript / React": "react-original",
+    "TypeScript": "typescript-plain",
+    "JavaScript": "javascript-plain",
+    "Astro": "astro-plain",
+    "Tailwind CSS": "tailwindcss-original",
+    "Git": "git-plain",
+    "NumPy": "numpy-plain",
+    "VS Code": "vscode-plain",
+    "C / C++": "cplusplus-plain",
+    "MATLAB": "matlab-plain text-orange-500",
+    "MATLAB / Simulink": "matlab-plain text-orange-500",
+    "OpenCV": "opencv-plain",
+    "LaTeX": "latex-original",
+  };
+  return map[tool] || null;
+};
+
+const allTools = siteConfig.skills.flatMap(s => s.tools);
+const technicalSkills = siteConfig.advancedSkills.technical;
+const softSkills = siteConfig.advancedSkills.soft;
+const creativeSkills = siteConfig.advancedSkills.creative;
 ---
 
-<div class="max-w-5xl mx-auto">
-  <!-- Animated skill bars by category -->
-  {
-    siteConfig.skills.map((skillGroup, groupIdx) => (
-      <div
-        class:list={["mb-16", groupIdx > 0 && "pt-8 border-t border-border/20"]}
-      >
-        <div class="flex items-center gap-4 mb-8">
-          <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary font-mono text-xs font-bold">
-            {String(groupIdx + 1).padStart(2, "0")}
-          </div>
-          <h3 class="text-2xl font-serif italic text-heading">
-            {skillGroup.category}
-          </h3>
-        </div>
+<div class="space-y-16">
+  <!-- CSS library for official tech logos -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {skillGroup.tools.map((tool, toolIdx) => (
-            <div class="skill-bar-item group relative overflow-hidden rounded-xl border border-border/30 bg-surface/30 backdrop-blur-sm hover:border-primary/40 transition-all duration-500 p-5">
-              {/* Animated fill bar */}
-              <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-primary/10 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-700 ease-out" />
-
-              <div class="relative z-10 flex items-center justify-between">
-                <span class="text-[15px] text-text font-medium group-hover:text-heading transition-colors duration-300">
-                  {tool}
-                </span>
-                <div class="flex items-center gap-2">
-                  <div class="w-6 h-[2px] rounded-full bg-primary/20 group-hover:bg-primary/60 transition-all duration-500 group-hover:w-10" />
-                </div>
-              </div>
+  <!-- Core Tech Stack (Infinite Marquee) -->
+  <div>
+    <h3 class="text-xl font-display font-semibold text-heading mb-6 flex items-center gap-2">
+      <span class="w-6 h-6 rounded bg-primary/10 flex items-center justify-center text-primary text-xs">🚀</span>
+      Core Tech Stack
+    </h3>
+    
+    <div class="relative flex overflow-hidden group bg-surface/50 border border-border/50 rounded-2xl py-6 mask-gradient shadow-[inset_0_0_20px_rgba(var(--color-background),1)]">
+      <div class="flex animate-marquee-left whitespace-nowrap group-hover:[animation-play-state:paused] py-2">
+        {allTools.concat(allTools).map((tool) => {
+          const icon = getDevIcon(tool);
+          return (
+            <div class="flex items-center gap-3 px-8 text-muted hover:text-heading transition-colors group/item">
+              {icon ? (
+                <i class={`devicon-${icon} text-2xl drop-shadow-[0_0_15px_rgba(var(--color-primary)/0.3)] group-hover/item:scale-110 transition-transform`}></i>
+              ) : (
+                <span class="w-2 h-2 rounded-full bg-primary/40"></span>
+              )}
+              <span class="font-display font-semibold tracking-wide text-sm">{tool}</span>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
-    ))
-  }
+    </div>
+  </div>
+
+  <!-- Core Engineering & Stack (Proficiency) -->
+  <div>
+    <h3 class="text-xl font-display font-semibold text-heading mb-6 flex items-center gap-2">
+      <span class="w-6 h-6 rounded bg-primary/10 flex items-center justify-center text-primary text-xs">📈</span>
+      Core Engineering Proficiency
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {technicalSkills.map((skill) => {
+        const icon = getDevIcon(skill.name);
+        return (
+           <div class="glass-card p-4 group hover:border-primary/40 transition-colors flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <div class="flex items-center gap-2.5">
+                  {icon && <i class={`devicon-${icon} text-lg text-primary drop-shadow-[0_0_8px_rgba(var(--color-primary)/0.5)]`}></i>}
+                  <span class="font-display font-bold text-heading group-hover:text-primary transition-colors">{skill.name}</span>
+                </div>
+                <span class="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">{skill.proficiency}%</span>
+              </div>
+              
+              <div class="w-full bg-background border border-border rounded-full h-1 mb-3 overflow-hidden">
+                <div class="bg-gradient-to-r from-primary to-accent h-1 rounded-full transition-all duration-1000 ease-out" style={`width: ${skill.proficiency}%`}></div>
+              </div>
+              
+              <p class="text-[11px] text-muted mb-2 font-medium leading-relaxed">{skill.details}</p>
+            </div>
+            {skill.artefact && (
+              <div class="mt-2 pl-2 border-l-2 border-primary/30">
+                <p class="text-[10px] text-text/70 italic leading-relaxed"><span class="text-primary font-bold mr-1">↳</span>{skill.artefact}</p>
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  <!-- Soft & Creative Skills (Bento Mixed Grid) -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <!-- Soft Skills Column -->
+    <div>
+      <h3 class="text-xl font-display font-semibold text-heading mb-5 flex items-center gap-2">
+        <span class="w-6 h-6 rounded bg-accent/10 flex items-center justify-center text-accent text-xs">🤝</span>
+        Leadership & Soft Skills
+      </h3>
+      <div class="space-y-3">
+        {softSkills.map((skill) => (
+          <div class="bento-card !p-4 group">
+            <h4 class="text-sm font-semibold text-heading group-hover:text-accent transition-colors mb-1.5">{skill.name}</h4>
+            <p class="text-xs text-muted leading-relaxed mb-2">{skill.evidence}</p>
+            {skill.artefact && (
+              <span class="text-[10px] bg-surface border border-border px-2 py-1 rounded inline-block text-text/80 mt-1 shadow-sm">
+                📌 {skill.artefact}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Creative Skills Column -->
+    <div>
+      <h3 class="text-xl font-display font-semibold text-heading mb-5 flex items-center gap-2">
+        <span class="w-6 h-6 rounded bg-primary/10 flex items-center justify-center text-primary text-xs">🎨</span>
+        Creative Design
+      </h3>
+      <div class="space-y-3">
+        {creativeSkills.map((skill) => (
+          <div class="bento-card !border-primary/20 !p-4 group relative overflow-hidden transition-colors hover:bg-primary/[0.02]">
+            <div class="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] text-primary pointer-events-none group-hover:scale-110 transition-transform">✦</div>
+            <h4 class="text-sm font-semibold text-heading group-hover:text-primary transition-colors mb-1.5 relative z-10">{skill.name}</h4>
+            <p class="text-xs text-muted leading-relaxed mb-2 relative z-10">{skill.evidence}</p>
+            {skill.artefact && (
+              <span class="text-[10px] bg-primary/5 text-primary border border-primary/20 px-2 py-1 rounded inline-block relative z-10 shadow-sm">
+                ✦ {skill.artefact}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
 </div>
-
-<style>
-  .skill-bar-item {
-    animation: skillFadeIn 0.6s ease-out both;
-  }
-  .skill-bar-item:nth-child(1) {
-    animation-delay: 0.05s;
-  }
-  .skill-bar-item:nth-child(2) {
-    animation-delay: 0.1s;
-  }
-  .skill-bar-item:nth-child(3) {
-    animation-delay: 0.15s;
-  }
-  .skill-bar-item:nth-child(4) {
-    animation-delay: 0.2s;
-  }
-  .skill-bar-item:nth-child(5) {
-    animation-delay: 0.25s;
-  }
-  .skill-bar-item:nth-child(6) {
-    animation-delay: 0.3s;
-  }
-  .skill-bar-item:nth-child(7) {
-    animation-delay: 0.35s;
-  }
-  .skill-bar-item:nth-child(8) {
-    animation-delay: 0.4s;
-  }
-
-  @keyframes skillFadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-</style>

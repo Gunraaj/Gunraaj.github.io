@@ -1,155 +1,161 @@
 ---
 import { siteConfig } from '../content/site';
+
+const primaryNav = [
+  { label: 'About', href: '#philosophy' },
+  { label: 'Resume', href: '#resume' },
+  { label: 'Projects', href: '#projects' },
+  { label: 'Skills', href: '#skills' },
+  { label: 'Leadership', href: '#leadership' },
+  { label: 'Testimonials', href: '#testimonials' },
+];
 ---
 
-<nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl rounded-full bg-surface/40 backdrop-blur-2xl border border-card-border/30 shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.1)] transition-all duration-300">
-  <div class="px-6 sm:px-8">
-    <div class="flex items-center justify-between h-16">
-      <div class="flex items-center flex-shrink-0">
-        <a href="/" class="text-2xl font-display font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent tracking-tighter">
-          gunraaj<span class="text-heading">.</span>
-        </a>
-      </div>
-      <div class="hidden md:flex items-center">
-        <div class="ml-10 flex items-center space-x-2">
-          {siteConfig.navigation.filter(item => item.enabled !== false).map((item) => (
-            <a
-              href={item.href}
-              class="text-muted hover:text-heading hover:bg-surface/50 px-4 py-2 rounded-full text-sm font-medium transition-all"
-            >
-              {item.label}
-            </a>
-          ))}
-          <a
-            href={siteConfig.profile.social.resume}
-            class="ml-4 inline-flex items-center bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary px-5 py-2 rounded-full text-sm font-medium transition-all group"
-          >
-            <svg class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-            </svg>
-            View Resume
-          </a>
-          <button id="theme-toggle" type="button" class="ml-4 p-2 rounded-full text-muted hover:text-heading hover:bg-surface/50 focus:outline-none transition-all" aria-label="Toggle Dark Mode">
-            <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-            <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 10-2 0v1a1 1 0 102 0v-1zm1.464 4.95l-.707.707a1 1 0 001.414 1.414l.707-.707a1 1 0 00-1.414-1.414z"></path></svg>
-          </button>
-        </div>
-      </div>
-      <div class="-mr-2 flex items-center md:hidden">
-        <button id="theme-toggle-mobile" type="button" class="mr-2 p-2 rounded-full text-muted hover:text-heading hover:bg-surface/50 focus:outline-none transition-all" aria-label="Toggle Dark Mode">
-          <svg id="theme-toggle-dark-icon-mobile" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-          <svg id="theme-toggle-light-icon-mobile" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 10-2 0v1a1 1 0 102 0v-1zm1.464 4.95l-.707.707a1 1 0 001.414 1.414l.707-.707a1 1 0 00-1.414-1.414z"></path></svg>
-        </button>
-        <!-- Mobile menu button -->
-        <button type="button" class="inline-flex items-center justify-center p-2 rounded-full text-muted hover:text-heading hover:bg-surface/50 focus:outline-none" aria-controls="mobile-menu" aria-expanded="false" id="mobile-menu-btn">
-          <span class="sr-only">Open main menu</span>
-          <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-          </svg>
-           <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        </button>
-      </div>
-    </div>
-  </div>
+<nav id="main-nav" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 w-max max-w-[95vw]">
+  <div class="flex items-center gap-1 px-2 py-1.5 rounded-full bg-surface/60 backdrop-blur-2xl border border-border/40 shadow-[0_4px_24px_rgba(0,0,0,0.12)] transition-shadow">
+    <!-- Logo -->
+    <a href="#hero" class="px-3 py-1.5 text-base font-display font-bold text-primary tracking-tight hover:opacity-80 transition-opacity flex-shrink-0">
+      G<span class="text-heading/60">.</span>
+    </a>
 
-  <div class="hidden md:hidden rounded-3xl mt-2 overflow-hidden bg-surface/60 backdrop-blur-2xl border border-card-border/30 shadow-[0_8px_32px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.1)]" id="mobile-menu">
-    <div class="px-4 pt-2 pb-4 space-y-1 sm:px-6">
-      {siteConfig.navigation.filter(item => item.enabled !== false).map((item) => (
+    <!-- Primary Nav Links -->
+    <div class="hidden lg:flex items-center gap-0.5 overflow-x-auto no-scrollbar scroll-smooth">
+      {primaryNav.map((item) => (
         <a
           href={item.href}
-          class="text-muted hover:text-heading hover:bg-surface/50 block px-4 py-3 rounded-xl text-base font-medium transition-colors"
+          class="nav-link whitespace-nowrap text-muted hover:text-heading px-3 py-1.5 rounded-full text-[13px] font-medium transition-all"
+          data-section={item.href.replace('#', '')}
         >
           {item.label}
         </a>
       ))}
-       <a
-          href={siteConfig.profile.social.resume}
-          class="inline-flex items-center justify-center w-full bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 mt-4 px-4 py-3 rounded-xl text-base font-medium text-center transition-colors group"
+    </div>
+
+    <!-- Right side: CV + Theme -->
+    <div class="hidden lg:flex items-center gap-1 ml-1 flex-shrink-0">
+      <a
+        href={siteConfig.profile.social.resume}
+        class="inline-flex items-center bg-primary/10 hover:bg-primary/20 border border-primary/20 text-primary px-3.5 py-1.5 rounded-full text-[13px] font-medium transition-all"
+      >
+        CV ↓
+      </a>
+      <button id="theme-toggle" type="button" class="p-2 rounded-full text-muted hover:text-heading hover:bg-surface/50 transition-all" aria-label="Toggle Dark Mode">
+        <svg id="theme-toggle-dark-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <svg id="theme-toggle-light-icon" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 10-2 0v1a1 1 0 102 0v-1zm1.464 4.95l-.707.707a1 1 0 001.414 1.414l.707-.707a1 1 0 00-1.414-1.414z"></path></svg>
+      </button>
+    </div>
+
+    <!-- Mobile: Theme + Hamburger -->
+    <div class="flex items-center gap-1 lg:hidden ml-auto">
+      <button id="theme-toggle-mobile" type="button" class="p-2 rounded-full text-muted hover:text-heading transition-all" aria-label="Toggle Dark Mode">
+        <svg id="theme-toggle-dark-icon-mobile" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+        <svg id="theme-toggle-light-icon-mobile" class="w-4 h-4 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 10-2 0v1a1 1 0 102 0v-1zm1.464 4.95l-.707.707a1 1 0 001.414 1.414l.707-.707a1 1 0 00-1.414-1.414z"></path></svg>
+      </button>
+      <button type="button" class="p-2 rounded-full text-muted hover:text-heading transition-all" id="mobile-menu-btn">
+        <svg class="block w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="hidden lg:hidden mt-2 rounded-2xl overflow-hidden bg-surface/95 backdrop-blur-2xl border border-border/40 shadow-xl" id="mobile-menu">
+    <div class="p-3 grid grid-cols-2 gap-1">
+      {primaryNav.map((item) => (
+        <a
+          href={item.href}
+          class="nav-link text-muted hover:text-heading hover:bg-primary/5 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors text-center"
+          data-section={item.href.replace('#', '')}
         >
-          <svg class="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
-          </svg>
-          View Resume
+          {item.label}
         </a>
+      ))}
+    </div>
+    <div class="px-3 pb-3">
+      <a
+        href={siteConfig.profile.social.resume}
+        class="flex items-center justify-center bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 px-4 py-2.5 rounded-lg text-sm font-medium transition-colors"
+      >
+        Download CV
+      </a>
     </div>
   </div>
 </nav>
 
+<style>
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+</style>
+
 <script>
   function initNavbar() {
-    // Mobile Menu Logic
+    // Mobile menu
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
-
     if (btn && menu) {
-      // Remove old listeners to prevent duplicates on repeated page loads
       const newBtn = btn.cloneNode(true) as HTMLElement;
       btn.parentNode?.replaceChild(newBtn, btn);
-      
       newBtn.addEventListener('click', () => {
         menu.classList.toggle('hidden');
-        const expanded = newBtn.getAttribute('aria-expanded') === 'true' || false;
-        newBtn.setAttribute('aria-expanded', (!expanded).toString());
-        
-        const svgs = newBtn.querySelectorAll('svg');
-        svgs.forEach(svg => svg.classList.toggle('hidden'));
-        svgs.forEach(svg => svg.classList.toggle('block'));
+      });
+      menu.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', () => menu.classList.add('hidden'));
       });
     }
 
-    // Theme Toggle Logic
-    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-    const themeToggleDarkIconMobile = document.getElementById('theme-toggle-dark-icon-mobile');
-    const themeToggleLightIconMobile = document.getElementById('theme-toggle-light-icon-mobile');
-
+    // Theme Toggle
     function updateIcons() {
-      if (document.documentElement.classList.contains('dark')) {
-        themeToggleLightIcon?.classList.remove('hidden');
-        themeToggleDarkIcon?.classList.add('hidden');
-        themeToggleLightIconMobile?.classList.remove('hidden');
-        themeToggleDarkIconMobile?.classList.add('hidden');
-      } else {
-        themeToggleLightIcon?.classList.add('hidden');
-        themeToggleDarkIcon?.classList.remove('hidden');
-        themeToggleLightIconMobile?.classList.add('hidden');
-        themeToggleDarkIconMobile?.classList.remove('hidden');
-      }
+      const isDark = document.documentElement.classList.contains('dark');
+      document.getElementById('theme-toggle-light-icon')?.classList.toggle('hidden', !isDark);
+      document.getElementById('theme-toggle-dark-icon')?.classList.toggle('hidden', isDark);
+      document.getElementById('theme-toggle-light-icon-mobile')?.classList.toggle('hidden', !isDark);
+      document.getElementById('theme-toggle-dark-icon-mobile')?.classList.toggle('hidden', isDark);
     }
-
-    // Set initial icon
     updateIcons();
 
     function enableTheme(isDark: boolean) {
-        if (isDark) {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('color-theme', 'dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('color-theme', 'light');
-        }
-        updateIcons();
+      document.documentElement.classList.toggle('dark', isDark);
+      localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+      updateIcons();
     }
-
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
 
     const handleToggle = () => enableTheme(!document.documentElement.classList.contains('dark'));
 
-    if (themeToggleBtn) {
-        const newThemeBtn = themeToggleBtn.cloneNode(true) as HTMLElement;
-        themeToggleBtn.parentNode?.replaceChild(newThemeBtn, themeToggleBtn);
-        newThemeBtn.addEventListener('click', handleToggle);
-    }
-    
-    if (themeToggleBtnMobile) {
-        const newThemeBtnMobile = themeToggleBtnMobile.cloneNode(true) as HTMLElement;
-        themeToggleBtnMobile.parentNode?.replaceChild(newThemeBtnMobile, themeToggleBtnMobile);
-        newThemeBtnMobile.addEventListener('click', handleToggle);
-    }
-  }
+    [document.getElementById('theme-toggle'), document.getElementById('theme-toggle-mobile')].forEach(el => {
+      if (el) {
+        const n = el.cloneNode(true) as HTMLElement;
+        el.parentNode?.replaceChild(n, el);
+        n.addEventListener('click', handleToggle);
+      }
+    });
 
+    // Scrollspy
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    function onScroll() {
+      const scrollTop = window.scrollY;
+      let currentSection = '';
+      sections.forEach(section => {
+        const top = (section as HTMLElement).offsetTop - 200;
+        if (scrollTop >= top) currentSection = section.getAttribute('id') || '';
+      });
+      navLinks.forEach(link => {
+        if (link.getAttribute('data-section') === currentSection) {
+          link.classList.add('text-primary', 'bg-primary/10');
+          link.classList.remove('text-muted');
+        } else {
+          link.classList.remove('text-primary', 'bg-primary/10');
+          link.classList.add('text-muted');
+        }
+      });
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
   document.addEventListener('astro:page-load', initNavbar);
 </script>

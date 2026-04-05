@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
     theme: {
         extend: {
@@ -16,8 +17,9 @@ export default {
                 'card-border': 'rgb(var(--color-card-border) / <alpha-value>)',
             },
             fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-                display: ['Outfit', 'sans-serif'],
+                sans: ['Inter', 'Outfit', 'sans-serif'],
+                serif: ['Space Grotesk', 'Bricolage Grotesque', 'serif'],
+                display: ['Space Grotesk', 'Bricolage Grotesque', 'serif'],
                 mono: ['JetBrains Mono', 'monospace'],
             },
             animation: {
