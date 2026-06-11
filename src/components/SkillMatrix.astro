@@ -92,11 +92,11 @@ function getLeadershipIcon(name: string): string {
   <div class="ticker-wrapper" data-ticker>
     <div class="ticker-track">
       {doubleTechnical.map((skill) => (
-        <div class="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/40 bg-surface/60 hover:bg-surface hover:border-primary/50 transition-colors group cursor-default whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(139,92,246,0.15)]">
-           <div class="w-6 h-6 rounded bg-background flex items-center justify-center border border-primary/30 text-primary group-hover:text-primary transition-colors shadow-[0_0_10px_rgba(139,92,246,0.2)]">
+        <div class="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/40 bg-surface/60 hover:bg-surface hover:border-primary/50 transition-colors group cursor-default whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(34,197,94,0.15)]">
+           <div class="w-6 h-6 rounded bg-background flex items-center justify-center border border-primary/30 text-primary group-hover:text-primary transition-colors shadow-[0_0_10px_rgba(34,197,94,0.2)]">
             <Fragment set:html={getTechIcon(skill.name)} />
           </div>
-          <span class="text-sm font-display font-medium text-heading group-hover:text-primary transition-all duration-300 group-hover:[text-shadow:0_0_12px_rgba(139,92,246,0.6)]">{skill.name}</span>
+          <span class="text-sm font-display font-medium text-heading group-hover:text-primary transition-all duration-300 group-hover:[text-shadow:0_0_12px_rgba(34,197,94,0.6)]">{skill.name}</span>
           <span class="text-[10px] font-mono text-muted uppercase tracking-wider pl-3 ml-1 border-l border-border/60">{skill.details}</span>
         </div>
       ))}
@@ -107,11 +107,11 @@ function getLeadershipIcon(name: string): string {
   <div class="ticker-wrapper" data-ticker>
     <div class="ticker-track reverse">
       {doubleCreative.map((skill) => (
-        <div class="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/40 bg-surface/60 hover:bg-surface hover:border-primary/50 transition-colors group cursor-default whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+        <div class="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/40 bg-surface/60 hover:bg-surface hover:border-primary/50 transition-colors group cursor-default whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(34,197,94,0.15)]">
            <div class="w-6 h-6 rounded-full bg-background flex items-center justify-center border border-border/50 text-muted group-hover:text-primary transition-colors">
             <Fragment set:html={getCreativeIcon(skill.name)} />
           </div>
-          <span class="text-sm font-display font-medium text-heading group-hover:text-primary transition-all duration-300 group-hover:[text-shadow:0_0_12px_rgba(139,92,246,0.6)]">{skill.name}</span>
+          <span class="text-sm font-display font-medium text-heading group-hover:text-primary transition-all duration-300 group-hover:[text-shadow:0_0_12px_rgba(34,197,94,0.6)]">{skill.name}</span>
           <span class="text-[10px] font-mono text-muted uppercase tracking-wider pl-3 ml-1 border-l border-border/60">{(skill as any).evidence}</span>
         </div>
       ))}
@@ -122,11 +122,11 @@ function getLeadershipIcon(name: string): string {
   <div class="ticker-wrapper" data-ticker>
     <div class="ticker-track">
       {doubleLeadership.map((skill) => (
-        <div class="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/40 bg-surface/60 hover:bg-surface hover:border-primary/50 transition-colors group cursor-default whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+        <div class="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/40 bg-surface/60 hover:bg-surface hover:border-primary/50 transition-colors group cursor-default whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(34,197,94,0.15)]">
            <div class="w-6 h-6 flex items-center justify-center text-muted group-hover:text-primary transition-colors">
             <Fragment set:html={getLeadershipIcon(skill.name)} />
           </div>
-          <span class="text-sm font-display font-medium text-heading group-hover:text-primary transition-all duration-300 group-hover:[text-shadow:0_0_12px_rgba(139,92,246,0.6)]">{skill.name}</span>
+          <span class="text-sm font-display font-medium text-heading group-hover:text-primary transition-all duration-300 group-hover:[text-shadow:0_0_12px_rgba(34,197,94,0.6)]">{skill.name}</span>
           <span class="text-[10px] font-mono text-muted uppercase tracking-wider pl-3 ml-1 border-l border-border/60">{(skill as any).evidence}</span>
         </div>
       ))}

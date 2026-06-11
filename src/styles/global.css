@@ -4,10 +4,10 @@
 
 @layer base {
   :root {
-    --color-bg: 250 250 252;
+    --color-bg: 250 251 252;
     --color-surface: 255 255 255;
-    --color-primary: 139 92 246;
-    --color-accent: 99 102 241;
+    --color-primary: 22 163 74;
+    --color-accent: 14 165 233;
     --color-warning: 234 179 8;
     --color-text: 51 65 85;
     --color-heading: 15 23 42;
@@ -17,16 +17,16 @@
   }
   
   :root.dark {
-    --color-bg: 5 5 5;
-    --color-surface: 18 18 18;
-    --color-primary: 139 92 246;
-    --color-accent: 58 134 255;
-    --color-warning: 245 158 11;
-    --color-text: 148 163 184;
-    --color-heading: 248 250 252;
-    --color-muted: 100 116 139;
-    --color-border: 38 38 38;
-    --color-card-border: 248 250 252;
+    --color-bg: 9 9 11;
+    --color-surface: 18 18 22;
+    --color-primary: 34 197 94;
+    --color-accent: 56 189 248;
+    --color-warning: 250 204 21;
+    --color-text: 161 161 170;
+    --color-heading: 250 250 250;
+    --color-muted: 113 113 122;
+    --color-border: 39 39 42;
+    --color-card-border: 255 255 255;
   }
 
 
