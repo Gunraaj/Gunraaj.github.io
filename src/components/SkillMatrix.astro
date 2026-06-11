@@ -1,144 +1,195 @@
 ---
 import { siteConfig } from "../content/site";
 
-// Map tool strings to actual Devicon classes
-const getDevIcon = (tool: string) => {
-  const map: Record<string, string> = {
-    "Python": "python-plain",
-    "React": "react-original",
-    "TypeScript / React": "react-original",
-    "TypeScript": "typescript-plain",
-    "JavaScript": "javascript-plain",
-    "Astro": "astro-plain",
-    "Tailwind CSS": "tailwindcss-original",
-    "Git": "git-plain",
-    "NumPy": "numpy-plain",
-    "VS Code": "vscode-plain",
-    "C / C++": "cplusplus-plain",
-    "MATLAB": "matlab-plain text-orange-500",
-    "MATLAB / Simulink": "matlab-plain text-orange-500",
-    "OpenCV": "opencv-plain",
-    "LaTeX": "latex-original",
-  };
-  return map[tool] || null;
-};
-
-const allTools = siteConfig.skills.flatMap(s => s.tools);
 const technicalSkills = siteConfig.advancedSkills.technical;
 const softSkills = siteConfig.advancedSkills.soft;
 const creativeSkills = siteConfig.advancedSkills.creative;
+
+// Duplicate arrays for seamless infinite loop
+const doubleTechnical = [...technicalSkills, ...technicalSkills];
+const doubleCreative = [...creativeSkills, ...creativeSkills];
+const doubleLeadership = [...softSkills, ...softSkills];
+
+// Icon mapping for technical skills
+const techIcons: Record<string, string> = {
+  "Python": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.9S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.03v-2.867s-.109-3.402 3.35-3.402h5.766s3.24.052 3.24-3.134V3.202S18.28 0 11.914 0zM8.708 1.85a1.06 1.06 0 110 2.12 1.06 1.06 0 010-2.12z"/><path d="M12.086 24c6.094 0 5.714-2.656 5.714-2.656l-.007-2.752h-5.814v-.826h8.123S24 18.211 24 12.031c0-6.18-3.403-5.96-3.403-5.96h-2.03v2.867s.109 3.402-3.35 3.402H9.451s-3.24-.052-3.24 3.134v5.324S5.72 24 12.086 24zm3.206-1.85a1.06 1.06 0 110-2.12 1.06 1.06 0 010 2.12z"/></svg>`,
+  "MATLAB / Simulink": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M4.323 16.642L0 13.86l5.323-1.171c.75-1.635 1.86-3.583 2.709-4.143.85-.56 1.472.112 2.291 1.346.67 1.008 3.122 4.907 3.122 4.907s2.593-4.622 3.5-6.161c.907-1.54 1.63-1.287 2.42-.681.59.452 4.635 4.043 4.635 4.043L18.1 16.642c-.845-1.378-2.24-3.628-2.788-3.927-.744-.406-1.42.316-2.197 1.574-.61.988-2.04 3.477-2.04 3.477s-2.256-3.837-2.905-4.8c-.745-1.107-1.448-1.199-2.098-.459-.764.87-1.749 3.135-1.749 3.135z"/></svg>`,
+  "TypeScript / React": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 10.11c1.03 0 1.87.84 1.87 1.89 0 1-.84 1.85-1.87 1.85-1.03 0-1.87-.85-1.87-1.85 0-1.05.84-1.89 1.87-1.89M7.37 20c.63.38 2.01-.2 3.6-1.7-.52-.59-1.03-1.23-1.51-1.9a22.7 22.7 0 01-2.4-.36c-.51 2.14-.32 3.61.31 3.96m.71-5.74l-.29-.51c-.11.29-.22.58-.29.86.27.06.57.11.88.16l-.3-.51m6.54-.76l.81-1.5-.81-1.5c-.3-.53-.62-1.03-.95-1.5-.65-.04-1.33-.04-2-.04-.68 0-1.34.01-2 .05-.32.47-.63.97-.94 1.5L7.93 12l.8 1.5c.3.53.63 1.03.95 1.5.65.04 1.33.04 2 .04.68 0 1.35-.01 2-.05.33-.47.64-.97.95-1.5m2.9-4.78c-.11-.29-.22-.57-.29-.85-.28.06-.57.11-.88.16l.29.51.29.51.59-.33m.35 1.78c.45.76.81 1.53 1.07 2.29.46-.27.82-.58 1.07-.93.33-.53.4-1.13.14-1.62-.63-.38-2.01.2-3.6 1.7.52.59 1.03 1.23 1.51 1.9a22.7 22.7 0 012.4.36c.51-2.14.32-3.61-.31-3.96-.63-.38-2.01.2-3.6 1.7.52.59 1.03 1.23 1.51 1.9-.19.31-.35.61-.49.91-.24-.05-.5-.1-.77-.16zm.33 2.2c-.09-.31-.2-.6-.29-.86-.27.06-.57.12-.88.16l.29.51.29.51.59-.33zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/></svg>`,
+  "C / C++": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M22.394 6c-.167-.29-.398-.543-.652-.69L12.926.22c-.509-.294-1.34-.294-1.848 0L2.26 5.31c-.508.293-.923 1.013-.923 1.6v10.18c0 .294.104.62.271.91.167.29.398.543.652.689l8.816 5.09c.508.293 1.34.293 1.848 0l8.816-5.09c.254-.146.485-.399.652-.689.167-.29.27-.616.27-.91V6.91c.003-.294-.1-.62-.268-.91zM12 19.11c-3.92 0-7.109-3.19-7.109-7.11 0-3.92 3.19-7.11 7.11-7.11a7.133 7.133 0 016.156 3.553l-3.076 1.78a3.567 3.567 0 00-3.08-1.78A3.56 3.56 0 008.444 12 3.56 3.56 0 0012 15.555a3.57 3.57 0 003.08-1.778l3.078 1.78A7.135 7.135 0 0112 19.11zm7.11-6.715h-.79v.79h-.79v-.79h-.79v-.79h.79v-.79h.79v.79h.79zm2.962 0h-.79v.79h-.79v-.79h-.79v-.79h.79v-.79h.79v.79h.79z"/></svg>`,
+};
+
+const creativeIcons: Record<string, string> = {
+  "Graphic Design": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M20.71 4.63l-1.34-1.34c-.39-.39-1.02-.39-1.41 0L9 12.25 11.75 15l8.96-8.96c.39-.39.39-1.02 0-1.41zM7 14a3 3 0 00-3 3c0 1.31-1.16 2-2 2 .92 1.22 2.49 2 4 2a4 4 0 004-4 3 3 0 00-3-3z"/></svg>`,
+  "Adobe Photoshop": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M9.85 8.42c-.37-.15-.77-.21-1.18-.2H7.2v3.68h1.35c.41 0 .82-.05 1.2-.19.3-.12.56-.31.73-.57.17-.27.25-.59.25-.96 0-.39-.08-.73-.26-1-.18-.28-.44-.49-.62-.76zM0 0v24h24V0H0zm14.7 15.32c-.54.53-1.22.88-1.97 1.07-.77.19-1.56.28-2.35.27H8.33v-5.24c0-.09 0-.17-.02-.26H7.2v5.5H5.25V6.64h3.4c.65-.01 1.3.06 1.94.2.52.13.99.36 1.4.68.36.29.63.66.8 1.09.17.47.25.97.24 1.47.01.6-.12 1.19-.38 1.73-.25.49-.63.9-1.1 1.2-.5.31-1.05.52-1.63.63-.62.12-1.26.18-1.89.17h-.42v.01h.37c.79.01 1.58-.07 2.35-.25.72-.17 1.38-.48 1.97-.93V15.32zm4.96-2.44h-1.52v1.58h-1.06v-1.58h-1.52v-1.07h1.52V10.2h1.06v1.61h1.52v1.07z"/></svg>`,
+  "Adobe Illustrator": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M0 0v24h24V0H0zm14.05 7.26h1.66v9.92h-1.66V7.26zm-5.24 2.9l.99 3.71h-3.36l1.05-3.71h1.32zm3.57 7.02l-1.02-3.35h-4.03L6.38 17.18H4.68l3.81-10.74h2.35l3.91 10.74h-2.37z"/></svg>`,
+  "Video Editing & Motion Graphics": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>`,
+  "Adobe Premiere Pro": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M0 0v24h24V0H0zm9.85 8.42c-.18.27-.44.49-.62.76-.37-.15-.77-.21-1.18-.2H7.2v3.68h1.35c.41 0 .82-.05 1.2-.19.3-.12.56-.31.73-.57.17-.27.25-.59.25-.96 0-.39-.08-.73-.26-1zm6.42 4.47h-1.52v1.58h-1.06v-1.58h-1.52v-1.07h1.52V10.2h1.06v1.61h1.52v1.07zm-1.57 4.29c-.54.53-1.22.88-1.97 1.07-.77.19-1.56.28-2.35.27H8.33v-5.24H7.2v5.5H5.25V6.64h3.4c.65-.01 1.3.06 1.94.2.52.13.99.36 1.4.68.36.29.63.66.8 1.09.17.47.25.97.24 1.47.01.6-.12 1.19-.38 1.73-.25.49-.63.9-1.1 1.2-.5.31-1.05.52-1.63.63-.62.12-1.26.18-1.89.17h-.05v.01h.37c.79.01 1.58-.07 2.35-.25.72-.17 1.38-.48 1.97-.93v1.18z"/></svg>`,
+  "UI/UX Design Thinking": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8zm-5.5 9c-.83 0-1.5-.67-1.5-1.5S5.67 9 6.5 9 8 9.67 8 10.5 7.33 12 6.5 12zm3-4C8.67 8 8 7.33 8 6.5S8.67 5 9.5 5s1.5.67 1.5 1.5S10.33 8 9.5 8zm5 0c-.83 0-1.5-.67-1.5-1.5S13.67 5 14.5 5s1.5.67 1.5 1.5S15.33 8 14.5 8zm3 4c-.83 0-1.5-.67-1.5-1.5S16.67 9 17.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>`,
+};
+
+const leadershipIcons: Record<string, string> = {
+  "Leadership & Team Management": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg>`,
+  "Visual Communication": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/></svg>`,
+  "Public Speaking & Presentation": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>`,
+  "Adaptability & Cross-Domain Learning": `<svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>`,
+};
+
+function getTechIcon(name: string): string {
+  return techIcons[name] || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>`;
+}
+function getCreativeIcon(name: string): string {
+  return creativeIcons[name] || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`;
+}
+function getLeadershipIcon(name: string): string {
+  return leadershipIcons[name] || `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`;
+}
 ---
 
-<div class="space-y-16">
-  <!-- CSS library for official tech logos -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+<style>
+  .ticker-wrapper {
+    position: relative;
+    width: 100vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+    padding: 0.5rem 0;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    cursor: grab;
+    user-select: none;
+  }
+  .ticker-wrapper:active {
+    cursor: grabbing;
+  }
+  .ticker-wrapper.dragging .ticker-track {
+    animation-play-state: paused !important;
+  }
+  
+  .ticker-track {
+    display: flex;
+    width: max-content;
+    gap: 1.5rem;
+    animation: scroll 70s linear infinite;
+  }
+  
+  .ticker-track:hover {
+    animation-play-state: paused;
+  }
 
-  <!-- Core Tech Stack (Infinite Marquee) -->
-  <div>
-    <h3 class="text-xl font-display font-semibold text-heading mb-6 flex items-center gap-2">
-      <span class="w-6 h-6 rounded bg-primary/10 flex items-center justify-center text-primary text-xs">🚀</span>
-      Core Tech Stack
-    </h3>
-    
-    <div class="relative flex overflow-hidden group bg-surface/50 border border-border/50 rounded-2xl py-6 mask-gradient shadow-[inset_0_0_20px_rgba(var(--color-background),1)]">
-      <div class="flex animate-marquee-left whitespace-nowrap group-hover:[animation-play-state:paused] py-2">
-        {allTools.concat(allTools).map((tool) => {
-          const icon = getDevIcon(tool);
-          return (
-            <div class="flex items-center gap-3 px-8 text-muted hover:text-heading transition-colors group/item">
-              {icon ? (
-                <i class={`devicon-${icon} text-2xl drop-shadow-[0_0_15px_rgba(var(--color-primary)/0.3)] group-hover/item:scale-110 transition-transform`}></i>
-              ) : (
-                <span class="w-2 h-2 rounded-full bg-primary/40"></span>
-              )}
-              <span class="font-display font-semibold tracking-wide text-sm">{tool}</span>
-            </div>
-          );
-        })}
-      </div>
+  .ticker-track.reverse {
+    animation-direction: reverse;
+  }
+
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 0.75rem)); } 
+  }
+</style>
+
+<div class="flex flex-col gap-4 py-8">
+  
+  <!-- Technical Band -->
+  <div class="ticker-wrapper" data-ticker>
+    <div class="ticker-track">
+      {doubleTechnical.map((skill) => (
+        <div class="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/40 bg-surface/60 hover:bg-surface hover:border-primary/50 transition-colors group cursor-default whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+           <div class="w-6 h-6 rounded bg-background flex items-center justify-center border border-primary/30 text-primary group-hover:text-primary transition-colors shadow-[0_0_10px_rgba(139,92,246,0.2)]">
+            <Fragment set:html={getTechIcon(skill.name)} />
+          </div>
+          <span class="text-sm font-display font-medium text-heading group-hover:text-primary transition-all duration-300 group-hover:[text-shadow:0_0_12px_rgba(139,92,246,0.6)]">{skill.name}</span>
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider pl-3 ml-1 border-l border-border/60">{skill.details}</span>
+        </div>
+      ))}
     </div>
   </div>
 
-  <!-- Core Engineering & Stack (Proficiency) -->
-  <div>
-    <h3 class="text-xl font-display font-semibold text-heading mb-6 flex items-center gap-2">
-      <span class="w-6 h-6 rounded bg-primary/10 flex items-center justify-center text-primary text-xs">📈</span>
-      Core Engineering Proficiency
-    </h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {technicalSkills.map((skill) => {
-        const icon = getDevIcon(skill.name);
-        return (
-           <div class="glass-card p-4 group hover:border-primary/40 transition-colors flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-3">
-                <div class="flex items-center gap-2.5">
-                  {icon && <i class={`devicon-${icon} text-lg text-primary drop-shadow-[0_0_8px_rgba(var(--color-primary)/0.5)]`}></i>}
-                  <span class="font-display font-bold text-heading group-hover:text-primary transition-colors">{skill.name}</span>
-                </div>
-                <span class="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20">{skill.proficiency}%</span>
-              </div>
-              
-              <div class="w-full bg-background border border-border rounded-full h-1 mb-3 overflow-hidden">
-                <div class="bg-gradient-to-r from-primary to-accent h-1 rounded-full transition-all duration-1000 ease-out" style={`width: ${skill.proficiency}%`}></div>
-              </div>
-              
-              <p class="text-[11px] text-muted mb-2 font-medium leading-relaxed">{skill.details}</p>
-            </div>
-            {skill.artefact && (
-              <div class="mt-2 pl-2 border-l-2 border-primary/30">
-                <p class="text-[10px] text-text/70 italic leading-relaxed"><span class="text-primary font-bold mr-1">↳</span>{skill.artefact}</p>
-              </div>
-            )}
+  <!-- Creative Band -->
+  <div class="ticker-wrapper" data-ticker>
+    <div class="ticker-track reverse">
+      {doubleCreative.map((skill) => (
+        <div class="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/40 bg-surface/60 hover:bg-surface hover:border-primary/50 transition-colors group cursor-default whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+           <div class="w-6 h-6 rounded-full bg-background flex items-center justify-center border border-border/50 text-muted group-hover:text-primary transition-colors">
+            <Fragment set:html={getCreativeIcon(skill.name)} />
           </div>
-        );
-      })}
+          <span class="text-sm font-display font-medium text-heading group-hover:text-primary transition-all duration-300 group-hover:[text-shadow:0_0_12px_rgba(139,92,246,0.6)]">{skill.name}</span>
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider pl-3 ml-1 border-l border-border/60">{(skill as any).evidence}</span>
+        </div>
+      ))}
     </div>
   </div>
 
-  <!-- Soft & Creative Skills (Bento Mixed Grid) -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-    <!-- Soft Skills Column -->
-    <div>
-      <h3 class="text-xl font-display font-semibold text-heading mb-5 flex items-center gap-2">
-        <span class="w-6 h-6 rounded bg-accent/10 flex items-center justify-center text-accent text-xs">🤝</span>
-        Leadership & Soft Skills
-      </h3>
-      <div class="space-y-3">
-        {softSkills.map((skill) => (
-          <div class="bento-card !p-4 group">
-            <h4 class="text-sm font-semibold text-heading group-hover:text-accent transition-colors mb-1.5">{skill.name}</h4>
-            <p class="text-xs text-muted leading-relaxed mb-2">{skill.evidence}</p>
-            {skill.artefact && (
-              <span class="text-[10px] bg-surface border border-border px-2 py-1 rounded inline-block text-text/80 mt-1 shadow-sm">
-                📌 {skill.artefact}
-              </span>
-            )}
+  <!-- Leadership Band -->
+  <div class="ticker-wrapper" data-ticker>
+    <div class="ticker-track">
+      {doubleLeadership.map((skill) => (
+        <div class="flex items-center gap-3 px-5 py-2.5 rounded-full border border-border/40 bg-surface/60 hover:bg-surface hover:border-primary/50 transition-colors group cursor-default whitespace-nowrap shadow-sm hover:shadow-[0_0_20px_rgba(139,92,246,0.15)]">
+           <div class="w-6 h-6 flex items-center justify-center text-muted group-hover:text-primary transition-colors">
+            <Fragment set:html={getLeadershipIcon(skill.name)} />
           </div>
-        ))}
-      </div>
-    </div>
-
-    <!-- Creative Skills Column -->
-    <div>
-      <h3 class="text-xl font-display font-semibold text-heading mb-5 flex items-center gap-2">
-        <span class="w-6 h-6 rounded bg-primary/10 flex items-center justify-center text-primary text-xs">🎨</span>
-        Creative Design
-      </h3>
-      <div class="space-y-3">
-        {creativeSkills.map((skill) => (
-          <div class="bento-card !border-primary/20 !p-4 group relative overflow-hidden transition-colors hover:bg-primary/[0.02]">
-            <div class="absolute -right-4 -bottom-4 text-6xl opacity-[0.03] text-primary pointer-events-none group-hover:scale-110 transition-transform">✦</div>
-            <h4 class="text-sm font-semibold text-heading group-hover:text-primary transition-colors mb-1.5 relative z-10">{skill.name}</h4>
-            <p class="text-xs text-muted leading-relaxed mb-2 relative z-10">{skill.evidence}</p>
-            {skill.artefact && (
-              <span class="text-[10px] bg-primary/5 text-primary border border-primary/20 px-2 py-1 rounded inline-block relative z-10 shadow-sm">
-                ✦ {skill.artefact}
-              </span>
-            )}
-          </div>
-        ))}
-      </div>
+          <span class="text-sm font-display font-medium text-heading group-hover:text-primary transition-all duration-300 group-hover:[text-shadow:0_0_12px_rgba(139,92,246,0.6)]">{skill.name}</span>
+          <span class="text-[10px] font-mono text-muted uppercase tracking-wider pl-3 ml-1 border-l border-border/60">{(skill as any).evidence}</span>
+        </div>
+      ))}
     </div>
   </div>
+
 </div>
+
+<!-- Philosophy Section -->
+<div class="mt-8 max-w-5xl mx-auto px-4 text-center">
+  <p class="text-sm text-muted leading-relaxed font-mono">
+    <span class="text-primary font-semibold">The Cognitive Core:</span> True engineering isn't just about syntax; it's about <span class="text-heading text-primary">systems-level adaptability</span> and cross-domain learning. Whether I am optimizing PI controllers for hardware motors or crafting psychological UI states in Figma, the underlying logic is identical. <span class="italic text-heading">For example:</span> Debugging a PCB trace uses the exact same rigorous analytical mindset as color grading a video in Premiere Pro—it's all about mastering the flow of signals, whether electrical or visual.
+  </p>
+</div>
+
+<script>
+  function initTickers() {
+    document.querySelectorAll('[data-ticker]').forEach((wrapper) => {
+      const track = wrapper.querySelector('.ticker-track') as HTMLElement;
+      if (!track || (wrapper as any)._tickerInit) return;
+      (wrapper as any)._tickerInit = true;
+
+      let isDragging = false;
+      let startX = 0;
+      let scrollOffset = 0;
+      let currentTranslate = 0;
+
+      function getComputedTranslateX(el: HTMLElement): number {
+        const style = window.getComputedStyle(el);
+        const matrix = new DOMMatrix(style.transform);
+        return matrix.m41;
+      }
+
+      function onPointerDown(e: PointerEvent) {
+        isDragging = true;
+        startX = e.clientX;
+        currentTranslate = getComputedTranslateX(track);
+        scrollOffset = currentTranslate;
+        wrapper.classList.add('dragging');
+        track.style.transform = `translateX(${currentTranslate}px)`;
+        (wrapper as HTMLElement).setPointerCapture(e.pointerId);
+      }
+
+      function onPointerMove(e: PointerEvent) {
+        if (!isDragging) return;
+        const dx = e.clientX - startX;
+        track.style.transform = `translateX(${scrollOffset + dx}px)`;
+      }
+
+      function onPointerUp() {
+        if (!isDragging) return;
+        isDragging = false;
+        wrapper.classList.remove('dragging');
+        // Resume animation from current position
+        track.style.transform = '';
+      }
+
+      wrapper.addEventListener('pointerdown', onPointerDown as EventListener);
+      wrapper.addEventListener('pointermove', onPointerMove as EventListener);
+      wrapper.addEventListener('pointerup', onPointerUp as EventListener);
+      wrapper.addEventListener('pointerleave', onPointerUp as EventListener);
+    });
+  }
+  initTickers();
+  document.addEventListener('astro:page-load', initTickers);
+</script>

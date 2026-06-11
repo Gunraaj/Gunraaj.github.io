@@ -17,9 +17,9 @@ export default {
                 'card-border': 'rgb(var(--color-card-border) / <alpha-value>)',
             },
             fontFamily: {
-                sans: ['Inter', 'Outfit', 'sans-serif'],
-                serif: ['Space Grotesk', 'Bricolage Grotesque', 'serif'],
-                display: ['Space Grotesk', 'Bricolage Grotesque', 'serif'],
+                sans: ['Inter', 'sans-serif'],
+                heading: ['Space Grotesk', 'sans-serif'],
+                display: ['Instrument Serif', 'serif'],
                 mono: ['JetBrains Mono', 'monospace'],
             },
             animation: {

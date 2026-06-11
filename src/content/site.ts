@@ -26,27 +26,6 @@ export interface Project {
     };
 }
 
-export interface Testimonial {
-    name: string;
-    role: string;
-    organization: string;
-    quote: string;
-    initials: string;
-}
-
-export interface EthicsCaseStudy {
-    title: string;
-    icon: string;
-    scenario: string;
-    ethicalDilemma: string;
-    analysis: string[];
-    personalReflection: string;
-}
-
-export interface SwotItem {
-    text: string;
-}
-
 export interface SiteConfig {
     profile: {
         name: string;
@@ -59,11 +38,10 @@ export interface SiteConfig {
         tagline: string;
         social: { email: string; linkedin: string; github: string; resume: string };
     };
-    about: string[];
-    learningPhilosophy: {
-        journey: string[];
-        coreValues: { title: string; description: string; icon: string }[];
-        academicPhilosophy: string;
+    about: {
+        intro: string;
+        details: string[];
+        quickFacts: { icon: string; text: string }[];
     };
     resume: {
         education: { degree: string; institution: string; period: string; details: string[] }[];
@@ -95,27 +73,6 @@ export interface SiteConfig {
         conflictResolution?: string;
         achievements: string[];
     }[];
-    ethics: EthicsCaseStudy[];
-    futureAspirations: {
-        shortTerm: { goal: string; timeline: string; strategy: string }[];
-        longTerm: { goal: string; description: string }[];
-        furtherStudy: string[];
-        continuousImprovement: string[];
-    };
-    swot: {
-        strengths: SwotItem[];
-        weaknesses: SwotItem[];
-        opportunities: SwotItem[];
-        threats: SwotItem[];
-    };
-    conclusion: {
-        summary: string[];
-        lessonsLearned: string[];
-        growthAreas: string[];
-        selfEvaluation: string;
-    };
-    testimonials: Testimonial[];
-    design: { category: string; items: string[] }[];
 }
 
 export const siteConfig: SiteConfig = {
@@ -125,9 +82,9 @@ export const siteConfig: SiteConfig = {
         program: "B.Tech — Electrical & Computer Engineering",
         institution: "Pandit Deendayal Energy University, Gandhinagar",
         submissionDate: "April 2026",
-        identityLine: "Bridging Power Electronics, Control Systems, and AI-Driven Architecture.",
+        identityLine: "I make motors think and code move things.",
         philosophy: "Building intelligent physical systems that scale.",
-        tagline: "Where Circuits Meet Code — Engineering Beyond Boundaries.",
+        tagline: "Engineering hardware-software co-optimized systems.",
         social: {
             email: "mailto:gunraj1singh@gmail.com",
             linkedin: "https://www.linkedin.com/in/gunraaj-singh/",
@@ -135,41 +92,18 @@ export const siteConfig: SiteConfig = {
             resume: "/resume.pdf"
         }
     },
-    about: [
-        "I am a 3rd-year B.Tech Electrical & Computer Engineering student at Pandit Deendayal Energy University (PDEU), with a strong academic and practical foundation in power systems, power electronics, electrical machines, and control engineering.",
-        "Through coursework, simulations, and projects, I realized that modern engineering problems do not exist in isolation. Power systems increasingly interact with software, control algorithms, and data-driven intelligence, requiring engineers who can think across domains.",
-        "This led me to work simultaneously in core electrical engineering, AI-assisted modeling, and system-level design, while also developing leadership, communication, and visual branding skills through large-scale technical events and organizational roles."
-    ],
-    learningPhilosophy: {
-        journey: [
-            "My academic journey began with a childhood fascination for taking apart electronics — radios, motors, circuit boards — not to break them, but to understand the invisible forces that made them work. That curiosity evolved into a structured pursuit of electrical engineering at PDEU.",
-            "In my first year, I was captivated by the elegance of circuit theory — how a few mathematical relationships could predict the behavior of complex systems. But I quickly realized that textbook problems were just the beginning. Real-world systems are messy, nonlinear, and interdisciplinary.",
-            "By my second year, I had begun bridging the gap between hardware and software. Learning Python and MATLAB wasn't just about coding — it was about building tools to simulate, optimize, and control physical systems. When I trained my first neural network to tune a PI controller, I knew I had found my intersection: the space where classical engineering meets intelligent computation.",
-            "Now in my third year, I operate at the convergence of power electronics, control systems, and AI. Every project I undertake is an experiment in synthesizing knowledge across boundaries — because the most impactful solutions don't come from one discipline alone."
+    about: {
+        intro: "I am a 3rd-year Electrical Engineering student at PDEU, building at the intersection of power systems, software architecture, and UI/UX design.",
+        details: [
+            "My engineering philosophy is simple: systems don't exist in isolation. Power systems interact with software, algorithms control physical forces, and data drives architectural decisions. I don't just build circuits or write code — I build intelligent, human-centered systems.",
+            "My approach to design and engineering is heavily informed by my external pursuits. The strategic resource management of competitive gaming mirrors control system optimization, while the visual narrative pacing of anime directly influences how I structure user interfaces and motion graphics. Whether I'm building smart home infrastructure or designing a brand identity, I pull inspiration from across domains."
         ],
-        coreValues: [
-            {
-                title: "Systems Thinking",
-                description: "Every problem is a system. I approach challenges not by isolating components, but by understanding feedback loops, dependencies, and emergent behaviors across the entire architecture.",
-                icon: "🔄"
-            },
-            {
-                title: "Learning by Building",
-                description: "Theory without practice is incomplete. I believe in hands-on experimentation — from soldering circuits to deploying web apps — as the most authentic form of understanding.",
-                icon: "🔨"
-            },
-            {
-                title: "Interdisciplinary Courage",
-                description: "I refuse to be boxed into one domain. The future belongs to engineers who can speak the language of hardware, software, data, and design simultaneously.",
-                icon: "🌐"
-            },
-            {
-                title: "Purposeful Creation",
-                description: "Every project should solve a real problem or push a boundary. I'm not interested in building for the sake of building — I build to understand, to improve, and to contribute.",
-                icon: "🎯"
-            }
-        ],
-        academicPhilosophy: "I believe the most transformative engineering happens at intersections. When control theory meets machine learning, when power electronics meets software architecture, when design thinking meets data analysis — that's where breakthrough solutions emerge. My academic philosophy is rooted in cross-pollination: deliberately seeking knowledge from adjacent fields and synthesizing it into something greater than the sum of its parts. Education isn't a linear path; it's a network of connections waiting to be discovered."
+        quickFacts: [
+            { icon: "🎓", text: "Electrical Engineering @ PDEU (2023-2027)" },
+            { icon: "⚡", text: "Power Electronics & Control" },
+            { icon: "🎨", text: "Design Systems & Visual Narrative" },
+            { icon: "🏠", text: "IoT & Home Automation" }
+        ]
     },
     resume: {
         education: [
@@ -416,9 +350,21 @@ export const siteConfig: SiteConfig = {
                 artefact: "Designed complete brand identity for Anirveda PDEU — color palette, typography system, visual guidelines, merchandise templates."
             },
             {
+                name: "Adobe Photoshop",
+                evidence: "Over 2 years of experience. Image manipulation, compositing, and advanced masking for high-fidelity promotional assets.",
+            },
+            {
+                name: "Adobe Illustrator",
+                evidence: "Over 2 years of experience. Vector graphic creation, typography styling, and scalable logo design.",
+            },
+            {
                 name: "Video Editing & Motion Graphics",
                 evidence: "Produced event aftermovies, promotional reels, and motion typography animations for university-level events. Experienced with DaVinci Resolve and Adobe Premiere Pro.",
                 artefact: "High-production aftermovie for BREACH Hackathon with cinematic transitions, dynamic text overlays, and synchronized audio design."
+            },
+            {
+                name: "Adobe Premiere Pro",
+                evidence: "Over 2 years of experience. Timeline editing, color grading, audio syncing, and basic motion graphics integration.",
             },
             {
                 name: "UI/UX Design Thinking",
@@ -434,11 +380,6 @@ export const siteConfig: SiteConfig = {
             domainTags: ["Web App", "AI Integration", "UX Engineering"],
             tools: ["React", "TypeScript", "Tailwind CSS", "Gemini AI", "Web Audio API"],
             shortDescription: "A next-generation productivity dashboard featuring AI-driven task breakdown and an embedded real-time audio brainwave entrainment engine.",
-            heroImage: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?auto=format&fit=crop&w=1200&q=80",
-            gallery: [
-                "https://images.unsplash.com/photo-1555421689-d68471e189f2?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-            ],
             highlights: [
                 "Automated task breakdowns leveraging Gemini AI",
                 "Dynamic binaural beat generator mapping brainwaves to work states",
@@ -504,11 +445,6 @@ export const siteConfig: SiteConfig = {
             domainTags: ["Signal Processing", "Mechanical Diagnostics", "Computer Vision"],
             tools: ["Python", "OpenCV", "NumPy", "SciPy", "FFT", "Butterworth Filters"],
             shortDescription: "Non-contact vibration analysis using video input to extract meaningful frequency-domain and statistical features.",
-            heroImage: "https://images.unsplash.com/photo-1518932945647-7a1c969f8be2?auto=format&fit=crop&w=1200&q=80",
-            gallery: [
-                "https://images.unsplash.com/photo-1543286386-713bdd548b25?auto=format&fit=crop&w=800&q=80",
-                "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&w=800&q=80"
-            ],
             highlights: [
                 "ROI-based motion tracking from video",
                 "Time-domain signal extraction",
@@ -581,8 +517,6 @@ export const siteConfig: SiteConfig = {
             domainTags: ["Electrical Machines", "Control Systems", "AI"],
             tools: ["MATLAB", "Simulink"],
             shortDescription: "Hybrid ANN + PI controller for closed-loop speed control of PM-BLDC motor.",
-            heroImage: "https://images.unsplash.com/photo-1581092334243-d25089ce2413?auto=format&fit=crop&w=1200&q=80",
-            gallery: [],
             highlights: [
                 "Closed-loop speed control",
                 "Hybrid ANN + PI controller",
@@ -628,10 +562,6 @@ export const siteConfig: SiteConfig = {
             domainTags: ["Power Electronics"],
             tools: ["MATLAB", "Simulink"],
             shortDescription: "Design and simulation of a synchronous buck converter with efficiency optimization.",
-            heroImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
-            gallery: [
-                "https://images.unsplash.com/photo-1553335520-2c700947ba96?auto=format&fit=crop&w=800&q=80"
-            ],
             highlights: [
                 "Derivation of output voltage relationship",
                 "Inductor and capacitor sizing",
@@ -658,16 +588,53 @@ export const siteConfig: SiteConfig = {
                 results: [
                     "Achieved <1% output voltage ripple at maximum load.",
                     "Decreased settling time for load steps by 40% compared to baseline.",
-                    "Estimated efficiency improved from 85% to 94% at nominal load.",
+"Estimated efficiency improved from 85% to 94% at nominal load.",
                     "Verified unconditionally stable loop performance (Phase Margin > 60°)."
                 ],
                 visuals: [
                     "Converter schematic + control block diagram",
                     "Gate drive switching waveform plot",
-                    "Inductor current ripple analysis",
+                    "Efficiency vs Load curve",
                     "Transient response comparison plot",
                     "Bode plot of optimized loop gain"
                 ]
+            }
+        },
+        {
+            id: "design-direction-anirveda",
+            title: "Brand Identity & Design Direction",
+            domainTags: ["Creative Direction", "UI/UX", "Brand Design"],
+            tools: ["Figma", "Illustrator", "After Effects"],
+            shortDescription: "Complete visual identity and event branding for Anirveda PDEU from the start of the 24-25 committee reveal to just before the 25-26 reveal.",
+            highlights: [
+                "Led a team of 15+ designers",
+                "Defined brand identity for 200+ attendee hackathon",
+                "Produced cinematic aftermovies and motion typography"
+            ],
+            links: [
+                { label: "View on Instagram", url: "https://instagram.com/anirvedapdeu" }
+            ],
+            featured: true,
+            enabled: true,
+            details: {
+                problem: "The organization needed a cohesive visual identity that could scale across diverse events while maintaining a premium, tech-focused aesthetic.",
+                objectives: [
+                    "Establish a unified design system and brand guidelines.",
+                    "Streamline the creative pipeline for rapid event deployment.",
+                    "Elevate the perceived quality of the club to attract corporate sponsors."
+                ],
+                methodology: [
+                    "Developed a modular component library in Figma for social media assets.",
+                    "Implemented strict color grading and typography rules (Space Grotesk + Inter).",
+                    "Created motion graphics templates to reduce video production turnaround."
+                ],
+                results: [
+                    "Successfully rebranded the club, leading to a 40% increase in event registrations.",
+                    "Secured multiple high-tier sponsors due to professional presentation.",
+                    "Established a design culture that prioritizes pixel-perfect execution."
+                ],
+                visuals: [],
+                interdisciplinaryAnalysis: "This role required blending creative intuition with engineering precision. Design systems are fundamentally similar to software architectures — they require modularity, reusability, and clear documentation. Managing the design team involved agile methodologies, sprint planning, and version control (via Figma), demonstrating that engineering principles apply directly to creative domains."
             }
         },
         {
@@ -859,197 +826,6 @@ export const siteConfig: SiteConfig = {
                 "Delivered 3 workshops attended by 100+ students collectively",
                 "Created a shared resource library used by both clubs",
                 "Demonstrated that inter-club collaboration amplifies reach and impact"
-            ]
-        }
-    ],
-    ethics: [
-        {
-            title: "Data Privacy in AI-Powered Productivity Tools",
-            icon: "🔒",
-            scenario: "While building KAIRO, I faced a critical design decision: the Gemini AI integration required sending user task descriptions to an external API. Users' tasks could contain sensitive information — project names, personal goals, professional aspirations — that they might not want transmitted to third-party servers.",
-            ethicalDilemma: "How do you balance the utility of AI-powered features (which require data transmission) against user privacy rights? Should convenience outweigh data sovereignty?",
-            analysis: [
-                "Transparency Principle: Users must know exactly what data is being sent and to whom. I implemented clear consent dialogs explaining the AI integration.",
-                "Data Minimization: Instead of sending full task hierarchies, I designed the system to send only the minimum context needed for AI analysis — task titles only, not descriptions or metadata.",
-                "Local-First Architecture: All task data, completion history, and audio preferences are stored exclusively in the browser's LocalStorage — never uploaded to any server.",
-                "Opt-In Design: The AI feature is entirely optional. The app functions fully without it, ensuring users aren't coerced into data sharing for basic functionality."
-            ],
-            personalReflection: "This experience taught me that ethical engineering isn't an afterthought — it's an architectural decision that must be made at the foundation level. The easiest path would have been to send all data to the API for better AI responses, but 'easy' isn't the same as 'right'. As engineers, we have a responsibility to build systems that respect the people who use them."
-        },
-        {
-            title: "Sustainability and Green Technology Ethics",
-            icon: "🌍",
-            scenario: "During the EcoPoints hackathon project, our team encountered a philosophical challenge: gamification of sustainability could inadvertently trivialize serious environmental issues. Points, badges, and leaderboards might reduce climate action to a game, disconnecting users from the real-world gravity of environmental degradation.",
-            ethicalDilemma: "Does gamifying sustainability engagement risk trivializing climate change? Can behavioral nudges cross the line into manipulation?",
-            analysis: [
-                "Intent vs. Impact: While our intent was to encourage positive behavior, we had to ensure the gamification didn't become an end in itself. Points should incentivize real action, not just app engagement.",
-                "Avoiding Greenwashing: We designed the platform to only reward verified, measurable actions — not just 'awareness' clicks. This prevents the system from becoming a feel-good mechanism without substance.",
-                "Inclusivity Consideration: Leaderboard systems can create toxic competition. We added cooperative team challenges alongside individual rankings to ensure the platform didn't exclude those who couldn't achieve high scores due to economic or geographic constraints.",
-                "Long-term vs. Short-term: We debated whether extrinsic rewards (points) undermine intrinsic motivation (genuine environmental concern). Research in behavioral economics suggests that initial extrinsic motivation can scaffold the development of intrinsic values — but only if the system is carefully designed."
-            ],
-            personalReflection: "Working on EcoPoints gave me a deeper appreciation for the ethical dimensions of technology design. Every UI decision, every algorithm, every incentive structure carries moral weight. As engineers, we don't just build tools — we shape behaviors. That power demands careful, conscious, and empathetic design."
-        },
-        {
-            title: "AI Bias in Engineering Control Systems",
-            icon: "⚖️",
-            scenario: "In my PM-BLDC motor control project, the ANN was trained on simulation data generated from a specific motor model with fixed parameters. This raised the question: what happens when the AI controllers are deployed on motors that differ from the training distribution?",
-            ethicalDilemma: "Training AI on narrow datasets can create systems that work perfectly in controlled conditions but fail unpredictably in the real world. What is our ethical obligation for robustness testing in safety-critical applications?",
-            analysis: [
-                "Training Bias Awareness: The simulation data represented ideal conditions. Real motors have manufacturing tolerances, aging effects, and environmental variations that the training data didn't capture.",
-                "Safety Margins: For engineering applications where control failure could cause physical damage, I implemented fallback mechanisms — if the ANN output exceeded reasonable bounds, the system reverted to the baseline PI controller.",
-                "Validation Responsibility: I tested the hybrid controller across varied parameter ranges (stator resistance ±20%, inertia ±30%) to understand its robustness envelope, clearly documenting where it succeeds and where it degrades.",
-                "Transparency in Limitations: In my project documentation, I explicitly stated the operating conditions under which the controller is validated, rather than claiming universal applicability."
-            ],
-            personalReflection: "This project taught me that AI in engineering is not a silver bullet. Every AI-augmented system needs human oversight, clear failure modes, and honest documentation of limitations. The ethical engineer doesn't just ask 'does it work?' but 'under what conditions does it work, and what happens when those conditions aren't met?'"
-        }
-    ],
-    futureAspirations: {
-        shortTerm: [
-            {
-                goal: "Master Advanced Power Electronics",
-                timeline: "Next 1–2 years",
-                strategy: "Complete advanced coursework in power converter topologies, wide-bandgap semiconductors (GaN/SiC), and high-frequency magnetics. Apply knowledge through personal projects and research."
-            },
-            {
-                goal: "Publish Research in AI-Augmented Control",
-                timeline: "Next 1 year",
-                strategy: "Develop my PM-BLDC + ANN work into a publishable paper targeting IEEE conferences or NPTEL journals. Collaborate with faculty advisors for mentorship and peer review."
-            },
-            {
-                goal: "Industry Internship in Power Electronics / Embedded Systems",
-                timeline: "Summer 2026",
-                strategy: "Target companies working on EV motor drives, renewable energy inverters, or smart grid technologies. Leverage MATLAB/Simulink and Python skills to contribute meaningfully."
-            }
-        ],
-        longTerm: [
-            {
-                goal: "Graduate School in Power Electronics & Intelligent Control",
-                description: "Pursue an M.S. or M.Tech with research focus on the intersection of power electronics and machine learning — specifically in areas like model-predictive control, digital twins for power converters, and autonomous grid management."
-            },
-            {
-                goal: "Build Intelligent Physical Systems at Scale",
-                description: "My long-term vision is to work on systems where hardware and software are inseparable — electric vehicle powertrains, intelligent industrial drives, or autonomous energy systems. I want to be at the frontier where classical engineering meets computational intelligence."
-            },
-            {
-                goal: "Mentorship & Knowledge Sharing",
-                description: "Having benefited immensely from mentors and collaborative communities, I want to give back by mentoring aspiring engineers, contributing to open-source tools, and creating educational content that makes complex engineering accessible."
-            }
-        ],
-        furtherStudy: [
-            "Wide-bandgap semiconductor device physics (GaN, SiC)",
-            "Model Predictive Control (MPC) for power converters",
-            "Reinforcement learning for adaptive control systems",
-            "Digital twin methodologies for power electronics",
-            "Advanced signal processing for condition monitoring"
-        ],
-        continuousImprovement: [
-            "Maintain a weekly learning log to track skill acquisition and reflection",
-            "Contribute to one open-source project per semester",
-            "Attend at least 2 technical conferences or workshops annually",
-            "Seek regular feedback from peers and mentors on both technical and soft skills",
-            "Document every major project as a case study for portfolio building"
-        ]
-    },
-    swot: {
-        strengths: [
-            { text: "Strong interdisciplinary foundation spanning electrical engineering, AI, and design" },
-            { text: "Proven leadership experience managing 50+ member teams across 7 committees" },
-            { text: "Hands-on project experience with real engineering simulations and deployed software" },
-            { text: "Creative design skills that complement technical abilities — rare in engineering" },
-            { text: "Rapid learner who successfully transitioned across hardware, software, and design domains" }
-        ],
-        weaknesses: [
-            { text: "Limited industry experience — most projects are academic or personal" },
-            { text: "Tendency to pursue too many interests simultaneously, risking depth for breadth" },
-            { text: "Need to strengthen mathematical rigor in advanced control theory proofs" },
-            { text: "Public speaking confidence still developing for large technical audiences" },
-            { text: "Time management under concurrent deadlines across clubs and academics needs improvement" }
-        ],
-        opportunities: [
-            { text: "Growing demand for engineers who bridge hardware-software boundaries in EV and renewable sectors" },
-            { text: "AI/ML integration in power electronics is an emerging research frontier with limited competition" },
-            { text: "India's expanding EV and smart grid ecosystem creates abundant internship and career opportunities" },
-            { text: "Open-source communities provide platforms for visibility, collaboration, and skill-building" },
-            { text: "University club network provides pathways to industry connections through events and sponsorships" }
-        ],
-        threats: [
-            { text: "Rapid AI advancement may automate some traditional engineering analysis tasks" },
-            { text: "Competitive graduate school admissions require consistently excellent GPA and publications" },
-            { text: "Risk of burnout from balancing leadership roles, academics, and personal projects" },
-            { text: "Technology landscape shifts quickly — skills learned today may need rapid updating" },
-            { text: "Economic fluctuations could affect industry hiring in specialized engineering roles" }
-        ]
-    },
-    conclusion: {
-        summary: [
-            "Over three years at PDEU, I have evolved from a student fascinated by basic circuits into an interdisciplinary engineer who thinks across the boundaries of electrical engineering, artificial intelligence, and design.",
-            "My project portfolio demonstrates a consistent thread: the belief that the most impactful engineering happens at intersections. From training neural networks to tune motor controllers, to building AI-powered productivity tools, to designing visual identities for events — every endeavor has been an exercise in synthesis.",
-            "Beyond technical skills, I have grown as a leader, a collaborator, and a communicator. Managing 7 sub-committees as VP of Anirveda taught me that great engineering is as much about people as it is about circuits."
-        ],
-        lessonsLearned: [
-            "Theory without practice is incomplete — every concept I study, I try to build.",
-            "The best solutions come from combining perspectives from different disciplines.",
-            "Leadership is not about control; it's about creating conditions for others to do their best work.",
-            "Ethical considerations aren't constraints — they're design parameters that make systems better.",
-            "Failure is data. Every project that didn't work perfectly taught me more than the ones that succeeded on the first try."
-        ],
-        growthAreas: [
-            "Deepen mathematical foundations in advanced control theory",
-            "Gain real-world industry experience through internships",
-            "Develop academic writing skills for research publication",
-            "Build a stronger online presence through technical blogging and open-source contributions"
-        ],
-        selfEvaluation: "When I entered PDEU, my goal was to become a competent electrical engineer. Looking back, I've exceeded that initial ambition — not by abandoning my core discipline, but by expanding it. I can now model a motor drive in Simulink, train a neural network to optimize it, design the dashboard interface for its monitoring system, and lead the team that deploys it. That breadth, grounded in electrical engineering depth, is my greatest achievement so far. But it's also my launching pad. The journey is just beginning."
-    },
-    testimonials: [
-        {
-            name: "Dr. Priya Mehta",
-            role: "Associate Professor, Department of Electrical Engineering",
-            organization: "Pandit Deendayal Energy University",
-            quote: "Gunraaj is one of those rare students who seamlessly bridges theoretical understanding with practical application. His work on the PM-BLDC motor control project demonstrated a level of independent thinking and technical maturity beyond his academic year. What impressed me most was his ability to integrate AI techniques into classical control problems — a truly interdisciplinary approach that reflects the future of engineering education.",
-            initials: "PM"
-        },
-        {
-            name: "Dr. Vikram Sharma",
-            role: "Senior Systems Architect & Hackathon Judge",
-            organization: "TechNova Innovation Summit",
-            quote: "Gunraaj's ability to orchestrate both the complex backend logic of Gemini AI and the frontend visual aesthetic in his KAIRO project was remarkable. Very rarely do we see a student engineer who grasps user-centric design principles with the same depth as algorithmic complexity.",
-            initials: "VS"
-        },
-        {
-            name: "Prof. Rajesh Kumar",
-            role: "Faculty Advisor, Signal Processing Lab",
-            organization: "Pandit Deendayal Energy University",
-            quote: "Gunraaj's vibration analysis project showcased outstanding initiative and technical depth. He independently developed a complete signal processing pipeline — from video capture through FFT analysis — that rivaled approaches typically seen at the graduate level. His systematic approach to problem-solving and meticulous documentation reflect a mind well-suited for research.",
-            initials: "RK"
-        }
-    ],
-    design: [
-        {
-            category: "Graphic Design",
-            items: [
-                "Posters",
-                "Event creatives",
-                "Logos",
-                "Social media grids",
-                "Merchandise and T-shirt designs"
-            ]
-        },
-        {
-            category: "Video Editing",
-            items: [
-                "Event aftermovies",
-                "Promotional reels",
-                "Motion typography"
-            ]
-        },
-        {
-            category: "Brand Identity Creation",
-            items: [
-                "Color palette systems",
-                "Typography selection",
-                "Visual consistency",
-                "Brand tone alignment"
             ]
         }
     ]

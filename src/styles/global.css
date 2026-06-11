@@ -4,38 +4,32 @@
 
 @layer base {
   :root {
-    --color-bg: 250 251 252;
+    --color-bg: 250 250 252;
     --color-surface: 255 255 255;
-    --color-primary: 22 163 74;
-    --color-accent: 14 165 233;
+    --color-primary: 139 92 246;
+    --color-accent: 99 102 241;
     --color-warning: 234 179 8;
     --color-text: 51 65 85;
     --color-heading: 15 23 42;
     --color-muted: 100 116 139;
     --color-border: 226 232 240;
     --color-card-border: 0 0 0;
-    --color-strength: 22 163 74;
-    --color-weakness: 234 179 8;
-    --color-opportunity: 14 165 233;
-    --color-threat: 239 68 68;
   }
   
   :root.dark {
-    --color-bg: 9 9 11;
-    --color-surface: 18 18 22;
-    --color-primary: 34 197 94;
-    --color-accent: 56 189 248;
-    --color-warning: 250 204 21;
-    --color-text: 161 161 170;
-    --color-heading: 250 250 250;
-    --color-muted: 113 113 122;
-    --color-border: 39 39 42;
-    --color-card-border: 255 255 255;
-    --color-strength: 34 197 94;
-    --color-weakness: 250 204 21;
-    --color-opportunity: 56 189 248;
-    --color-threat: 248 113 113;
+    --color-bg: 5 5 5;
+    --color-surface: 18 18 18;
+    --color-primary: 139 92 246;
+    --color-accent: 58 134 255;
+    --color-warning: 245 158 11;
+    --color-text: 148 163 184;
+    --color-heading: 248 250 252;
+    --color-muted: 100 116 139;
+    --color-border: 38 38 38;
+    --color-card-border: 248 250 252;
   }
+
+
 
   html {
     @apply scroll-smooth;
@@ -137,13 +131,22 @@
 }
 
 /* ═════════════════════════════════════════
-   SWOT QUADRANTS
+   NOISE TEXTURE (GLOBAL DOT GRID)
    ═════════════════════════════════════════ */
 
-.swot-strength { @apply border-l-4; border-left-color: rgb(var(--color-strength)); background: rgb(var(--color-strength) / 0.04); }
-.swot-weakness { @apply border-l-4; border-left-color: rgb(var(--color-weakness)); background: rgb(var(--color-weakness) / 0.04); }
-.swot-opportunity { @apply border-l-4; border-left-color: rgb(var(--color-opportunity)); background: rgb(var(--color-opportunity) / 0.04); }
-.swot-threat { @apply border-l-4; border-left-color: rgb(var(--color-threat)); background: rgb(var(--color-threat) / 0.04); }
+.bg-noise {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  background-image: radial-gradient(rgb(var(--color-primary) / 0.18) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+
 
 /* ═════════════════════════════════════════
    TIMELINE

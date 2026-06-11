@@ -30,7 +30,7 @@ const {
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
 			rel="stylesheet"
 		/>
 
@@ -58,6 +58,7 @@ const {
 	<body
 		class="bg-background text-text font-sans antialiased selection:bg-primary selection:text-white"
 	>
+		<div class="bg-noise"></div>
 		<div id="scroll-progress" style="width: 0%"></div>
 		<Navbar />
 
@@ -107,27 +108,7 @@ const {
 			)
 		}
 
-		<!-- Professional Cursor -->
-		<div
-			id="cursor-dot"
-			transition:persist
-			class="fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-[9999] opacity-0 transition-opacity duration-300 shadow-[0_0_10px_rgba(var(--color-primary)/0.6)] mix-blend-screen"
-			style="transform: translate(-50%, -50%);"
-		>
-		</div>
-		<div
-			id="cursor-aura-1"
-			transition:persist
-			class="fixed top-0 left-0 w-8 h-8 border border-primary/20 bg-primary/[0.02] rounded-full pointer-events-none z-[9998] opacity-0 transition-opacity duration-300 mix-blend-screen"
-			style="transform: translate(-50%, -50%);"
-		>
-		</div>
-		<div
-			id="ambient-glow"
-			transition:persist
-			class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-500 opacity-0 bg-[radial-gradient(1000px_circle_at_var(--x)_var(--y),rgba(var(--color-primary)/0.06),transparent_50%)]"
-		>
-		</div>
+
 
 		<main
 			id="main-content"
@@ -139,7 +120,7 @@ const {
 			<slot />
 		</main>
 		<footer
-			class="bg-surface py-8 mt-12 border-t border-card-border/10 relative z-10"
+			class="bg-surface py-12 mt-20 border-t border-border/40 relative z-10"
 		>
 			<div
 				class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-muted"
@@ -147,15 +128,6 @@ const {
 				<p>
 					&copy; {new Date().getFullYear()}
 					{siteConfig.profile.name}. All rights reserved.
-				</p>
-				<p class="mt-2 text-sm">
-					⚡ Built with Astro, TypeScript, and Tailwind CSS.
-				</p>
-				<p
-					class="mt-1 text-[10px] font-mono text-muted/30 tracking-widest"
-					title="Changing the world with electricity and code"
-				>
-					電気とコードで世界を変える
 				</p>
 			</div>
 		</footer>
@@ -226,67 +198,7 @@ const {
 					}, 80);
 				}
 
-				// --- CURSOR ---
-				if (!window.cursorInitialized) {
-					let mouseX = 0,
-						mouseY = 0;
-					let dots = [
-						{ x: 0, y: 0, el: dot, lag: 0.6 },
-						{ x: 0, y: 0, el: aura1, lag: 0.25 }
-					];
-					let isHovering = false;
 
-					const attach = () => {
-						document
-							.querySelectorAll(
-								'a, button, [role="button"], input, .tilt-card-parent',
-							)
-							.forEach((el) => {
-								el.addEventListener(
-									"mouseenter",
-									() => (isHovering = true),
-								);
-								el.addEventListener(
-									"mouseleave",
-									() => (isHovering = false),
-								);
-							});
-					};
-					attach();
-					document.addEventListener("astro:after-swap", attach);
-
-					window.addEventListener("mousemove", (e) => {
-						mouseX = e.clientX;
-						mouseY = e.clientY;
-						dots.forEach((d) => {
-							if (d.el) d.el.style.opacity = "1";
-						});
-						if (ambientGlow) {
-							ambientGlow.style.opacity = "1";
-							document.documentElement.style.setProperty(
-								"--x",
-								`${mouseX}px`,
-							);
-							document.documentElement.style.setProperty(
-								"--y",
-								`${mouseY}px`,
-							);
-						}
-					});
-
-					const run = () => {
-						dots.forEach((d) => {
-							if (!d.el) return;
-							d.x += (mouseX - d.x) * d.lag;
-							d.y += (mouseY - d.y) * d.lag;
-							const scale = isHovering ? 1.5 + d.lag * 5 : 1;
-							d.el.style.transform = `translate(calc(${d.x}px - 50%), calc(${d.y}px - 50%)) scale(${scale})`;
-						});
-						requestAnimationFrame(run);
-					};
-					run();
-					window.cursorInitialized = true;
-				}
 
 				// --- SCROLL REVEAL ---
 				const observer = new IntersectionObserver(
@@ -349,25 +261,24 @@ const {
 </html>
 
 <style is:global>
-	@media (pointer: fine) {
-		* {
-			cursor: none !important;
-		}
-	}
+
 
 	body {
-		font-family: "Inter", "Outfit", sans-serif;
+		font-family: "Inter", sans-serif;
 		letter-spacing: -0.01em;
 	}
 	h1,
 	h2,
 	h3,
 	h4 {
-		font-family: "Space Grotesk", "Bricolage Grotesque", sans-serif;
+		font-family: "Space Grotesk", sans-serif;
 		letter-spacing: -0.02em;
 	}
 	.font-display {
-		font-family: "Space Grotesk", "Bricolage Grotesque", sans-serif;
+		font-family: "Instrument Serif", serif;
+	}
+	.font-heading {
+		font-family: "Space Grotesk", sans-serif;
 	}
 
 	.scroll-reveal {
