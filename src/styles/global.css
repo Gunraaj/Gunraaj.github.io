@@ -4,16 +4,16 @@
 
 @layer base {
   :root {
-    /* Premium warm minimal light theme */
-    --color-bg: 250 249 246;
-    --color-surface: 255 255 255;
-    --color-primary: 13 148 136; /* Teal 600 */
-    --color-accent: 245 158 11; /* Amber 500 */
-    --color-warning: 234 179 8;
-    --color-text: 63 63 70; /* Zinc 700 */
-    --color-heading: 24 24 27; /* Zinc 900 */
+    /* Cozy 'Oatmeal & Sage' light theme - No stark whites */
+    --color-bg: 238 235 229; /* Soft, warm oatmeal */
+    --color-surface: 245 242 235; /* Slightly lighter but still cozy paper */
+    --color-primary: 34 139 88; /* Earthy sage/forest green */
+    --color-accent: 217 119 6; /* Warm amber */
+    --color-warning: 217 119 6;
+    --color-text: 82 82 91; /* Zinc 600 - softer reading contrast */
+    --color-heading: 39 39 42; /* Zinc 800 - strong but not pitch black */
     --color-muted: 113 113 122; /* Zinc 500 */
-    --color-border: 228 228 231; /* Zinc 200 */
+    --color-border: 212 212 216; /* Zinc 300 */
     --color-card-border: 0 0 0;
   }
   
