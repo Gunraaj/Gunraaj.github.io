@@ -169,15 +169,8 @@ export const siteConfig: SiteConfig = {
             "UI/UX Design & Visual Communication",
             "Smart Home Automation"
         ],
-        certifications: [
-            { title: "MATLAB Onramp & Simulink Onramp", issuer: "MathWorks", year: "2024" },
-            { title: "Python for Data Science", issuer: "NPTEL / Coursera", year: "2024" },
-            { title: "Introduction to Machine Learning", issuer: "NPTEL", year: "2025" },
-            { title: "Power Electronics Fundamentals", issuer: "NPTEL", year: "2025" }
-        ],
-        awards: [
-            { title: "Sparkathon Hackathon Finalist", description: "Developed EcoPoints sustainability platform under restricted timeline" }
-        ],
+        certifications: [],
+        awards: [],
         volunteerExperience: [
             { role: "Technical Mentor", org: "Anirveda PDEU", description: "Mentored junior students in graphic design and video editing workflows, helping first-years build technical skills outside the classroom." },
             { role: "Event Organizing Volunteer", org: "PDEU Technical Fests", description: "Coordinated logistics and visual assets for university-level technical festivals, ensuring seamless execution of multi-day events." }
