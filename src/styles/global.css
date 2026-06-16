@@ -4,15 +4,16 @@
 
 @layer base {
   :root {
-    --color-bg: 250 251 252;
+    /* Premium warm minimal light theme */
+    --color-bg: 250 249 246;
     --color-surface: 255 255 255;
-    --color-primary: 22 163 74;
-    --color-accent: 14 165 233;
+    --color-primary: 13 148 136; /* Teal 600 */
+    --color-accent: 245 158 11; /* Amber 500 */
     --color-warning: 234 179 8;
-    --color-text: 51 65 85;
-    --color-heading: 15 23 42;
-    --color-muted: 100 116 139;
-    --color-border: 226 232 240;
+    --color-text: 63 63 70; /* Zinc 700 */
+    --color-heading: 24 24 27; /* Zinc 900 */
+    --color-muted: 113 113 122; /* Zinc 500 */
+    --color-border: 228 228 231; /* Zinc 200 */
     --color-card-border: 0 0 0;
   }
   
