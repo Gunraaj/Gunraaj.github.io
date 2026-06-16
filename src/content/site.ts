@@ -116,6 +116,7 @@ export const siteConfig: SiteConfig = {
                     "Active participant in technical clubs and hackathons",
                     "Focus on interdisciplinary projects bridging EE and CS"
                 ]
+            }
         ],
         jobProfile: "Seeking roles at the intersection of power electronics, embedded systems, and intelligent control — targeting positions such as Power Electronics Engineer, Controls Engineer, or AI/ML Systems Engineer within the EV, renewable energy, or industrial automation sectors. My ideal role involves designing hardware-software co-optimized systems where classical engineering rigor meets modern computational techniques.",
         specialization: [
