@@ -78,29 +78,29 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
     profile: {
         name: "Gunraaj Singh",
-        title: "AI Software Engineer",
-        program: "B.Tech — Electrical & Computer Engineering",
+        title: "Engineering Systems Builder · EV, Controls & Applied AI",
+        program: "B.Tech — Electrical Engineering",
         institution: "Pandit Deendayal Energy University, Gandhinagar",
         submissionDate: "April 2026",
-        identityLine: "I make motors think and code move things.",
-        philosophy: "Building intelligent physical systems that scale.",
+        identityLine: "Building EV powertrain models, control systems, and AI-assisted engineering tools.",
+        philosophy: "B.Tech EE @ PDEU '27 · MATLAB/Simulink · Python/OpenCV · Control Systems",
         tagline: "Engineering hardware-software co-optimized systems.",
         social: {
-            email: "mailto:gunraj1singh@gmail.com",
+            email: "mailto:gunraajsinghpurba@gmail.com",
             linkedin: "https://www.linkedin.com/in/gunraaj-singh/",
             github: "https://github.com/Gunraaj",
             resume: "/resume.pdf"
         }
     },
     about: {
-        intro: "I am a 3rd-year Electrical Engineering student at PDEU, building at the intersection of power systems, software architecture, and UI/UX design.",
+        intro: "I am an Electrical Engineering student at Pandit Deendayal Energy University, focused on EV powertrain modeling, control systems, power electronics, and applied software tools for engineering workflows.",
         details: [
-            "My engineering philosophy is simple: systems don't exist in isolation. Power systems interact with software, algorithms control physical forces, and data drives architectural decisions. I don't just build circuits or write code — I build intelligent, human-centered systems.",
-            "My approach to design and engineering is heavily informed by my external pursuits. The strategic resource management of competitive gaming mirrors control system optimization, while the visual narrative pacing of anime directly influences how I structure user interfaces and motion graphics. Whether I'm building smart home infrastructure or designing a brand identity, I pull inspiration from across domains."
+            "My work sits between physical systems and computation: MATLAB/Simulink models, motor-control logic, signal-processing pipelines, computer vision diagnostics, and practical UI systems. I build tools that make complex engineering behavior easier to simulate, measure, and explain.",
+            "My approach to design and engineering draws from diverse interests. Strategic resource management in competitive gaming mirrors control system optimization, while visual narrative pacing directly influences how I structure user interfaces and motion graphics."
         ],
         quickFacts: [
             { icon: "🎓", text: "Electrical Engineering @ PDEU (2023-2027)" },
-            { icon: "⚡", text: "Power Electronics & Control" },
+            { icon: "⚡", text: "EV Powertrain & Control Systems" },
             { icon: "🎨", text: "Design Systems & Visual Narrative" },
             { icon: "🏠", text: "IoT & Home Automation" }
         ]
@@ -108,7 +108,7 @@ export const siteConfig: SiteConfig = {
     resume: {
         education: [
             {
-                degree: "B.Tech in Electrical & Computer Engineering",
+                degree: "B.Tech in Electrical Engineering",
                 institution: "Pandit Deendayal Energy University (PDEU), Gandhinagar",
                 period: "2023 – 2027 (Expected)",
                 details: [
@@ -116,33 +116,6 @@ export const siteConfig: SiteConfig = {
                     "Active participant in technical clubs and hackathons",
                     "Focus on interdisciplinary projects bridging EE and CS"
                 ]
-            },
-            {
-                degree: "Class 12 (Higher Secondary) — Science Stream",
-                institution: "Puna International School, Zundal, Gandhinagar (CBSE)",
-                period: "Completed 2023",
-                details: [
-                    "Successfully completed the AISSCE (Senior School Certificate Examination)",
-                    "Maintained a clean conduct record (conduct marked as 'Good')"
-                ]
-            },
-            {
-                degree: "Class 11 (Senior Secondary) — Science Stream",
-                institution: "Puna International School, Zundal, Gandhinagar (CBSE)",
-                period: "Completed 2022",
-                details: [
-                    "Built the core academic base in Physics, Chemistry, and Mathematics required for higher engineering studies."
-                ]
-            },
-            {
-                degree: "Class 10 (Secondary)",
-                institution: "Podar International School, Chandkheda, Ahmedabad (CBSE)",
-                period: "Completed 2021",
-                details: [
-                    "Academic Excellence across diverse subjects including Sanskrit and Information Technology.",
-                    "Completed coursework in Employability Skills, covering ICT and Entrepreneurial skills."
-                ]
-            }
         ],
         jobProfile: "Seeking roles at the intersection of power electronics, embedded systems, and intelligent control — targeting positions such as Power Electronics Engineer, Controls Engineer, or AI/ML Systems Engineer within the EV, renewable energy, or industrial automation sectors. My ideal role involves designing hardware-software co-optimized systems where classical engineering rigor meets modern computational techniques.",
         specialization: [
@@ -202,8 +175,7 @@ export const siteConfig: SiteConfig = {
             { title: "Power Electronics Fundamentals", issuer: "NPTEL", year: "2025" }
         ],
         awards: [
-            { title: "Sparkathon Hackathon Finalist", description: "Developed EcoPoints sustainability platform under restricted timeline" },
-            { title: "Dean's List Recognition", description: "Consistent academic performance in core engineering subjects" }
+            { title: "Sparkathon Hackathon Finalist", description: "Developed EcoPoints sustainability platform under restricted timeline" }
         ],
         volunteerExperience: [
             { role: "Technical Mentor", org: "Anirveda PDEU", description: "Mentored junior students in graphic design and video editing workflows, helping first-years build technical skills outside the classroom." },
@@ -225,15 +197,10 @@ export const siteConfig: SiteConfig = {
     },
     navigation: [
         { label: "Home", href: "#hero" },
-        { label: "Philosophy", href: "#philosophy" },
+        { label: "About", href: "#about" },
         { label: "Resume", href: "#resume" },
         { label: "Projects", href: "#projects" },
-        { label: "Skills", href: "#skills" },
-        { label: "Leadership", href: "#leadership" },
-        { label: "Ethics", href: "#ethics" },
-        { label: "Future", href: "#future" },
-        { label: "Conclusion", href: "#conclusion" },
-        { label: "Testimonials", href: "#testimonials" }
+        { label: "Skills", href: "#skills" }
     ],
     domains: [
         {
@@ -375,71 +342,6 @@ export const siteConfig: SiteConfig = {
     },
     projects: [
         {
-            id: "kairo-ai-productivity",
-            title: "KAIRO: AI-Powered Productivity & Brainwave Tuning",
-            domainTags: ["Web App", "AI Integration", "UX Engineering"],
-            tools: ["React", "TypeScript", "Tailwind CSS", "Gemini AI", "Web Audio API"],
-            shortDescription: "A next-generation productivity dashboard featuring AI-driven task breakdown and an embedded real-time audio brainwave entrainment engine.",
-            highlights: [
-                "Automated task breakdowns leveraging Gemini AI",
-                "Dynamic binaural beat generator mapping brainwaves to work states",
-                "Immersive dark-mode UI with beautiful neon accents",
-                "Local-first state management with Zustand and LocalStorage"
-            ],
-            links: [],
-            featured: true,
-            enabled: true,
-            details: {
-                problem: "Traditional productivity tools track tasks but fail to manage cognitive load or biological focus. Users often struggle with large abstract tasks and environmental distractions.",
-                objectives: [
-                    "Develop a local-first React dashboard that eliminates context switching.",
-                    "Integrate Google's Gemini AI to automatically deconstruct complex goals into actionable micro-tasks.",
-                    "Implement a Web Audio API-based DJ system to synthesize focusing binaural beats (Alpha/Beta waves) depending on the task type."
-                ],
-                methodology: [
-                    "UI Construction: Designed a highly visual 'Bento Box' layout using Tailwind CSS.",
-                    "AI Analysis: Used the Gemini API to rapidly categorize workloads into deep focus vs creative tasks.",
-                    "Audio Engine: Generated uncompressed raw sine wave oscillators matched precisely to cognitive enhancement frequencies (e.g. 14Hz Beta)."
-                ],
-                results: [
-                    "Drastically reduced user paralysis on starting large projects.",
-                    "Created an immersive flow-state environment seamlessly managed within a single browser tab.",
-                    "Optimized the AI response time to near-instant task generation."
-                ],
-                visuals: [
-                    "UI Dashboard Overview",
-                    "Task Breakdown Flow",
-                    "Audio DJ Frequency Control Panel"
-                ],
-                challenges: [
-                    "Balancing AI latency with real-time audio synthesis required careful async state management.",
-                    "Browser audio policies (autoplay restrictions) necessitated creative user-interaction-gated audio initialization.",
-                    "Designing a UI that was both informationally dense and aesthetically calming required multiple iteration cycles."
-                ],
-                interdisciplinaryAnalysis: "KAIRO integrates computer science (React, state management), cognitive neuroscience (brainwave entrainment theory), AI/ML (Gemini API), and audio engineering (Web Audio API synthesis). This project demonstrates how software engineering can bridge psychology and technology to create tools that enhance human performance.",
-                codeSnippet: {
-                    language: "tsx",
-                    filename: "App.tsx",
-                    code: `useEffect(() => {
-    if (activeTask && audioSettings.engineEnabled) {
-      console.log("Analyzing task:", activeTask.name);
-      analyzeBrainwaveMode(activeTask.name).then(mode => {
-        console.log("Setting mode to:", mode);
-        setActiveMode(mode);
-        // Automate mixing console
-        setAudioSettings(prev => {
-          let freq = 14; // Beta (Focus)
-          if (mode === 'creativity') freq = 10; // Alpha
-          if (mode === 'deep') freq = 6; // Theta
-          return { ...prev, beatFrequency: freq };
-        });
-      });
-    }
-  }, [activeTask?.name, audioSettings.engineEnabled]);`
-                }
-            }
-        },
-        {
             id: "vibration-analysis-system",
             title: "Vibration Analysis System (Computer Vision Based)",
             domainTags: ["Signal Processing", "Mechanical Diagnostics", "Computer Vision"],
@@ -557,46 +459,109 @@ export const siteConfig: SiteConfig = {
             }
         },
         {
-            id: "synchronous-buck-converter",
-            title: "Synchronous Buck Converter Design",
-            domainTags: ["Power Electronics"],
-            tools: ["MATLAB", "Simulink"],
-            shortDescription: "Design and simulation of a synchronous buck converter with efficiency optimization.",
+            id: "kairo-ai-productivity",
+            title: "KAIRO: AI Productivity Dashboard with Web Audio Focus Modes",
+            domainTags: ["Web App", "AI Integration", "UX Engineering"],
+            tools: ["React", "TypeScript", "Tailwind CSS", "Gemini AI", "Web Audio API"],
+            shortDescription: "A productivity dashboard featuring AI-driven task breakdown and an embedded real-time audio brainwave entrainment engine.",
             highlights: [
-                "Derivation of output voltage relationship",
-                "Inductor and capacitor sizing",
-                "Comparison with conventional buck converter",
-                "Efficiency optimization using synchronous rectification"
+                "Automated task breakdowns leveraging Gemini AI",
+                "Dynamic binaural beat generator mapping brainwaves to work states",
+                "Immersive dark-mode UI with beautiful neon accents",
+                "Local-first state management with Zustand and LocalStorage"
             ],
             links: [],
-            featured: false,
+            featured: true,
             enabled: true,
             details: {
-                problem: "Efficient DC–DC conversion is critical for modern power systems, requiring stable regulation under severe line and load transients without massive thermal dissipation.",
+                problem: "Traditional productivity tools track tasks but fail to manage cognitive load or biological focus. Users often struggle with large abstract tasks and environmental distractions.",
                 objectives: [
-                    "Design a robust power stage for target Vin/Vout/Iout minimizing conduction losses.",
-                    "Model the control loop and computationally tune the controller for rapid transient response.",
-                    "Compare conventional asynchronous PWM strategies against synchronous rectification.",
-                    "Validate rigorous ripple targets and theoretical efficiency limits via simulation."
+                    "Develop a local-first React dashboard that eliminates context switching.",
+                    "Integrate Google's Gemini AI to automatically deconstruct complex goals into actionable micro-tasks.",
+                    "Implement a Web Audio API-based DJ system to synthesize focusing binaural beats (Alpha/Beta waves) depending on the task type."
                 ],
                 methodology: [
-                    "Mathematical modeling of inductor, capacitor, and switching component values.",
-                    "Simulation of a baseline buck converter in MATLAB/Simulink.",
-                    "Implementation of synchronous rectification by replacing the free-wheeling diode with a MOSFET.",
-                    "Iterative loop tuning to hit phase and gain margin targets."
+                    "UI Construction: Designed a highly visual 'Bento Box' layout using Tailwind CSS.",
+                    "AI Analysis: Used the Gemini API to rapidly categorize workloads into deep focus vs creative tasks.",
+                    "Audio Engine: Generated uncompressed raw sine wave oscillators matched precisely to cognitive enhancement frequencies (e.g. 14Hz Beta)."
                 ],
                 results: [
-                    "Achieved <1% output voltage ripple at maximum load.",
-                    "Decreased settling time for load steps by 40% compared to baseline.",
-"Estimated efficiency improved from 85% to 94% at nominal load.",
-                    "Verified unconditionally stable loop performance (Phase Margin > 60°)."
+                    "Drastically reduced user paralysis on starting large projects.",
+                    "Created an immersive flow-state environment seamlessly managed within a single browser tab.",
+                    "Optimized the AI response time to near-instant task generation."
                 ],
                 visuals: [
-                    "Converter schematic + control block diagram",
-                    "Gate drive switching waveform plot",
-                    "Efficiency vs Load curve",
-                    "Transient response comparison plot",
-                    "Bode plot of optimized loop gain"
+                    "UI Dashboard Overview",
+                    "Task Breakdown Flow",
+                    "Audio DJ Frequency Control Panel"
+                ],
+                challenges: [
+                    "Balancing AI latency with real-time audio synthesis required careful async state management.",
+                    "Browser audio policies (autoplay restrictions) necessitated creative user-interaction-gated audio initialization.",
+                    "Designing a UI that was both informationally dense and aesthetically calming required multiple iteration cycles."
+                ],
+                interdisciplinaryAnalysis: "KAIRO integrates computer science (React, state management), cognitive neuroscience (brainwave entrainment theory), AI/ML (Gemini API), and audio engineering (Web Audio API synthesis). This project demonstrates how software engineering can bridge psychology and technology to create tools that enhance human performance.",
+                codeSnippet: {
+                    language: "tsx",
+                    filename: "App.tsx",
+                    code: `useEffect(() => {
+    if (activeTask && audioSettings.engineEnabled) {
+      console.log("Analyzing task:", activeTask.name);
+      analyzeBrainwaveMode(activeTask.name).then(mode => {
+        console.log("Setting mode to:", mode);
+        setActiveMode(mode);
+        // Automate mixing console
+        setAudioSettings(prev => {
+          let freq = 14; // Beta (Focus)
+          if (mode === 'creativity') freq = 10; // Alpha
+          if (mode === 'deep') freq = 6; // Theta
+          return { ...prev, beatFrequency: freq };
+        });
+      });
+    }
+  }, [activeTask?.name, audioSettings.engineEnabled]);`
+                }
+            }
+        },
+        {
+            id: "synchronous-buck-converter",
+            title: "100W Synchronous Buck Converter (Hardware Design)",
+            domainTags: ["Power Electronics", "PCB Design", "Embedded Systems"],
+            tools: ["STM32", "Altium Designer", "MATLAB", "Simulink", "C++"],
+            shortDescription: "End-to-end design, simulation, and hardware implementation of a 100W synchronous buck converter with custom magnetics.",
+            highlights: [
+                "Custom 100W PCB design and fabrication",
+                "Hand-wound inductor for optimized magnetics",
+                "Cascaded PI control loops running on STM32",
+                "92% measured peak efficiency"
+            ],
+            links: [],
+            featured: true,
+            enabled: true,
+            details: {
+                problem: "Most academic power electronics projects stop at simulation. True power converter design requires navigating non-ideal parasitics, thermal management, gate-drive layout, and embedded digital control in actual hardware.",
+                objectives: [
+                    "Design and fabricate a 100W synchronous buck converter PCB.",
+                    "Wind a custom inductor to meet specific ripple current targets.",
+                    "Implement cascaded voltage/current PI control loops on an STM32 microcontroller.",
+                    "Benchmark actual hardware efficiency against MATLAB/Simulink theoretical models."
+                ],
+                methodology: [
+                    "Simulation: Modeled the power stage and derived the small-signal transfer functions in MATLAB to tune the theoretical PI gains.",
+                    "Hardware Design: Selected low-Rds(on) MOSFETs and designed the PCB layout prioritizing minimizing the high-frequency switching loop area.",
+                    "Magnetics: Calculated core size and wire gauge, then hand-wound the main inductor.",
+                    "Firmware: Wrote bare-metal C++ for the STM32 to handle high-frequency PWM generation and ADC sampling for the closed-loop control."
+                ],
+                results: [
+                    "Successfully fabricated and tested the 100W hardware prototype.",
+                    "Achieved a measured peak efficiency of 92%, validating the synchronous rectification benefits.",
+                    "Cascaded digital control loop maintained <2% voltage ripple during severe load steps."
+                ],
+                visuals: [
+                    "Altium PCB Layout",
+                    "Fully Assembled Hardware Prototype",
+                    "Oscilloscope Traces of Gate Drive & Ripple",
+                    "Efficiency vs Load Curve (Simulated vs Actual)"
                 ]
             }
         },
@@ -614,7 +579,7 @@ export const siteConfig: SiteConfig = {
             links: [
                 { label: "View on Instagram", url: "https://instagram.com/anirvedapdeu" }
             ],
-            featured: true,
+            featured: false,
             enabled: true,
             details: {
                 problem: "The organization needed a cohesive visual identity that could scale across diverse events while maintaining a premium, tech-focused aesthetic.",
