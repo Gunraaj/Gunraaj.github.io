@@ -4,16 +4,16 @@
 
 @layer base {
   :root {
-    /* Cozy 'Oatmeal & Sage' light theme - No stark whites */
-    --color-bg: 238 235 229; /* Soft, warm oatmeal */
-    --color-surface: 245 242 235; /* Slightly lighter but still cozy paper */
-    --color-primary: 34 139 88; /* Earthy sage/forest green */
-    --color-accent: 217 119 6; /* Warm amber */
-    --color-warning: 217 119 6;
-    --color-text: 82 82 91; /* Zinc 600 - softer reading contrast */
-    --color-heading: 39 39 42; /* Zinc 800 - strong but not pitch black */
-    --color-muted: 113 113 122; /* Zinc 500 */
-    --color-border: 212 212 216; /* Zinc 300 */
+    /* Soft Minimalist (Notion-style) light theme */
+    --color-bg: 255 255 255; /* Pure white background */
+    --color-surface: 250 250 250; /* Extremely faint grey for cards */
+    --color-primary: 23 23 23; /* Monochrome black for accents/hovers */
+    --color-accent: 82 82 82; /* Soft grey secondary accent */
+    --color-warning: 234 179 8;
+    --color-text: 82 82 82; /* Soft grey text for reading comfort */
+    --color-heading: 23 23 23; /* Crisp almost-black headings */
+    --color-muted: 163 163 163; /* Very soft grey for muted elements */
+    --color-border: 229 229 229; /* Barely-there borders */
     --color-card-border: 0 0 0;
   }
   
