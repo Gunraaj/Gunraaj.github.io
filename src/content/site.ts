@@ -118,13 +118,26 @@ export const siteConfig: SiteConfig = {
                 ]
             }
         ],
-        jobProfile: "Seeking roles at the intersection of power electronics, embedded systems, and intelligent control — targeting positions such as Power Electronics Engineer, Controls Engineer, or AI/ML Systems Engineer within the EV, renewable energy, or industrial automation sectors. My ideal role involves designing hardware-software co-optimized systems where classical engineering rigor meets modern computational techniques.",
+        jobProfile: "Electrical Engineering student with hands-on R&D internship experience in EV powertrain simulation, embedded test automation, and manufacturing inspection research. Seeking roles at the intersection of power electronics, control systems, and embedded software — particularly within the EV, renewable energy, or industrial automation sectors.",
         specialization: [
-            "Power Electronics — Converter design, gate-drive circuits, efficiency optimization, wide-bandgap semiconductor applications",
-            "Control Systems — PI/PID controllers, neural-network-augmented control loops, MATLAB/Simulink-based modeling and validation",
-            "AI for Engineering — Applying machine learning (ANNs, signal processing) to enhance traditional engineering workflows"
+            "EV Powertrain Modelling — Longitudinal dynamics, motor sizing, regenerative braking, drive-cycle energy & range estimation in MATLAB/Simulink",
+            "Embedded Test Automation — ESP32-based CAN verification, structured serial protocols, Python/Qt desktop tooling, hardware-profile safety management",
+            "Power Electronics — Converter design, gate-drive circuits, efficiency optimization, synchronous rectification",
+            "Control Systems — PI/PID controllers, neural-network-augmented loops, model-based engineering validation"
         ],
         workExperience: [
+            {
+                title: "R&D Engineering Intern — EV Systems",
+                organization: "BGauss Auto Private Limited",
+                period: "Jun 2026 – Jul 2026",
+                type: "Industry R&D",
+                details: [
+                    "Built MATLAB/Simulink EV powertrain model covering longitudinal dynamics, acceleration verification (MAE 0.19s across 6 checkpoints), gradeability, traction limits, motor sizing, drive-cycle energy accounting, regenerative braking, and range estimation",
+                    "Developed a Python/Qt desktop test-automation prototype for ESP32-class embedded hardware: visual no-code sequence editor, structured serial protocol, CAN database signal conditions, explicit Pass/Fail/Timeout outcomes, and session logging",
+                    "Researched scan-to-CAD mechanical inspection feasibility using structured-light 3D scanning and ICP point-cloud registration; documented integration risks including reflective surfaces, occlusion, and alignment observability",
+                    "Mentored by Mayuresh Pant (Head — R&D); work spanned powertrain simulation, embedded controls verification, and manufacturing quality research"
+                ]
+            },
             {
                 title: "Vice President",
                 organization: "Anirveda PDEU — Technical Club",
@@ -335,6 +348,76 @@ export const siteConfig: SiteConfig = {
         ]
     },
     projects: [
+        {
+            id: "bgauss-ev-systems-internship",
+            title: "EV Systems Engineering — BGauss R&D Internship",
+            domainTags: ["Industry R&D", "EV Powertrain", "Embedded Automation", "MATLAB/Simulink"],
+            tools: ["MATLAB", "Simulink", "Python", "Qt", "ESP32", "CAN Bus", "Structured-Light 3D Scanning"],
+            shortDescription: "Six-week R&D internship at BGauss Auto Pvt. Ltd. (Pune) covering EV powertrain simulation, ESP32-based CAN test automation, and mechanical inspection research — mentored by the Head of R&D.",
+            highlights: [
+                "Acceleration model MAE of 0.19s across 6 real checkpoints",
+                "Built Python/Qt no-code CAN test sequencer with Pass/Fail/Timeout logging",
+                "Modelled full drive cycle: regen braking, range estimation, SOC accounting",
+                "Researched scan-to-CAD inspection pipeline using structured-light & ICP registration"
+            ],
+            links: [],
+            featured: true,
+            enabled: true,
+            details: {
+                problem: "Electric two-wheeler development requires tight coordination between powertrain simulation, embedded controller verification, and manufacturing quality inspection. Decisions made in isolation — without visible assumptions and repeatable evidence — lead to costly rework late in the development cycle.",
+                objectives: [
+                    "Build a modular MATLAB/Simulink EV powertrain model covering the full chain: road load → motor torque → battery power → range.",
+                    "Develop a desktop Python/Qt test-automation tool that makes ESP32-class embedded hardware tests repeatable, logged, and outcome-explicit.",
+                    "Research structured-light scan-to-CAD inspection feasibility and document the real integration risks for EV manufactured components."
+                ],
+                methodology: [
+                    "Powertrain Track: Modelled longitudinal vehicle dynamics (rolling resistance, grade, aero, inertia), applied traction limits, validated acceleration against 6 reference checkpoints, built a drive-cycle energy layer with regenerative braking (constrained by motor torque map, battery charge power, SOC, and speed), and a range estimator with division-by-zero protection.",
+                    "Embedded Track: Built a layered Python/Qt desktop application — a visual no-code sequence editor, a structured serial protocol linking to ESP32 hardware, a DBC-decoded CAN signal condition editor, and an engine producing explicit Pass, Fail, and Timeout outcomes with full session logs.",
+                    "Inspection Track: Reviewed structured-light fringe-projection principles, ICP point-cloud registration mathematics, and deviation-to-tolerance mapping. Documented four critical integration risks: reflective surface handling, occlusion on complex geometry, datum-constrained alignment, and measurement uncertainty chain."
+                ],
+                results: [
+                    "Acceleration model: mean absolute checkpoint error of 0.19s, max error 0.31s across six speed targets (30–66 km/h).",
+                    "Drive-cycle scenario: 55.46 Wh/km consumption, estimated 48.7 km range under the displayed cycle.",
+                    "Test automation prototype exercised across normal, failure, and timeout paths — including unresolved CAN signal timeouts recorded honestly rather than hidden.",
+                    "Inspection research produced a five-stage scan-to-CAD framework and a risk register sufficient to scope a proof-of-concept plan."
+                ],
+                visuals: [
+                    "Integrated EV Powertrain Architecture (Simulink)",
+                    "Acceleration Validation Dashboard (speed, acceleration, checkpoint comparison table)",
+                    "Drive-Cycle Energy Analysis (battery power, regen, SOC, consumption, range)",
+                    "Python/Qt Test Automation Workspace",
+                    "Visual CAN Sequence Editor & Hardware Profile Safety View"
+                ],
+                challenges: [
+                    "Range estimator required careful protection against division by near-zero distance at run start — solved by a consumption floor and a dual SOC/counter minimum for remaining energy.",
+                    "Keeping the test automation tool's Pass vs Timeout distinction explicit was architecturally critical: a timeout indicates missing hardware or wiring, not a software failure — conflating the two hides integration faults.",
+                    "Structured-light inspection on reflective EV components (polished brackets, plated surfaces) will saturate fringe projectors — mitigations (scanning spray, polarisation, controlled exposure) were documented as mandatory pre-requisites."
+                ],
+                interdisciplinaryAnalysis: "This internship united three engineering disciplines that are rarely taught together: vehicle systems modelling, embedded software verification, and manufacturing metrology. The common thread was evidence-driven engineering — every track required defining a reference, measuring or simulating a response, and recording an auditable outcome. The embedded tool demonstrates how software engineering principles (state machines, structured protocols, deterministic teardown) directly improve the credibility of hardware testing — a skill gap that exists in most EV R&D teams today.",
+                codeSnippet: {
+                    language: "python",
+                    filename: "test_runner.py",
+                    code: `# Simplified core of the ESP32 CAN test-automation engine
+def execute_step(step, serial_port, can_monitor):
+    if step.type == "ACTUATE":
+        serial_port.send(f"SET {step.pin} {step.value}")
+        ack = serial_port.wait_for(f"ACK:{step.pin}", timeout=step.timeout)
+        return StepResult.PASS if ack else StepResult.TIMEOUT
+
+    elif step.type == "CAN_CONDITION":
+        deadline = time.monotonic() + step.timeout
+        while time.monotonic() < deadline:
+            signal_val = can_monitor.get(step.signal_name)
+            if step.operator(signal_val, step.expected):
+                return StepResult.PASS
+        return StepResult.TIMEOUT  # Distinct from FAIL — wiring or CAN issue
+
+    elif step.type == "DELAY":
+        time.sleep(step.duration_ms / 1000)
+        return StepResult.PASS`
+                }
+            }
+        },
         {
             id: "vibration-analysis-system",
             title: "Vibration Analysis System (Computer Vision Based)",
