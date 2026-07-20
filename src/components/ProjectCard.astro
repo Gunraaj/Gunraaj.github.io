@@ -29,7 +29,7 @@ const bgIcon = bgIcons[project.id as keyof typeof bgIcons] || defaultIcon;
     <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"></div>
 
     <!-- Background Artifact -->
-    <div class="absolute -right-16 -bottom-16 w-64 h-64 text-primary/20 group-hover:text-primary/30 transition-colors duration-700 pointer-events-none z-0 -rotate-12 group-hover:rotate-0 group-hover:scale-110">
+    <div class="absolute -right-16 -bottom-16 w-64 h-64 text-primary/5 group-hover:text-primary/10 blur-[2px] transition-all duration-700 pointer-events-none z-0 -rotate-12 group-hover:rotate-0 group-hover:scale-110">
       <Fragment set:html={bgIcon} />
     </div>
 

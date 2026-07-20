@@ -127,7 +127,7 @@ export const siteConfig: SiteConfig = {
         ],
         workExperience: [
             {
-                title: "R&D Engineering Intern — EV Systems",
+                title: "R&D Intern — Electrical, Electronics & Software Systems",
                 organization: "BGauss Auto Private Limited",
                 period: "Jun 2026 – Jul 2026",
                 type: "Industry R&D",
@@ -139,7 +139,7 @@ export const siteConfig: SiteConfig = {
                 ]
             },
             {
-                title: "Vice President",
+                title: "Advisor (Former Vice President)",
                 organization: "Anirveda PDEU — Technical Club",
                 period: "Jun 2025 – Present",
                 type: "Leadership",
@@ -349,7 +349,7 @@ export const siteConfig: SiteConfig = {
     projects: [
         {
             id: "bgauss-ev-systems-internship",
-            title: "EV Systems Engineering — BGauss R&D Internship",
+            title: "Electrical, Electronics & Software Systems — BGauss R&D Internship",
             domainTags: ["Industry R&D", "EV Powertrain", "Embedded Automation", "MATLAB/Simulink"],
             tools: ["MATLAB", "Simulink", "Python", "Qt", "ESP32", "CAN Bus", "Structured-Light 3D Scanning"],
             shortDescription: "Six-week R&D internship at BGauss Auto Pvt. Ltd. (Pune) covering EV powertrain simulation, ESP32-based CAN test automation, and mechanical inspection research — mentored by the Head of R&D.",
@@ -685,7 +685,7 @@ def execute_step(step, serial_port, can_monitor):
             location: "Gandhinagar, Gujarat",
             roles: [
                 {
-                    title: "Vice President",
+                    title: "Advisor (Former Vice President)",
                     category: "Leadership & Strategy",
                     date: "Jun 2025 – Present",
                     details: [
