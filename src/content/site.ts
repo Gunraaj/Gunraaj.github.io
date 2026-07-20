@@ -84,7 +84,7 @@ export const siteConfig: SiteConfig = {
         submissionDate: "April 2026",
         identityLine: "Building EV powertrain models, control systems, and AI-assisted engineering tools.",
         philosophy: "B.Tech EE @ PDEU '27 · MATLAB/Simulink · Python/OpenCV · Control Systems",
-        tagline: "Engineering hardware-software co-optimized systems.",
+        tagline: "Software Engineering | Embedded Systems | HIL Automation | EV Modelling",
         social: {
             email: "mailto:gunraajsinghpurba@gmail.com",
             linkedin: "https://www.linkedin.com/in/gunraaj-singh/",
@@ -109,16 +109,15 @@ export const siteConfig: SiteConfig = {
         education: [
             {
                 degree: "B.Tech in Electrical Engineering",
-                institution: "Pandit Deendayal Energy University (PDEU), Gandhinagar",
-                period: "2023 – 2027 (Expected)",
+                institution: "Pandit Deendayal Energy University (PDEU), Gandhinagar, India",
+                period: "Expected May 2027",
                 details: [
-                    "Relevant Coursework: Power Electronics, Control Systems, Electrical Machines, Power Systems, Signals & Systems, Microprocessors, Data Structures",
-                    "Active participant in technical clubs and hackathons",
-                    "Focus on interdisciplinary projects bridging EE and CS"
+                    "CGPA: 8.26 / 10",
+                    "Relevant Coursework: Machine Learning, Control Systems, Power Electronics, Electric Drives, Electric Vehicle Technology, Engineering Mathematics"
                 ]
             }
         ],
-        jobProfile: "Engineering student specializing in Artificial Intelligence, Machine Learning, and embedded systems. Experience spans from EV powertrain simulation to full-stack AI productivity tools. Seeking roles where computational intelligence (AI/ML) can be applied to solve complex hardware, software, and systems engineering problems.",
+        jobProfile: "Software Engineering | Embedded Systems | HIL Automation | EV Modelling",
         specialization: [
             "AI & Machine Learning — Neural-network-augmented control, computer vision for diagnostics, integrating LLMs into software platforms",
             "Embedded Systems & Software — ESP32 test automation, Python/Qt tooling, robust state machines",
@@ -127,50 +126,24 @@ export const siteConfig: SiteConfig = {
         ],
         workExperience: [
             {
-                title: "R&D Intern — Electrical, Electronics & Software Systems",
+                title: "R&D Intern, Software & Embedded Systems",
                 organization: "BGauss Auto Private Limited",
                 period: "Jun 2026 – Jul 2026",
                 type: "Industry R&D",
                 details: [
-                    "Built MATLAB/Simulink EV powertrain model covering longitudinal dynamics, acceleration verification (MAE 0.19s across 6 checkpoints), gradeability, traction limits, motor sizing, drive-cycle energy accounting, regenerative braking, and range estimation",
-                    "Developed a Python/Qt desktop test-automation prototype for ESP32-class embedded hardware: visual no-code sequence editor, structured serial protocol, CAN database signal conditions, explicit Pass/Fail/Timeout outcomes, and session logging",
-                    "Researched scan-to-CAD mechanical inspection feasibility using structured-light 3D scanning and ICP point-cloud registration; documented integration risks including reflective surfaces, occlusion, and alignment observability",
-                    "Mentored by Mayuresh Pant (Head — R&D); work spanned powertrain simulation, embedded controls verification, and manufacturing quality research"
+                    "Built an end-to-end HIL validation platform linking a Python / PySide6 desktop application with C++ / FreeRTOS ESP32 firmware for repeatable EV electronics testing over USB serial and CAN / TWAI.",
+                    "Designed a no-code visual test sequencer with non-blocking execution, reusable actions, relay and PWM control, hardware profiles, pin-safety checks, structured session logs, and automated reports.",
+                    "Integrated JSON-over-Serial and DBC-based CAN signal decoding with cantools; implemented assertions, wait / timeout conditions, and sampled MIN / MAX / MEAN validation.",
+                    "Audited and extended a MATLAB / Simulink EV powertrain model covering road-load physics, battery SOC, regenerative braking, Wh/km, range estimation, and motor sizing; benchmarked the Indian Drive Cycle against MoRTH data."
                 ]
             },
             {
-                title: "Advisor (Former Vice President)",
-                organization: "Anirveda PDEU — Technical Club",
-                period: "Jun 2025 – Present",
+                title: "Vice President",
+                organization: "Anirveda – The Techno-Economics Club, PDEU",
+                period: "Jun 2025 – Jun 2026",
                 type: "Leadership",
                 details: [
-                    "Architecting strategic vision and operational roadmap for a 50+ member technical organization",
-                    "Managing 7 sub-committees (Technical, Design, PR, Logistics, Finance, Content, Outreach)",
-                    "Orchestrating flagship events: BREACH Hackathon (200+ participants) and INTROVIA technical fest",
-                    "Building cross-functional team synergy and resolving inter-committee conflicts"
-                ]
-            },
-            {
-                title: "Head — Graphic Design & Video Editing",
-                organization: "Anirveda PDEU",
-                period: "Sep 2024 – Jun 2025",
-                type: "Creative Direction",
-                details: [
-                    "Defined and maintained complete visual brand identity across all organizational touchpoints",
-                    "Mentored a team of 15+ designers and video editors in professional workflows",
-                    "Produced high-production aftermovies and promotional content for university events",
-                    "Optimized creative pipelines for rapid asset deployment during event cycles"
-                ]
-            },
-            {
-                title: "Graphic Design Core",
-                organization: "Google Developer Group on Campus, PDEU",
-                period: "Oct 2024 – Aug 2025",
-                type: "Community Design",
-                details: [
-                    "Created design assets bridging complex tech topics for student audiences",
-                    "Designed event identities for workshops, seminars, and hackathons",
-                    "Produced motion graphics and technical visual content for event promotions"
+                    "Led a 30+ member student organisation and coordinated 10+ events reaching 500+ participants; drove sponsorship outreach and mentored 15+ junior members."
                 ]
             }
         ],
@@ -257,16 +230,20 @@ export const siteConfig: SiteConfig = {
     ],
     skills: [
         {
-            category: "Programming Languages",
-            tools: ["Python", "C / C++", "MATLAB", "TypeScript", "JavaScript"]
+            category: "Languages",
+            tools: ["Python", "C++", "C", "SQL", "MATLAB"]
         },
         {
-            category: "Engineering & Simulation Tools",
-            tools: ["MATLAB / Simulink", "PSIM", "Simscape", "PowerWorld"]
+            category: "Software & CS",
+            tools: ["OOP", "Data Structures & Algorithms", "Multithreading", "PySide6 / Qt", "NumPy", "Pandas", "OpenCV", "Git"]
         },
         {
-            category: "Software & Dev Tools",
-            tools: ["React", "Astro", "Tailwind CSS", "OpenCV", "NumPy", "Git", "VS Code", "LaTeX"]
+            category: "Embedded & Automotive",
+            tools: ["ESP32", "FreeRTOS", "PlatformIO", "CAN / TWAI", "DBC", "cantools", "UART", "GPIO", "PWM"]
+        },
+        {
+            category: "Modelling & Testing",
+            tools: ["MATLAB / Simulink", "Simscape", "HIL automation", "Serial protocols", "Signal validation", "Regression testing"]
         }
     ],
     advancedSkills: {
@@ -420,15 +397,13 @@ def execute_step(step, serial_port, can_monitor):
         {
             id: "vibration-analysis-system",
             title: "Vibration Analysis System (Computer Vision Based)",
-            domainTags: ["Signal Processing", "Mechanical Diagnostics", "Computer Vision"],
-            tools: ["Python", "OpenCV", "NumPy", "SciPy", "FFT", "Butterworth Filters"],
-            shortDescription: "Non-contact vibration analysis using video input to extract meaningful frequency-domain and statistical features.",
+            domainTags: ["Signal Processing", "Computer Vision"],
+            tools: ["Python", "OpenCV", "Signal Processing"],
+            shortDescription: "Built a vision-based analyser using Lucas–Kanade optical flow to track 100+ structural features; applied FFT and Butterworth filtering to estimate dominant vibration frequencies from video.",
             highlights: [
-                "ROI-based motion tracking from video",
-                "Time-domain signal extraction",
-                "Frequency-domain analysis using FFT",
-                "Harmonic identification",
-                "Statistical feature extraction (RMS, skewness, kurtosis)"
+                "Tracked 100+ structural features via Lucas–Kanade optical flow",
+                "Applied FFT and Butterworth filtering",
+                "Estimated dominant vibration frequencies from video"
             ],
             links: [],
             featured: true,
@@ -492,13 +467,13 @@ def execute_step(step, serial_port, can_monitor):
         {
             id: "pm-bldc-motor-control",
             title: "PM-BLDC Motor Speed Control using ANN + PI",
-            domainTags: ["Electrical Machines", "Control Systems", "AI"],
-            tools: ["MATLAB", "Simulink"],
-            shortDescription: "Hybrid ANN + PI controller for closed-loop speed control of PM-BLDC motor.",
+            domainTags: ["Neural Networks", "Control Systems"],
+            tools: ["MATLAB", "Simulink", "Neural Networks"],
+            shortDescription: "Designed and evaluated a 3-8-1 ANN controller trained on approximately 25,000 samples using Levenberg-Marquardt optimisation; analysed transient response, duty-cycle saturation, and steady-state behaviour.",
             highlights: [
-                "Closed-loop speed control",
-                "Hybrid ANN + PI controller",
-                "Improved transient and steady-state performance"
+                "Designed 3-8-1 ANN controller",
+                "Trained on 25,000 samples using Levenberg-Marquardt",
+                "Analysed transient response and steady-state behaviour"
             ],
             links: [],
             featured: true,
@@ -601,15 +576,14 @@ def execute_step(step, serial_port, can_monitor):
         },
         {
             id: "synchronous-buck-converter",
-            title: "100W Synchronous Buck Converter (Hardware Design)",
-            domainTags: ["Power Electronics", "PCB Design", "Embedded Systems"],
-            tools: ["STM32", "Altium Designer", "MATLAB", "Simulink", "C++"],
-            shortDescription: "End-to-end design, simulation, and hardware implementation of a 100W synchronous buck converter with custom magnetics.",
+            title: "Synchronous Buck Converter (24 V → 12 V)",
+            domainTags: ["Power Electronics", "Embedded Systems"],
+            tools: ["STM32", "Embedded C", "Power Electronics"],
+            shortDescription: "Designed a 40 kHz synchronous buck converter using an STM32G030, IR2113 gate driver, and IRFZ44N MOSFETs; implemented cascaded dual-loop PI control with ACS712 current sensing and a hand-wound 300 µH inductor.",
             highlights: [
-                "Custom 100W PCB design and fabrication",
-                "Hand-wound inductor for optimized magnetics",
-                "Cascaded PI control loops running on STM32",
-                "92% measured peak efficiency"
+                "Designed 40 kHz synchronous buck converter",
+                "Implemented cascaded dual-loop PI control",
+                "Integrated STM32G030, IR2113, ACS712 and custom magnetics"
             ],
             links: [],
             featured: true,
