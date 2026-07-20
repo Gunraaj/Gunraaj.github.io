@@ -118,12 +118,12 @@ export const siteConfig: SiteConfig = {
                 ]
             }
         ],
-        jobProfile: "Electrical Engineering student with hands-on R&D internship experience in EV powertrain simulation, embedded test automation, and manufacturing inspection research. Seeking roles at the intersection of power electronics, control systems, and embedded software — particularly within the EV, renewable energy, or industrial automation sectors.",
+        jobProfile: "Engineering student specializing in Artificial Intelligence, Machine Learning, and embedded systems. Experience spans from EV powertrain simulation to full-stack AI productivity tools. Seeking roles where computational intelligence (AI/ML) can be applied to solve complex hardware, software, and systems engineering problems.",
         specialization: [
-            "EV Powertrain Modelling — Longitudinal dynamics, motor sizing, regenerative braking, drive-cycle energy & range estimation in MATLAB/Simulink",
-            "Embedded Test Automation — ESP32-based CAN verification, structured serial protocols, Python/Qt desktop tooling, hardware-profile safety management",
-            "Power Electronics — Converter design, gate-drive circuits, efficiency optimization, synchronous rectification",
-            "Control Systems — PI/PID controllers, neural-network-augmented loops, model-based engineering validation"
+            "AI & Machine Learning — Neural-network-augmented control, computer vision for diagnostics, integrating LLMs into software platforms",
+            "Embedded Systems & Software — ESP32 test automation, Python/Qt tooling, robust state machines",
+            "EV Systems Engineering — Powertrain simulation, energy accounting, regenerative braking modeling in MATLAB/Simulink",
+            "Control Systems & Automation — PID/PI loops, dynamic system modeling, and data-driven optimization"
         ],
         workExperience: [
             {
@@ -198,7 +198,6 @@ export const siteConfig: SiteConfig = {
             { name: "Graphic Design & Typography", icon: "🎨" },
             { name: "Home Automation Tinkering", icon: "🏠" },
             { name: "Anime & Manga", icon: "📺" },
-            { name: "Circuit Building", icon: "⚡" },
             { name: "Photography", icon: "📷" }
         ]
     },
@@ -678,87 +677,6 @@ def execute_step(step, serial_port, can_monitor):
                 visuals: [],
                 interdisciplinaryAnalysis: "This role required blending creative intuition with engineering precision. Design systems are fundamentally similar to software architectures — they require modularity, reusability, and clear documentation. Managing the design team involved agile methodologies, sprint planning, and version control (via Figma), demonstrating that engineering principles apply directly to creative domains."
             }
-        },
-        {
-            id: "ecopoints-sustainability",
-            title: "EcoPoints: Gamified Sustainability Platform",
-            domainTags: ["Hackathon", "Web Platform", "Sustainability"],
-            tools: ["Web Core", "Gamification Architecture"],
-            shortDescription: "A hackathon application built to incentivize daily eco-friendly actions using a rich progression and points-based gamification loop.",
-            heroImage: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80",
-            gallery: [
-                "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80"
-            ],
-            highlights: [
-                "Actionable reward system mapping carbon footprint offset to digital currency",
-                "Community engagement leaderboards and social tracking",
-                "Architected during a restricted timeline for the Sparkathon challenge"
-            ],
-            links: [],
-            featured: false,
-            enabled: true,
-            details: {
-                problem: "Climate change and sustainability are often viewed as macro-level issues, detaching the average consumer from feeling their personal impact. There is a lack of immediate incentive for eco-friendly habits.",
-                objectives: [
-                    "Create an intuitive web application providing instant feedback and rewards for sustainable habits.",
-                    "Build a scalable data model to track various user actions (recycling, commute changes, energy reduction).",
-                    "Ensure the platform remains beginner-friendly, heavily focusing on accessibility and clear UI patterns."
-                ],
-                methodology: [
-                    "Conceptualization: Drafted a core game-loop around real-world actions resulting in digital token generation.",
-                    "Design System: Kept visual noise low, utilizing calm, natural hues to contrast standard application design.",
-                    "Implementation: Engineered core modules strictly following the Sparkathon guidelines to highlight feasibility over feature-creep."
-                ],
-                results: [
-                    "Developed a fully functional prototype capturing the essential proof of concept.",
-                    "Outlined a projected 15% increase in user retention via the leaderboard module (simulated).",
-                    "Highlighted the power of behavioral economics applied to software engineering."
-                ],
-                visuals: [
-                    "Leaderboard Implementation",
-                    "Carbon Offset Tracker Graph",
-                    "Point Conversion Screen"
-                ]
-            }
-        },
-        {
-            id: "pmsm-temp-control",
-            title: "PMSM Temperature-Based Speed Control",
-            domainTags: ["Electrical Machines", "Control Systems"],
-            tools: ["MATLAB", "Simulink"],
-            shortDescription: "Adaptive speed regulation for PMSM based on temperature.",
-            heroImage: "https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=1200&q=80",
-            gallery: [],
-            highlights: [
-                "Temperature-dependent control logic",
-                "Adaptive speed regulation"
-            ],
-            links: [],
-            featured: false,
-            enabled: true,
-            details: {
-                problem: "Permanent Magnet Synchronous Motor (PMSM) parameters strongly drift with thermal load, resulting in severe degradation of traditional, statically-tuned speed control schemes.",
-                objectives: [
-                    "Model intricate temperature effects on core motor parameters (resistance, flux linkage).",
-                    "Design and implement adaptive, temperature-aware control logic.",
-                    "Simulate and validate performance regressions under varying operational thermal profiles."
-                ],
-                methodology: [
-                    "Thermal Modeling: Approximated parameter variation using linear and non-linear thermal drift equations within Simulink.",
-                    "Control Modification: Altered a standard Field Oriented Control (FOC) architecture to ingest a temperature estimate and adapt its internal gains.",
-                    "Testing: Subjected the model to aggressive drive cycles that simulate extreme heat accumulation."
-                ],
-                results: [
-                    "Secured tight speed regulation across a 100°C operational delta.",
-                    "Prevented thermally-induced torque ripple and instability.",
-                    "Extended theoretical motor lifespan by actively mitigating over-current events during peak thermal load."
-                ],
-                visuals: [
-                    "Thermal Drift Parameter Graphs",
-                    "Adaptive FOC Block Diagram",
-                    "Speed Regulation tracking across a Drive Cycle"
-                ]
-            }
         }
     ],
     experience: [
@@ -778,25 +696,13 @@ def execute_step(step, serial_port, can_monitor):
                     ]
                 },
                 {
-                    title: "Graphic Designing & Video Editing HEAD",
+                    title: "Graphic Design Head & Contributor",
                     category: "Creative Direction",
-                    date: "Sep 2024 – Jun 2025",
+                    date: "Sep 2023 – Jun 2025",
                     details: [
                         "Defined the visual language and brand identity for the entire organization.",
                         "Mentored a team of 15+ designers and video editors.",
-                        "Produced high-production value aftermovies and promotional reels.",
-                        "Optimized digital workflows for rapid creative asset deployment."
-                    ]
-                },
-                {
-                    title: "Graphic Designing SUBCOM",
-                    category: "Visual Design",
-                    date: "Sep 2023 – Sep 2024",
-                    details: [
-                        "Designed over 50+ unique digital and print assets for club campaigns.",
-                        "Executed precise motion typography and visual storytelling.",
-                        "Maintained consistent brand guidelines across social media channels.",
-                        "Collaborated with the publicity team to maximize student engagement."
+                        "Produced high-production value aftermovies, promotional reels, and 50+ unique digital assets."
                     ]
                 }
             ]
@@ -814,32 +720,6 @@ def execute_step(step, serial_port, can_monitor):
                         "Designing event identities for workshops, seminars, and hackathons.",
                         "Producing technical motion graphics for event teasers.",
                         "Collaborating on UI/UX assets for community-driven projects."
-                    ]
-                }
-            ]
-        },
-        {
-            org: "Respawn - The Gaming Club of PDEU",
-            location: "Gandhinagar, Gujarat",
-            roles: [
-                {
-                    title: "GD Advisor",
-                    category: "Advisory",
-                    date: "Aug 2025 – Present",
-                    details: [
-                        "Providing expert oversight on high-stakes event visual identity.",
-                        "Reviewing and critiquing design workflows for the current sub-committee.",
-                        "Ensuring visual consistency with Respawn's high-energy brand vibe."
-                    ]
-                },
-                {
-                    title: "Graphic Designing Subcom",
-                    category: "Design Execution",
-                    date: "Aug 2024 – Aug 2025",
-                    details: [
-                        "Developed the visual identity for major university gaming tournaments.",
-                        "Integrated gaming-specific aesthetics with clean typography for posters.",
-                        "Assisted in live event visual management and stream overlays."
                     ]
                 }
             ]
