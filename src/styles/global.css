@@ -34,9 +34,18 @@
 
   html {
     @apply scroll-smooth;
+    scrollbar-color: rgb(var(--color-primary) / 0.3) transparent;
+    scrollbar-width: thin;
+    accent-color: rgb(var(--color-primary));
   }
   body {
     @apply bg-background text-text font-sans antialiased;
+  }
+  h1, h2, h3, h4, h5, h6, .section-title {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 }
 

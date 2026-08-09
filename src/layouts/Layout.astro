@@ -36,6 +36,24 @@ const {
 
 		<ViewTransitions />
 
+		<!-- Speculation Rules for Instant Case Study Preloading -->
+		<script type="speculationrules" is:inline>
+			{
+				"prerender": [
+					{
+						"source": "document",
+						"where": {
+							"href_matches": [
+								"/projects/*",
+								"**/projects/*"
+							]
+						},
+						"eagerly": "hover"
+					}
+				]
+			}
+		</script>
+
 		<script is:inline>
 			const setTheme = () => {
 				if (
