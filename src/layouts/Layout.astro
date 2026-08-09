@@ -176,7 +176,7 @@ const {
 				<div class="flex items-center gap-6">
 					<a href={siteConfig.profile.social.github} target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
 					<a href={siteConfig.profile.social.linkedin} target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">LinkedIn</a>
-					<a href={siteConfig.profile.social.email} class="hover:text-primary transition-colors">Email</a>
+					<button data-copy-email={siteConfig.profile.social.email} class="hover:text-primary transition-colors cursor-pointer"><span class="copy-text">Email</span></button>
 				</div>
 			</div>
 		</footer>
@@ -265,6 +265,24 @@ const {
 				document
 					.querySelectorAll(".stagger-fade")
 					.forEach((el) => observer.observe(el));
+
+				// --- COPY EMAIL FUNCTIONALITY ---
+				document.querySelectorAll('[data-copy-email]').forEach(btn => {
+					btn.addEventListener('click', (e) => {
+						const email = btn.getAttribute('data-copy-email');
+						navigator.clipboard.writeText(email);
+						const textSpan = btn.querySelector('.copy-text');
+						if (textSpan) {
+							const originalText = textSpan.innerText;
+							textSpan.innerText = "Copied!";
+							setTimeout(() => textSpan.innerText = originalText, 2000);
+						} else {
+							const originalText = btn.innerText;
+							btn.innerText = "Copied!";
+							setTimeout(() => btn.innerText = originalText, 2000);
+						}
+					});
+				});
 
 				// --- KONAMI CODE EASTER EGG (↑↑↓↓←→←→BA) ---
 				if (!window.konamiInitialized) {

@@ -86,7 +86,7 @@ export const siteConfig: SiteConfig = {
         philosophy: "B.Tech EE @ PDEU '27 · MATLAB/Simulink · Python/OpenCV · Control Systems",
         tagline: "Engineering hardware-software co-optimized systems.",
         social: {
-            email: "mailto:gunraaj.connect@gmail.com?subject=Let's%20Connect",
+            email: "gunraaj.connect@gmail.com",
             linkedin: "https://www.linkedin.com/in/gunraaj-singh/",
             github: "https://github.com/Gunraaj",
             resume: "/resume.pdf"
