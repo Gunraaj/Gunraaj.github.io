@@ -25,7 +25,7 @@ const { project } = Astro.props;
                     <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[120vw] h-[80vh] bg-primary/20 rounded-full mix-blend-screen filter blur-[100px] pointer-events-none -translate-y-1/2 z-10" />
                     <img
                         src={project.heroImage}
-                        alt=""
+                        alt={`${project.title} Banner Image`}
                         class="w-full h-full object-cover opacity-[0.25] transform scale-105"
                         onerror="this.parentElement.style.display='none'"
                     />
