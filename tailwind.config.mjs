@@ -17,10 +17,11 @@ export default {
                 'card-border': 'rgb(var(--color-card-border) / <alpha-value>)',
             },
             fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-                heading: ['Space Grotesk', 'sans-serif'],
-                display: ['Instrument Serif', 'serif'],
-                mono: ['JetBrains Mono', 'monospace'],
+                sans: ['"IBM Plex Sans"', 'system-ui', 'sans-serif'],
+                heading: ['Archivo', 'system-ui', 'sans-serif'],
+                display: ['Archivo', 'system-ui', 'sans-serif'],
+                serif: ['"Noto Serif Gurmukhi"', 'Georgia', 'serif'],
+                mono: ['"IBM Plex Mono"', 'ui-monospace', 'monospace'],
             },
             animation: {
                 'blob': 'blob 7s infinite',

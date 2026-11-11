@@ -1,174 +1,133 @@
 ---
 import { siteConfig } from "../content/site";
+const [first, ...rest] = siteConfig.profile.name.split(" ");
 ---
 
-<section
-  id="hero"
-  class="relative min-h-screen flex items-center bg-background overflow-hidden"
->
-  <!-- Ambient gradient blobs -->
-  <div class="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/8 rounded-full filter blur-[120px] -translate-y-1/4 translate-x-1/4"></div>
-  <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent/6 rounded-full filter blur-[100px] translate-y-1/4 -translate-x-1/4"></div>
-  
-  <!-- Subtle dot pattern -->
-  <div class="absolute inset-0 opacity-[0.03]">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,currentColor_1px,transparent_0)] bg-[size:32px_32px] text-heading"></div>
-  </div>
+<section id="hero" class="relative min-h-[100svh] flex flex-col justify-center bg-background overflow-hidden pt-28 pb-10">
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-6 items-end">
+      <div class="lg:col-span-8 flex flex-col items-start">
+        <p data-hero-item class="inline-flex items-center gap-2 mb-6 text-xs font-mono uppercase tracking-[0.18em] text-muted">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+          Available for opportunities
+        </p>
 
-  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 z-10 w-full py-32 sm:py-0">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center">
-      
-      <!-- Left Column: Text — takes 7 cols for asymmetry -->
-      <div class="lg:col-span-7 flex flex-col items-start">
-        <!-- Small tagline -->
-        <div class="inline-flex items-center gap-2 mb-6 animate-fade-in-up">
-          <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-          <span id="typewriter-text" class="text-sm font-mono text-muted"></span>
-          <span class="animate-blink text-primary text-sm">|</span>
-        </div>
-
-        <!-- Giant name — overlapping, bold -->
-        <h1 class="text-6xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.5rem] font-display font-bold tracking-tighter text-heading leading-[0.9] mb-4 animate-fade-in-up delay-100">
-          {siteConfig.profile.name.split(' ')[0]}
-          <br />
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary to-accent">{siteConfig.profile.name.split(' ')[1]}</span>
+        <h1 data-hero-name class="hero-name text-heading mb-6">
+          <span class="block">{first}</span>
+          <span class="block text-primary">{rest.join(" ")}</span>
         </h1>
 
-        <!-- Role — with decorative line -->
-        <div class="flex items-center gap-4 mb-6 animate-fade-in-up delay-200">
-          <div class="h-px w-12 bg-gradient-to-r from-primary to-transparent"></div>
-          <h2 class="text-lg sm:text-xl font-display font-medium text-heading/80">
-            {siteConfig.profile.title}
-          </h2>
-        </div>
-
-        <!-- Identity line -->
-        <p class="text-base text-muted max-w-lg mb-8 leading-relaxed animate-fade-in-up delay-300">
+        <p data-hero-item class="text-lg sm:text-xl font-medium text-heading mb-3 max-w-xl">
+          {siteConfig.profile.title}
+        </p>
+        <p data-hero-item class="text-base text-text max-w-lg mb-8 leading-relaxed">
           {siteConfig.profile.identityLine}
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-wrap gap-3 animate-fade-in-up delay-400">
-          <a
-            href={siteConfig.profile.social.resume}
-            class="group px-6 py-3 bg-primary text-white hover:bg-primary/90 font-semibold rounded-lg transition-all hover:-translate-y-0.5 shadow-lg shadow-primary/20 flex items-center gap-2"
-          >
+        <div data-hero-item class="flex flex-wrap gap-3">
+          <a href={siteConfig.profile.social.resume} class="btn btn-primary">
             Download CV
-            <svg class="w-4 h-4 group-hover:translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
           </a>
-          <a
-            href="#projects"
-            class="px-6 py-3 bg-surface border border-border text-heading font-semibold rounded-lg transition-all hover:-translate-y-0.5 hover:border-primary/30"
-          >
-            View Projects
-          </a>
-        </div>
-
-        <!-- Quick stats strip -->
-        <div class="flex items-center gap-6 mt-10 pt-8 border-t border-border/40 animate-fade-in-up delay-400">
-          <div>
-            <span class="text-2xl font-display font-bold text-heading">4</span>
-            <span class="block text-xs text-muted mt-0.5">Featured Projects</span>
-          </div>
-          <div class="w-px h-8 bg-border/40"></div>
-          <div>
-            <span class="text-2xl font-display font-bold text-heading">2+</span>
-            <span class="block text-xs text-muted mt-0.5">Years Design Exp.</span>
-          </div>
-          <div class="w-px h-8 bg-border/40"></div>
-          <div>
-            <span class="text-2xl font-display font-bold text-heading">3</span>
-            <span class="block text-xs text-muted mt-0.5">Leadership Roles</span>
-          </div>
+          <a href="#projects" class="btn btn-ghost">See projects</a>
         </div>
       </div>
 
-      <!-- Right Column: Photo — 5 cols, offset upward -->
-      <div class="lg:col-span-5 flex justify-center lg:justify-end animate-fade-in-up delay-300">
-        <div class="relative">
-          <!-- Main photo container -->
-          <div
-            id="hero-avatar-container"
-            class="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-[360px] lg:h-[420px] rounded-2xl overflow-hidden group shadow-2xl"
-          >
-            <!-- Accent border glow -->
-            <div class="absolute -inset-1 bg-gradient-to-br from-primary/40 via-transparent to-accent/30 rounded-2xl blur-sm opacity-60 group-hover:opacity-100 transition-opacity duration-500 -z-10"></div>
-            
-            <div class="absolute inset-0 bg-surface/30 backdrop-blur-sm rounded-2xl border border-border/40 overflow-hidden">
-              <img
-                src="/profile.jpg"
-                alt={siteConfig.profile.name}
-                class="w-full h-full object-cover object-[center_20%] transition-all duration-700"
-                id="hero-avatar-img"
-                loading="eager"
-                fetchpriority="high"
-              />
+      <figure class="lg:col-span-4 flex flex-col items-start lg:items-end">
+        <div data-hero-photo class="relative w-56 h-64 sm:w-64 sm:h-72 lg:w-full lg:h-[380px] overflow-hidden rounded-md border border-border">
+          <img
+            src="/profile.jpg"
+            alt={siteConfig.profile.name}
+            class="w-full h-full object-cover object-[center_20%]"
+            loading="eager"
+            fetchpriority="high"
+          />
+        </div>
+        <figcaption data-hero-item class="mt-3 text-[11px] font-mono uppercase tracking-[0.16em] text-muted">
+          B.Tech EE · PDEU '27
+        </figcaption>
+      </figure>
+    </div>
+  </div>
 
-            </div>
-          </div>
+  <!-- Signature: oscilloscope trace that settles as you scroll -->
+  <div class="relative mt-12 w-full" aria-hidden="true">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="scope">
+        <svg data-scope viewBox="0 0 1200 240" preserveAspectRatio="none" class="w-full h-28 sm:h-36 lg:h-44 block">
+          <defs>
+            <pattern id="scope-grid" width="60" height="30" patternUnits="userSpaceOnUse">
+              <path d="M60 0H0V30" fill="none" class="scope-grid-line" />
+            </pattern>
+          </defs>
+          <rect width="1200" height="240" fill="url(#scope-grid)" />
+          <line x1="0" y1="120" x2="1200" y2="120" class="scope-axis" />
+          <path data-scope-ghost class="scope-ghost" vector-effect="non-scaling-stroke" />
+          <path data-scope-trace class="scope-trace" vector-effect="non-scaling-stroke" />
+        </svg>
+        <div class="scope-readout">
+          <span><span class="text-primary">CH1</span> damped response</span>
+          <span>ζ = <span data-scope-zeta>0.00</span></span>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce-slow">
-    <span class="text-[10px] font-mono text-muted uppercase tracking-widest">Scroll</span>
-    <svg class="w-4 h-4 text-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7"></path></svg>
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <dl data-hero-item class="grid grid-cols-3 gap-4 mt-6 font-mono text-xs text-muted">
+      <div><dt class="sr-only">Featured projects</dt><dd><span class="text-heading text-base">4</span> featured projects</dd></div>
+      <div><dt class="sr-only">Design experience</dt><dd><span class="text-heading text-base">2+</span> yrs design</dd></div>
+      <div><dt class="sr-only">Leadership roles</dt><dd><span class="text-heading text-base">3</span> leadership roles</dd></div>
+    </dl>
   </div>
 </section>
 
 <style>
-  .delay-100 { animation-delay: 100ms; }
-  .delay-200 { animation-delay: 200ms; }
-  .delay-300 { animation-delay: 300ms; }
-  .delay-400 { animation-delay: 400ms; }
-
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+  .hero-name {
+    font-family: "Archivo", system-ui, sans-serif;
+    font-weight: 900;
+    font-stretch: 125%;
+    font-size: clamp(2.75rem, 8vw, 7.5rem);
+    white-space: nowrap;
+    line-height: 0.88;
+    letter-spacing: -0.045em;
+    text-transform: uppercase;
   }
-  .animate-fade-in-up {
-    animation: fadeInUp 0.7s ease-out forwards;
-    opacity: 0;
+  .scope {
+    border-top: 1px solid rgb(var(--color-border));
+    border-bottom: 1px solid rgb(var(--color-border));
   }
-  @keyframes bounceSlow {
-    0%, 100% { transform: translate(-50%, 0); }
-    50% { transform: translate(-50%, 6px); }
+  .scope-grid-line {
+    stroke: rgb(var(--color-border) / 0.7);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
   }
-  .animate-bounce-slow {
-    animation: bounceSlow 2s ease-in-out infinite;
+  .scope-axis {
+    stroke: rgb(var(--color-muted) / 0.5);
+    stroke-dasharray: 4 6;
+    vector-effect: non-scaling-stroke;
   }
-</style>
-
-<script>
-  // Typewriter
-  function initTypewriter() {
-    const el = document.getElementById("typewriter-text");
-    if (!el || el.dataset.typed) return;
-    el.dataset.typed = "true";
-    const text = "Available for opportunities";
-    let i = 0;
-    el.textContent = "";
-    const type = () => {
-      if (i < text.length) {
-        el.textContent += text.charAt(i);
-        i++;
-        setTimeout(type, 50);
-      }
-    };
-    setTimeout(type, 1800);
+  .scope-trace {
+    fill: none;
+    stroke: rgb(var(--color-primary));
+    stroke-width: 2;
+    stroke-linejoin: round;
   }
-  initTypewriter();
-  document.addEventListener("astro:page-load", initTypewriter);
-</script>
-
-<style>
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+  .scope-ghost {
+    fill: none;
+    stroke: rgb(var(--color-primary) / 0.25);
+    stroke-width: 8;
+    filter: blur(4px);
   }
-  .animate-blink {
-    animation: blink 1s step-end infinite;
+  .scope-readout {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.5rem 0;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: rgb(var(--color-muted));
   }
 </style>
