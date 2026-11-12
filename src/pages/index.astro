@@ -5,82 +5,75 @@ import ProjectCard from "../components/ProjectCard.astro";
 import SkillMatrix from "../components/SkillMatrix.astro";
 import ResumeSection from "../components/ResumeSection.astro";
 import { siteConfig } from "../content/site";
+
+const projects = siteConfig.projects.filter((p) => p.enabled);
+// Bento rhythm on a 3-column grid: rows of [wide + normal] (alternating sides)
+// mixed with rows of three, so every row is full and no two rows look alike.
+const n = projects.length;
+let pairRows = 1;
+while (pairRows * 2 < n && (n - pairRows * 2) % 3 !== 0) pairRows++;
+const tripleRows = Math.max(0, (n - pairRows * 2) / 3);
+const wide = new Set<number>();
+let idx = 0, pairsDone = 0;
+for (let r = 0; idx < n; r++) {
+  const usePair = pairsDone < pairRows && (r % 2 === 0 || tripleRows === 0 || r >= pairRows + tripleRows - 1);
+  if (usePair) { wide.add(pairsDone % 2 === 0 ? idx : idx + 1); idx += 2; pairsDone++; }
+  else idx += 3;
+}
+const stripEmoji = (s: string) => s.replace(/\p{Extended_Pictographic}️?/gu, "").trim();
 ---
 
 <Layout title="Portfolio" showPreloader={true}>
-  <!-- ═══ HERO ═══ -->
   <Hero />
 
-  <!-- Submission Bar -->
-  <div class="border-y border-border/40 py-2.5 bg-surface/20">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-1 text-xs font-mono text-muted">
-      <span>{siteConfig.profile.program}</span>
-      <span class="text-primary hidden sm:block">/</span>
+  <div class="border-y border-border py-3">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 flex flex-wrap items-center gap-x-6 gap-y-1 text-sm text-muted">
+      <span class="text-heading">{siteConfig.profile.program}</span>
       <span>{siteConfig.profile.institution}</span>
     </div>
   </div>
 
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- ABOUT — Asymmetric layout with big quote block    -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <section id="about" class="py-20 relative overflow-hidden">
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div data-reveal class="mb-10">
-        <span class="section-label">Introduction</span>
+  <!-- ABOUT: photo carries the left column, text and facts fill the right -->
+  <section id="about" class="py-24">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+      <div data-reveal class="lg:col-span-4">
+        <div class="aspect-[4/5] max-w-sm lg:max-w-none overflow-hidden rounded-xl border border-border">
+          <img src="/profile.jpg" alt={`${siteConfig.profile.name} speaking at PDEU`} class="w-full h-full object-cover object-[center_25%]" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="lg:col-span-8 flex flex-col">
         <h2 class="section-title">Identity & Philosophy</h2>
-      </div>
-
-      <!-- Journey — first paragraph large, rest normal -->
-      <div data-reveal class="mb-12">
-        <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 items-start">
-          <!-- Main text — takes 3 cols -->
-          <div class="lg:col-span-3 space-y-4">
-            {siteConfig.about.details.map((paragraph, i) => (
-              <p class:list={["leading-relaxed", i === 0 ? "text-lg text-heading font-medium" : "text-text/80 text-sm"]}>
-                {paragraph}
-              </p>
-            ))}
-          </div>
-          <!-- Core Values — takes 2 cols, offset -->
-          <div class="lg:col-span-2 space-y-3">
-            {siteConfig.about.quickFacts.map((fact) => (
-              <div data-reveal class="glass-card p-4 group">
-                <div class="flex items-center gap-2 mb-1.5">
-                  <span class="text-lg">{fact.icon}</span>
-                  <h4 class="text-sm font-semibold text-heading group-hover:text-primary transition-colors uppercase tracking-wide">{fact.text}</h4>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div data-reveal class="mt-8 space-y-5 max-w-[68ch]">
+          {siteConfig.about.details.map((paragraph, i) => (
+            <p class:list={["leading-relaxed", i === 0 ? "text-xl text-heading" : "text-base text-text"]}>
+              {paragraph}
+            </p>
+          ))}
         </div>
-      </div>
 
-      <!-- Academic Philosophy — Quote block -->
-      <div data-reveal>
-        <div class="quote-block">
-          <div class="flex flex-col gap-5">
-            <div class="pb-5 border-b border-border/30">
-              <p class="text-xl md:text-2xl font-display text-primary mb-1.5 font-medium tracking-wide">ਮਨਿ ਜੀਤੈ ਜਗੁ ਜੀਤੁ</p>
-              <p class="text-sm text-text/70 italic mb-3">Conquer your mind, and you conquer the world</p>
-              <p class="text-[10px] text-muted font-mono uppercase tracking-widest">— Sri Guru Granth Sahib Ji</p>
-            </div>
-          </div>
-        </div>
+        <ul class="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-px bg-border border border-border rounded-xl overflow-hidden">
+          {siteConfig.about.quickFacts.map((fact) => (
+            <li data-reveal class="bg-background p-5 text-sm font-medium text-heading">{stripEmoji(fact.text)}</li>
+          ))}
+        </ul>
+
+        <figure data-reveal class="mt-10 lg:mt-auto pt-10">
+          <blockquote>
+            <p class="font-serif text-2xl md:text-3xl text-primary">ਮਨਿ ਜੀਤੈ ਜਗੁ ਜੀਤੁ</p>
+            <p class="mt-2 text-text">Conquer your mind, and you conquer the world.</p>
+          </blockquote>
+          <figcaption class="mt-2 text-sm text-muted">Sri Guru Granth Sahib Ji</figcaption>
+        </figure>
       </div>
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- RESUME — Full width bento treatment                    -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <section id="resume" class="py-20 section-alt relative overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div data-reveal class="mb-12">
-        <span class="section-label">Resume</span>
+  <section id="resume" class="py-24 section-alt">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
+      <div class="mb-12 max-w-[68ch]">
         <h2 class="section-title">Curriculum Vitae</h2>
-        <p class="section-subtitle">Academic background, work experience, certifications, and engagement.</p>
+        <p data-reveal class="section-subtitle">Education, work experience, certifications and leadership.</p>
       </div>
       <div data-reveal>
         <ResumeSection />
@@ -88,70 +81,56 @@ import { siteConfig } from "../content/site";
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- PROJECTS — Feature first project large, rest grid      -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <section id="projects" class="py-20 relative overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div data-reveal class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
-        <div>
-          <span class="section-label">Projects</span>
-          <h2 class="section-title">Research & Projects</h2>
-        </div>
-        <p class="text-sm text-muted max-w-sm">Interdisciplinary case studies with methodology, results, and working code.</p>
+  <section id="projects" class="py-24">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
+      <div class="mb-12 max-w-[68ch]">
+        <h2 class="section-title">Research & Projects</h2>
+        <p data-reveal class="section-subtitle">Case studies with the method, the results and the code.</p>
       </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-        {siteConfig.projects.filter(p => p.enabled).map((project) => (
-          <div data-reveal>
-            <ProjectCard project={project} />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:grid-flow-dense gap-4">
+        {projects.map((project, i) => (
+          <div data-reveal class:list={[wide.has(i) && "md:col-span-2"]}>
+            <ProjectCard project={project} wide={wide.has(i)} />
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <!-- SKILLS — Bento grid with mixed card sizes               -->
-  <!-- ═══════════════════════════════════════════════════════ -->
-  <section id="skills" class="py-20 section-alt relative overflow-hidden">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div data-reveal class="mb-12">
-        <span class="section-label">Skills</span>
-        <h2 class="section-title">Skill Development</h2>
-        <p class="section-subtitle">Technical proficiencies, soft skills, and creative abilities — each with evidence.</p>
+  <section id="skills" class="py-24 section-alt">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
+      <div class="mb-12 max-w-[68ch]">
+        <h2 class="section-title">Skills</h2>
+        <p data-reveal class="section-subtitle">What I use, and where I have used it.</p>
       </div>
-
-      <div data-reveal>
-        <SkillMatrix />
-      </div>
+      <SkillMatrix />
     </div>
   </section>
 
-  <div class="section-divider"></div>
-
-  <!-- ═══ CTA ═══ -->
-  <section class="py-20 section-alt">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div data-reveal>
-        <h2 class="section-title mb-4">Let's talk</h2>
-        <p class="text-sm text-muted mb-8 max-w-md mx-auto">Interested in collaboration, research, or just want to chat about engineering?</p>
-        <div class="flex flex-wrap justify-center gap-3">
-          <button data-copy-email={siteConfig.profile.social.email} class="btn btn-primary">
-            <span class="copy-text">Copy Email</span>
-            <svg class="w-4 h-4 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-          </button>
-          <a href={siteConfig.profile.social.linkedin} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-            LinkedIn
-          </a>
-          <a href={siteConfig.profile.social.github} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
-            GitHub
-          </a>
-        </div>
+  <section id="contact" class="py-24 border-t border-border">
+    <div class="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:items-end">
+      <div class="lg:col-span-7">
+        <h2 class="contact-title text-heading">Let's build something that moves.</h2>
+        <p data-reveal class="mt-5 text-lg text-text max-w-[52ch]">Open to internships, research and engineering collaborations.</p>
+      </div>
+      <div data-reveal class="lg:col-span-5 flex flex-wrap gap-3 lg:justify-end">
+        <button data-copy-email={siteConfig.profile.social.email} class="btn btn-primary">
+          <span class="copy-text">Copy email</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        </button>
+        <a href={siteConfig.profile.social.linkedin} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">LinkedIn</a>
+        <a href={siteConfig.profile.social.github} target="_blank" rel="noopener noreferrer" class="btn btn-ghost">GitHub</a>
       </div>
     </div>
   </section>
 </Layout>
+
+<style>
+  .contact-title {
+    font-weight: 700;
+    font-size: clamp(2.25rem, 5.5vw, 5rem);
+    line-height: 1;
+    letter-spacing: -0.045em;
+    text-wrap: balance;
+  }
+</style>

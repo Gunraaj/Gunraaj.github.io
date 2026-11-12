@@ -79,7 +79,7 @@ export const siteConfig: SiteConfig = {
     profile: {
         name: "Gunraaj Singh",
         title: "Engineering Systems Builder · EV, Controls & Applied AI",
-        program: "B.Tech — Electrical Engineering",
+        program: "B.Tech - Electrical Engineering",
         institution: "Pandit Deendayal Energy University, Gandhinagar",
         submissionDate: "April 2026",
         identityLine: "Building EV powertrain models, control systems, and AI-assisted engineering tools.",
@@ -110,7 +110,7 @@ export const siteConfig: SiteConfig = {
             {
                 degree: "B.Tech in Electrical Engineering",
                 institution: "Pandit Deendayal Energy University (PDEU), Gandhinagar",
-                period: "2023 – 2027 (Expected)",
+                period: "2023 - 2027 (Expected)",
                 details: [
                     "Relevant Coursework: Power Electronics, Control Systems, Electrical Machines, Power Systems, Signals & Systems, Microprocessors, Data Structures",
                     "Active participant in technical clubs and hackathons",
@@ -120,28 +120,28 @@ export const siteConfig: SiteConfig = {
         ],
         jobProfile: "Engineering student specializing in Artificial Intelligence, Machine Learning, and embedded systems. Experience spans from EV powertrain simulation to full-stack AI productivity tools. Seeking roles where computational intelligence (AI/ML) can be applied to solve complex hardware, software, and systems engineering problems.",
         specialization: [
-            "AI & Machine Learning — Neural-network-augmented control, computer vision for diagnostics, integrating LLMs into software platforms",
-            "Embedded Systems & Software — ESP32 test automation, Python/Qt tooling, robust state machines",
-            "EV Systems Engineering — Powertrain simulation, energy accounting, regenerative braking modeling in MATLAB/Simulink",
-            "Control Systems & Automation — PID/PI loops, dynamic system modeling, and data-driven optimization"
+            "AI & Machine Learning - Neural-network-augmented control, computer vision for diagnostics, integrating LLMs into software platforms",
+            "Embedded Systems & Software - ESP32 test automation, Python/Qt tooling, robust state machines",
+            "EV Systems Engineering - Powertrain simulation, energy accounting, regenerative braking modeling in MATLAB/Simulink",
+            "Control Systems & Automation - PID/PI loops, dynamic system modeling, and data-driven optimization"
         ],
         workExperience: [
             {
-                title: "R&D Intern — Electrical, Electronics & Software Systems",
+                title: "R&D Intern - Electrical, Electronics & Software Systems",
                 organization: "BGauss Auto Private Limited",
-                period: "Jun 2026 – Jul 2026",
+                period: "Jun 2026 - Jul 2026",
                 type: "Industry R&D",
                 details: [
                     "Built MATLAB/Simulink EV powertrain model covering longitudinal dynamics, acceleration verification (MAE 0.19s across 6 checkpoints), gradeability, traction limits, motor sizing, drive-cycle energy accounting, regenerative braking, and range estimation",
                     "Developed a Python/Qt desktop test-automation prototype for ESP32-class embedded hardware: visual no-code sequence editor, structured serial protocol, CAN database signal conditions, explicit Pass/Fail/Timeout outcomes, and session logging",
                     "Researched scan-to-CAD mechanical inspection feasibility using structured-light 3D scanning and ICP point-cloud registration; documented integration risks including reflective surfaces, occlusion, and alignment observability",
-                    "Mentored by Mayuresh Pant (Head — R&D); work spanned powertrain simulation, embedded controls verification, and manufacturing quality research"
+                    "Mentored by Mayuresh Pant (Head - R&D); work spanned powertrain simulation, embedded controls verification, and manufacturing quality research"
                 ]
             },
             {
                 title: "Advisor (Former Vice President)",
-                organization: "Anirveda PDEU — Technical Club",
-                period: "Jun 2025 – Present",
+                organization: "Anirveda PDEU - Technical Club",
+                period: "Jun 2025 - Present",
                 type: "Leadership",
                 details: [
                     "Architecting strategic vision and operational roadmap for a 50+ member technical organization",
@@ -151,9 +151,9 @@ export const siteConfig: SiteConfig = {
                 ]
             },
             {
-                title: "Head — Graphic Design & Video Editing",
+                title: "Head - Graphic Design & Video Editing",
                 organization: "Anirveda PDEU",
-                period: "Sep 2024 – Jun 2025",
+                period: "Sep 2024 - Jun 2025",
                 type: "Creative Direction",
                 details: [
                     "Defined and maintained complete visual brand identity across all organizational touchpoints",
@@ -165,7 +165,7 @@ export const siteConfig: SiteConfig = {
             {
                 title: "Graphic Design Core",
                 organization: "Google Developer Group on Campus, PDEU",
-                period: "Oct 2024 – Aug 2025",
+                period: "Oct 2024 - Aug 2025",
                 type: "Community Design",
                 details: [
                     "Created design assets bridging complex tech topics for student audiences",
@@ -191,7 +191,7 @@ export const siteConfig: SiteConfig = {
         coCurricular: [
             { activity: "BREACH Hackathon Co-organizer", description: "Spearheaded the flagship hackathon of Anirveda, managing cross-functional teams from ideation to execution." },
             { activity: "INTROVIA Event Lead", description: "Directed the visual and operational framework for Anirveda's premier technical event series." },
-            { activity: "Smart Home Automation Project", description: "Designed and deployed a complete Home Assistant-based automation system with custom dashboards, scripts, and integrations — a personal project that blends IoT, UI design, and systems engineering." }
+            { activity: "Smart Home Automation Project", description: "Designed and deployed a complete Home Assistant-based automation system with custom dashboards, scripts, and integrations - a personal project that blends IoT, UI design, and systems engineering." }
         ],
         hobbies: [
             { name: "Competitive Gaming", icon: "🎮" },
@@ -275,7 +275,7 @@ export const siteConfig: SiteConfig = {
                 name: "Python",
                 proficiency: 90,
                 details: "NumPy, SciPy, OpenCV, FFT Analysis, Data Pipelines, Automation Scripts",
-                artefact: "Built a complete vibration analysis system processing video input through FFT pipelines — extracting frequency-domain features from raw pixel displacement data."
+                artefact: "Built a complete vibration analysis system processing video input through FFT pipelines - extracting frequency-domain features from raw pixel displacement data."
             },
             {
                 name: "MATLAB / Simulink",
@@ -287,7 +287,7 @@ export const siteConfig: SiteConfig = {
                 name: "TypeScript / React",
                 proficiency: 80,
                 details: "Component Architecture, State Management (Zustand), API Integration, Web Audio API",
-                artefact: "Built KAIRO — a full-stack AI productivity dashboard with real-time binaural beat synthesis using the Web Audio API."
+                artefact: "Built KAIRO - a full-stack AI productivity dashboard with real-time binaural beat synthesis using the Web Audio API."
             },
             {
                 name: "C / C++",
@@ -300,7 +300,7 @@ export const siteConfig: SiteConfig = {
             {
                 name: "Leadership & Team Management",
                 evidence: "As Vice President of Anirveda PDEU, I directly manage 7 sub-committees comprising 50+ members. I architect the club's long-term vision, resolve inter-team conflicts, and ensure cross-functional synergy across diverse technical and creative teams.",
-                artefact: "Successfully orchestrated BREACH Hackathon and INTROVIA — flagship events requiring coordination across logistics, design, PR, and technical tracks."
+                artefact: "Successfully orchestrated BREACH Hackathon and INTROVIA - flagship events requiring coordination across logistics, design, PR, and technical tracks."
             },
             {
                 name: "Visual Communication",
@@ -309,18 +309,18 @@ export const siteConfig: SiteConfig = {
             },
             {
                 name: "Public Speaking & Presentation",
-                evidence: "Regularly present technical concepts to diverse audiences — from hackathon pitches to club meetings to academic seminars. Ability to translate complex engineering ideas into accessible narratives.",
+                evidence: "Regularly present technical concepts to diverse audiences - from hackathon pitches to club meetings to academic seminars. Ability to translate complex engineering ideas into accessible narratives.",
             },
             {
                 name: "Adaptability & Cross-Domain Learning",
-                evidence: "Transitioned from pure electrical engineering to web development, AI/ML, and UI design within two years — demonstrating rapid learning across fundamentally different domains.",
+                evidence: "Transitioned from pure electrical engineering to web development, AI/ML, and UI design within two years - demonstrating rapid learning across fundamentally different domains.",
             }
         ],
         creative: [
             {
                 name: "Graphic Design",
                 evidence: "50+ professional-grade design assets created for clubs and organizations. Expert in Figma, Canva Pro, and Adobe Creative Suite. Specialties include event posters, social media campaigns, and brand identity systems.",
-                artefact: "Designed complete brand identity for Anirveda PDEU — color palette, typography system, visual guidelines, merchandise templates."
+                artefact: "Designed complete brand identity for Anirveda PDEU - color palette, typography system, visual guidelines, merchandise templates."
             },
             {
                 name: "Adobe Photoshop",
@@ -341,18 +341,18 @@ export const siteConfig: SiteConfig = {
             },
             {
                 name: "UI/UX Design Thinking",
-                evidence: "Applied design thinking principles to engineering projects — KAIRO's UI was designed around cognitive psychology research on focus states. Home automation dashboards designed with glassmorphism aesthetics for maximum usability.",
-                artefact: "Custom Home Assistant dashboard with hand-coded glassmorphism UI — a personal project applying design thinking to IoT interfaces."
+                evidence: "Applied design thinking principles to engineering projects - KAIRO's UI was designed around cognitive psychology research on focus states. Home automation dashboards designed with glassmorphism aesthetics for maximum usability.",
+                artefact: "Custom Home Assistant dashboard with hand-coded glassmorphism UI - a personal project applying design thinking to IoT interfaces."
             }
         ]
     },
     projects: [
         {
             id: "bgauss-ev-systems-internship",
-            title: "Electrical, Electronics & Software Systems — BGauss R&D Internship",
+            title: "Electrical, Electronics & Software Systems - BGauss R&D Internship",
             domainTags: ["Industry R&D", "EV Powertrain", "Embedded Automation", "MATLAB/Simulink"],
             tools: ["MATLAB", "Simulink", "Python", "Qt", "ESP32", "CAN Bus", "Structured-Light 3D Scanning"],
-            shortDescription: "Six-week R&D internship at BGauss Auto Pvt. Ltd. (Pune) covering EV powertrain simulation, ESP32-based CAN test automation, and mechanical inspection research — mentored by the Head of R&D.",
+            shortDescription: "Six-week R&D internship at BGauss Auto Pvt. Ltd. (Pune) covering EV powertrain simulation, ESP32-based CAN test automation, and mechanical inspection research - mentored by the Head of R&D.",
             highlights: [
                 "Acceleration model MAE of 0.19s across 6 real checkpoints",
                 "Built Python/Qt no-code CAN test sequencer with Pass/Fail/Timeout logging",
@@ -363,7 +363,7 @@ export const siteConfig: SiteConfig = {
             featured: true,
             enabled: true,
             details: {
-                problem: "Electric two-wheeler development requires tight coordination between powertrain simulation, embedded controller verification, and manufacturing quality inspection. Decisions made in isolation — without visible assumptions and repeatable evidence — lead to costly rework late in the development cycle.",
+                problem: "Electric two-wheeler development requires tight coordination between powertrain simulation, embedded controller verification, and manufacturing quality inspection. Decisions made in isolation - without visible assumptions and repeatable evidence - lead to costly rework late in the development cycle.",
                 objectives: [
                     "Build a modular MATLAB/Simulink EV powertrain model covering the full chain: road load → motor torque → battery power → range.",
                     "Develop a desktop Python/Qt test-automation tool that makes ESP32-class embedded hardware tests repeatable, logged, and outcome-explicit.",
@@ -371,13 +371,13 @@ export const siteConfig: SiteConfig = {
                 ],
                 methodology: [
                     "Powertrain Track: Modelled longitudinal vehicle dynamics (rolling resistance, grade, aero, inertia), applied traction limits, validated acceleration against 6 reference checkpoints, built a drive-cycle energy layer with regenerative braking (constrained by motor torque map, battery charge power, SOC, and speed), and a range estimator with division-by-zero protection.",
-                    "Embedded Track: Built a layered Python/Qt desktop application — a visual no-code sequence editor, a structured serial protocol linking to ESP32 hardware, a DBC-decoded CAN signal condition editor, and an engine producing explicit Pass, Fail, and Timeout outcomes with full session logs.",
+                    "Embedded Track: Built a layered Python/Qt desktop application - a visual no-code sequence editor, a structured serial protocol linking to ESP32 hardware, a DBC-decoded CAN signal condition editor, and an engine producing explicit Pass, Fail, and Timeout outcomes with full session logs.",
                     "Inspection Track: Reviewed structured-light fringe-projection principles, ICP point-cloud registration mathematics, and deviation-to-tolerance mapping. Documented four critical integration risks: reflective surface handling, occlusion on complex geometry, datum-constrained alignment, and measurement uncertainty chain."
                 ],
                 results: [
-                    "Acceleration model: mean absolute checkpoint error of 0.19s, max error 0.31s across six speed targets (30–66 km/h).",
+                    "Acceleration model: mean absolute checkpoint error of 0.19s, max error 0.31s across six speed targets (30-66 km/h).",
                     "Drive-cycle scenario: 55.46 Wh/km consumption, estimated 48.7 km range under the displayed cycle.",
-                    "Test automation prototype exercised across normal, failure, and timeout paths — including unresolved CAN signal timeouts recorded honestly rather than hidden.",
+                    "Test automation prototype exercised across normal, failure, and timeout paths - including unresolved CAN signal timeouts recorded honestly rather than hidden.",
                     "Inspection research produced a five-stage scan-to-CAD framework and a risk register sufficient to scope a proof-of-concept plan."
                 ],
                 visuals: [
@@ -388,11 +388,11 @@ export const siteConfig: SiteConfig = {
                     "Visual CAN Sequence Editor & Hardware Profile Safety View"
                 ],
                 challenges: [
-                    "Range estimator required careful protection against division by near-zero distance at run start — solved by a consumption floor and a dual SOC/counter minimum for remaining energy.",
-                    "Keeping the test automation tool's Pass vs Timeout distinction explicit was architecturally critical: a timeout indicates missing hardware or wiring, not a software failure — conflating the two hides integration faults.",
-                    "Structured-light inspection on reflective EV components (polished brackets, plated surfaces) will saturate fringe projectors — mitigations (scanning spray, polarisation, controlled exposure) were documented as mandatory pre-requisites."
+                    "Range estimator required careful protection against division by near-zero distance at run start - solved by a consumption floor and a dual SOC/counter minimum for remaining energy.",
+                    "Keeping the test automation tool's Pass vs Timeout distinction explicit was architecturally critical: a timeout indicates missing hardware or wiring, not a software failure - conflating the two hides integration faults.",
+                    "Structured-light inspection on reflective EV components (polished brackets, plated surfaces) will saturate fringe projectors - mitigations (scanning spray, polarisation, controlled exposure) were documented as mandatory pre-requisites."
                 ],
-                interdisciplinaryAnalysis: "This internship united three engineering disciplines that are rarely taught together: vehicle systems modelling, embedded software verification, and manufacturing metrology. The common thread was evidence-driven engineering — every track required defining a reference, measuring or simulating a response, and recording an auditable outcome. The embedded tool demonstrates how software engineering principles (state machines, structured protocols, deterministic teardown) directly improve the credibility of hardware testing — a skill gap that exists in most EV R&D teams today.",
+                interdisciplinaryAnalysis: "This internship united three engineering disciplines that are rarely taught together: vehicle systems modelling, embedded software verification, and manufacturing metrology. The common thread was evidence-driven engineering - every track required defining a reference, measuring or simulating a response, and recording an auditable outcome. The embedded tool demonstrates how software engineering principles (state machines, structured protocols, deterministic teardown) directly improve the credibility of hardware testing - a skill gap that exists in most EV R&D teams today.",
                 codeSnippet: {
                     language: "python",
                     filename: "test_runner.py",
@@ -409,7 +409,7 @@ def execute_step(step, serial_port, can_monitor):
             signal_val = can_monitor.get(step.signal_name)
             if step.operator(signal_val, step.expected):
                 return StepResult.PASS
-        return StepResult.TIMEOUT  # Distinct from FAIL — wiring or CAN issue
+        return StepResult.TIMEOUT  # Distinct from FAIL - wiring or CAN issue
 
     elif step.type == "DELAY":
         time.sleep(step.duration_ms / 1000)
@@ -531,7 +531,7 @@ def execute_step(step, serial_port, can_monitor):
                     "Training data generation required extensive simulation time to cover the full operating envelope.",
                     "Preventing ANN overfitting while maintaining real-time inference speed was a delicate balance."
                 ],
-                interdisciplinaryAnalysis: "This project merges electrical machine theory, classical control engineering (PI controllers), and artificial intelligence (neural networks). It exemplifies how AI can augment — not replace — traditional engineering methods, creating adaptive systems that outperform either approach alone."
+                interdisciplinaryAnalysis: "This project merges electrical machine theory, classical control engineering (PI controllers), and artificial intelligence (neural networks). It exemplifies how AI can augment - not replace - traditional engineering methods, creating adaptive systems that outperform either approach alone."
             }
         },
         {
@@ -675,7 +675,7 @@ def execute_step(step, serial_port, can_monitor):
                     "Established a design culture that prioritizes pixel-perfect execution."
                 ],
                 visuals: [],
-                interdisciplinaryAnalysis: "This role required blending creative intuition with engineering precision. Design systems are fundamentally similar to software architectures — they require modularity, reusability, and clear documentation. Managing the design team involved agile methodologies, sprint planning, and version control (via Figma), demonstrating that engineering principles apply directly to creative domains."
+                interdisciplinaryAnalysis: "This role required blending creative intuition with engineering precision. Design systems are fundamentally similar to software architectures - they require modularity, reusability, and clear documentation. Managing the design team involved agile methodologies, sprint planning, and version control (via Figma), demonstrating that engineering principles apply directly to creative domains."
             }
         }
     ],
@@ -687,7 +687,7 @@ def execute_step(step, serial_port, can_monitor):
                 {
                     title: "Advisor (Former Vice President)",
                     category: "Leadership & Strategy",
-                    date: "Jun 2025 – Present",
+                    date: "Jun 2025 - Present",
                     details: [
                         "Architecting the club's long-term vision and operational roadmap.",
                         "Directly managing 7 distinct sub-committees to ensure cross-functional synergy.",
@@ -698,7 +698,7 @@ def execute_step(step, serial_port, can_monitor):
                 {
                     title: "Graphic Design Head & Contributor",
                     category: "Creative Direction",
-                    date: "Sep 2023 – Jun 2025",
+                    date: "Sep 2023 - Jun 2025",
                     details: [
                         "Defined the visual language and brand identity for the entire organization.",
                         "Mentored a team of 15+ designers and video editors.",
@@ -714,7 +714,7 @@ def execute_step(step, serial_port, can_monitor):
                 {
                     title: "Graphic Designing Core",
                     category: "Community Design",
-                    date: "Oct 2024 – Aug 2025",
+                    date: "Oct 2024 - Aug 2025",
                     details: [
                         "Creating specialized design assets to bridge the gap between complex tech and student audience.",
                         "Designing event identities for workshops, seminars, and hackathons.",
@@ -727,11 +727,11 @@ def execute_step(step, serial_port, can_monitor):
     ],
     collaborativeExperiences: [
         {
-            title: "BREACH Hackathon — Cross-Functional Event Leadership",
-            context: "As Vice President of Anirveda, I co-led the organization of BREACH — a multi-day hackathon involving 200+ participants, industry judges, and corporate sponsors.",
+            title: "BREACH Hackathon - Cross-Functional Event Leadership",
+            context: "As Vice President of Anirveda, I co-led the organization of BREACH - a multi-day hackathon involving 200+ participants, industry judges, and corporate sponsors.",
             role: "Event Architect & Cross-Committee Coordinator",
-            teamDynamics: "The organizing team comprised 7 sub-committees (Technical, Design, PR, Logistics, Finance, Content, Outreach) with over 50 active members. Each committee had different priorities and working styles — the design team operated on tight creative deadlines while logistics needed long lead times.",
-            conflictResolution: "A significant conflict arose when the PR team's social media timeline clashed with the design team's capacity. The PR team wanted daily content drops, but the design complexity required more time per asset. I mediated by restructuring the content calendar into 'heavyweight' (quality pieces) and 'lightweight' (quick template-based posts) tiers, satisfying both quality standards and posting frequency. This taught me that effective conflict resolution isn't about choosing sides — it's about reframing the problem.",
+            teamDynamics: "The organizing team comprised 7 sub-committees (Technical, Design, PR, Logistics, Finance, Content, Outreach) with over 50 active members. Each committee had different priorities and working styles - the design team operated on tight creative deadlines while logistics needed long lead times.",
+            conflictResolution: "A significant conflict arose when the PR team's social media timeline clashed with the design team's capacity. The PR team wanted daily content drops, but the design complexity required more time per asset. I mediated by restructuring the content calendar into 'heavyweight' (quality pieces) and 'lightweight' (quick template-based posts) tiers, satisfying both quality standards and posting frequency. This taught me that effective conflict resolution isn't about choosing sides - it's about reframing the problem.",
             achievements: [
                 "Successfully executed a multi-day event with zero critical issues",
                 "Achieved 40% increase in participant registrations over the previous year",
@@ -740,7 +740,7 @@ def execute_step(step, serial_port, can_monitor):
             ]
         },
         {
-            title: "GDG x Anirveda — Inter-Club Technical Workshop Series",
+            title: "GDG x Anirveda - Inter-Club Technical Workshop Series",
             context: "Collaborated with Google Developer Group on Campus to deliver a joint workshop series on 'Design Meets Development', bridging the gap between UI/UX design and frontend engineering.",
             role: "Workshop Co-facilitator & Design Lead",
             teamDynamics: "Working across two different club cultures (GDG's developer-first approach vs. Anirveda's design-first approach) required careful alignment of goals and communication styles. We established shared Notion boards and weekly sync calls.",

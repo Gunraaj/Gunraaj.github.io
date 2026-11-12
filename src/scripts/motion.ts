@@ -1,82 +1,21 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
+import { initController } from "./controller";
 
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const EASE = "expo.out";
 let mm: gsap.MatchMedia | null = null;
 
-/* ── Hero oscilloscope trace ───────────────────────────────────────
-   y = A · e^(−ζ·k·x) · sin(ωx + φ). Scrolling through the hero raises ζ,
-   so the sustained oscillation becomes a damped response that settles. */
-function initScope(reduced: boolean) {
-  const svg = document.querySelector<SVGSVGElement>("[data-scope]");
-  const path = svg?.querySelector<SVGPathElement>("[data-scope-trace]");
-  const ghost = svg?.querySelector<SVGPathElement>("[data-scope-ghost]");
-  const readout = document.querySelector<HTMLElement>("[data-scope-zeta]");
-  if (!svg || !path) return;
-
-  const W = 1200, H = 240, mid = H / 2, N = 240;
-  const state = { zeta: 0, phase: 0, amp: 0.78 };
-
-  const build = () => {
-    let d = "";
-    for (let i = 0; i <= N; i++) {
-      const t = i / N;
-      const x = t * W;
-      const env = Math.exp(-state.zeta * 6 * t);
-      const y = mid - state.amp * mid * env * Math.sin(t * Math.PI * 9 + state.phase);
-      d += (i ? "L" : "M") + x.toFixed(1) + " " + y.toFixed(1);
-    }
-    path.setAttribute("d", d);
-    ghost?.setAttribute("d", d);
-    if (readout) readout.textContent = state.zeta.toFixed(2);
-  };
-  build();
-
-  if (reduced) {
-    state.zeta = 0.7;
-    build();
-    return;
-  }
-
-  const len = path.getTotalLength();
-  gsap.fromTo(path, { strokeDasharray: len, strokeDashoffset: len },
-    { strokeDashoffset: 0, duration: 1.8, ease: "power2.inOut", delay: 0.5,
-      onComplete: () => gsap.set(path, { clearProps: "strokeDasharray,strokeDashoffset" }) });
-
-  // Slow drift, like a free-running timebase.
-  const drift = () => { state.phase -= 0.012; build(); };
-  gsap.ticker.add(drift);
-
-  ScrollTrigger.create({
-    trigger: "#hero",
-    start: "top top",
-    end: "bottom top",
-    scrub: 0.6,
-    onUpdate: (self) => { state.zeta = self.progress * 1.1; },
-  });
-
-  // Pause the drift when the hero is off screen.
-  ScrollTrigger.create({
-    trigger: "#hero",
-    start: "top bottom",
-    end: "bottom top",
-    onToggle: (self) => self.isActive ? gsap.ticker.add(drift) : gsap.ticker.remove(drift),
-  });
-
-  return () => gsap.ticker.remove(drift);
-}
-
 function initHeroIntro() {
   const name = document.querySelector<HTMLElement>("[data-hero-name]");
   if (!name) return;
-  const split = SplitText.create(name, { type: "chars", mask: "chars" });
+  const split = SplitText.create(name, { type: "words,chars", mask: "chars" });
   const tl = gsap.timeline({ delay: document.getElementById("preloader") ? 2.0 : 0.1 });
   tl.from(split.chars, { yPercent: 110, duration: 1.1, ease: EASE, stagger: 0.035 })
     .from("[data-hero-item]", { y: 18, opacity: 0, duration: 0.9, ease: EASE, stagger: 0.08 }, "-=0.8")
-    .from("[data-hero-photo]", { clipPath: "inset(100% 0 0 0)", duration: 1.2, ease: "expo.inOut" }, 0.1);
+    .from("[data-ann]", { clipPath: "inset(0 100% 0 0)", duration: 1.4, ease: "expo.inOut" }, 0.3);
 }
 
 function initReveals() {
@@ -159,7 +98,57 @@ function initTilt() {
   });
 }
 
+
+/* Cursor: dot follows tightly, ring trails, dots and glow light up around it.
+   Only for a fine pointer with motion allowed; otherwise the native cursor stays. */
+let cursorReady = false;
+function initCursor() {
+  if (cursorReady) return;
+  const fine = window.matchMedia("(pointer: fine)").matches;
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const dot = document.getElementById("cursor-dot");
+  const ring = document.getElementById("cursor-ring");
+  const root = document.documentElement;
+  if (!dot || !ring) return;
+  cursorReady = true;
+
+  // The light effect works for everyone with a mouse; the custom cursor only without reduced motion.
+  const custom = fine && !calm;
+  if (custom) root.classList.add("has-cursor");
+
+  const dx = gsap.quickTo(dot, "x", { duration: 0.08, ease: "power3" });
+  const dy = gsap.quickTo(dot, "y", { duration: 0.08, ease: "power3" });
+  const rx = gsap.quickTo(ring, "x", { duration: 0.4, ease: "power3" });
+  const ry = gsap.quickTo(ring, "y", { duration: 0.4, ease: "power3" });
+  let shown = false;
+
+  window.addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse") return;
+    root.style.setProperty("--x", `${e.clientX}px`);
+    root.style.setProperty("--y", `${e.clientY}px`);
+    if (!custom) return;
+    dx(e.clientX); dy(e.clientY); rx(e.clientX); ry(e.clientY);
+    if (!shown) { gsap.to([dot, ring], { opacity: 1, duration: 0.3 }); shown = true; }
+  }, { passive: true });
+
+  document.addEventListener("pointerleave", () => {
+    root.style.setProperty("--x", "-999px");
+    gsap.to([dot, ring], { opacity: 0, duration: 0.3 }); shown = false;
+  });
+
+  const interactive = 'a, button, [role="button"], [role="slider"], input, .tilt-card-parent';
+  document.addEventListener("pointerover", (e) => {
+    if (!custom) return;
+    const hit = (e.target as Element)?.closest?.(interactive);
+    ring.classList.toggle("is-hover", !!hit);
+    gsap.to(ring, { scale: hit ? 1.8 : 1, duration: 0.3, ease: "power3.out" });
+    gsap.to(dot, { scale: hit ? 0.5 : 1, duration: 0.3 });
+  });
+  document.addEventListener("pointerdown", () => custom && gsap.to(ring, { scale: 0.8, duration: 0.15, yoyo: true, repeat: 1 }));
+}
+
 export function initMotion() {
+  initCursor();
   mm?.revert();
   mm = gsap.matchMedia();
   mm.add(
@@ -167,16 +156,16 @@ export function initMotion() {
     (ctx) => {
       const { reduced } = ctx.conditions as { motion: boolean; reduced: boolean };
       initPreloader(reduced);
-      const stopScope = initScope(reduced);
+      const stopMotor = initController(reduced);
       if (reduced) {
         gsap.set("[data-reveal]", { opacity: 1 });
-        return;
+        return () => stopMotor?.();
       }
       initHeroIntro();
       initReveals();
       initProgress();
       initTilt();
-      return () => stopScope?.();
+      return () => stopMotor?.();
     },
   );
 }

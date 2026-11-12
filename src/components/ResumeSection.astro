@@ -2,7 +2,7 @@
 import { siteConfig } from "../content/site";
 ---
 
-<div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
   <!-- Left Column: Work & Education -->
   <div class="lg:col-span-7 space-y-16">
     
@@ -15,7 +15,7 @@ import { siteConfig } from "../content/site";
 
     <!-- Work Experience -->
     <div>
-      <h3 class="text-xs font-mono text-muted uppercase tracking-widest mb-8 pb-4 border-b border-border/40">Work Experience</h3>
+      <h3 class="text-sm font-medium text-primary mb-6 pb-3 border-b border-border">Work Experience</h3>
       <div class="space-y-10 relative">
         <div class="absolute left-[3px] top-2 bottom-0 w-[1px] bg-gradient-to-b from-border to-transparent"></div>
         {siteConfig.resume.workExperience.map((exp) => (
@@ -27,13 +27,13 @@ import { siteConfig } from "../content/site";
             </div>
             <div class="mb-4">
               <span class="text-sm font-medium text-text/90">{exp.organization}</span>
-              <span class="mx-2 text-muted">—</span>
+              <span class="mx-2 text-muted">/</span>
               <span class="text-xs text-muted">{exp.type}</span>
             </div>
             <ul class="space-y-2">
               {exp.details.map((d) => (
                 <li class="text-xs text-text/70 leading-relaxed flex gap-3">
-                  <span class="text-primary/40 mt-1 select-none">✦</span>
+                  <span class="mt-2 w-1 h-1 rounded-full bg-primary shrink-0" aria-hidden="true"></span>
                   <span>{d}</span>
                 </li>
               ))}
@@ -45,7 +45,7 @@ import { siteConfig } from "../content/site";
 
     <!-- Education -->
     <div>
-      <h3 class="text-xs font-mono text-muted uppercase tracking-widest mb-8 pb-4 border-b border-border/40">Education</h3>
+      <h3 class="text-sm font-medium text-primary mb-6 pb-3 border-b border-border">Education</h3>
       <div class="space-y-10 relative">
         <div class="absolute left-[3px] top-2 bottom-0 w-[1px] bg-gradient-to-b from-border to-transparent"></div>
         {siteConfig.resume.education.map((edu) => (
@@ -61,7 +61,7 @@ import { siteConfig } from "../content/site";
             <ul class="space-y-2">
               {edu.details.map((d) => (
                 <li class="text-xs text-text/70 leading-relaxed flex gap-3">
-                  <span class="text-accent/40 mt-1 select-none">✦</span>
+                  <span class="mt-2 w-1 h-1 rounded-full bg-primary shrink-0" aria-hidden="true"></span>
                   <span>{d}</span>
                 </li>
               ))}
@@ -77,11 +77,11 @@ import { siteConfig } from "../content/site";
     
     <!-- Specialization -->
     <div>
-      <h3 class="text-xs font-mono text-muted uppercase tracking-widest mb-8 pb-4 border-b border-border/40">Specialization</h3>
+      <h3 class="text-sm font-medium text-primary mb-6 pb-3 border-b border-border">Specialization</h3>
       <div class="space-y-6">
         {siteConfig.resume.specialization.map((spec) => {
-          const [title, ...rest] = spec.split(' — ');
-          const desc = rest.join(' — ');
+          const [title, ...rest] = spec.split(' - ');
+          const desc = rest.join(' - ');
           return (
             <div class="group">
               <h4 class="text-base font-display font-medium text-heading group-hover:text-primary transition-colors mb-1">{title}</h4>
@@ -94,7 +94,7 @@ import { siteConfig } from "../content/site";
 
     <!-- Co-Curricular & Volunteer -->
     <div>
-      <h3 class="text-xs font-mono text-muted uppercase tracking-widest mb-8 pb-4 border-b border-border/40">Leadership & Engagement</h3>
+      <h3 class="text-sm font-medium text-primary mb-6 pb-3 border-b border-border">Leadership & Engagement</h3>
       <div class="space-y-8">
         {siteConfig.resume.coCurricular.map((item) => (
           <div class="group">
@@ -105,7 +105,7 @@ import { siteConfig } from "../content/site";
         {siteConfig.resume.volunteerExperience.map((item) => (
           <div class="group">
             <h4 class="text-sm font-semibold text-heading group-hover:text-accent transition-colors mb-0.5">{item.role}</h4>
-            <p class="text-[10px] font-mono text-muted uppercase tracking-widest mb-1.5">{item.org}</p>
+            <p class="text-xs text-muted mb-1.5">{item.org}</p>
             <p class="text-[11px] text-muted leading-relaxed">{item.description}</p>
           </div>
         ))}
