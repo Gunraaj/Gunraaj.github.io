@@ -17,11 +17,10 @@ export default {
                 'card-border': 'rgb(var(--color-card-border) / <alpha-value>)',
             },
             fontFamily: {
-                sans: ['Geist', 'system-ui', 'sans-serif'],
-                heading: ['Geist', 'system-ui', 'sans-serif'],
-                display: ['Geist', 'system-ui', 'sans-serif'],
-                serif: ['"Noto Serif Gurmukhi"', 'Georgia', 'serif'],
-                mono: ['"Geist Mono"', 'ui-monospace', 'monospace'],
+                sans: ['Inter', 'sans-serif'],
+                heading: ['Space Grotesk', 'sans-serif'],
+                display: ['Instrument Serif', 'serif'],
+                mono: ['JetBrains Mono', 'monospace'],
             },
             animation: {
                 'blob': 'blob 7s infinite',

@@ -87,7 +87,7 @@ export function initController(reduced: boolean): (() => void) | undefined {
     const c = colors;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     ctx.clearRect(0, 0, w, h);
-    ctx.font = "11px 'Geist Mono', monospace";
+    ctx.font = "11px 'JetBrains Mono', monospace";
 
     // ── Network ──
     const netW = w < 500 ? w * 0.48 : Math.min(w * 0.38, 360);

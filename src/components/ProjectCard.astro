@@ -3,11 +3,9 @@ import type { Project } from '../content/site';
 
 interface Props {
   project: Project;
-  wide?: boolean;
 }
 
-const { project, wide = false } = Astro.props;
-const clean = (t: string) => t.replace(/\s*[—–]\s*/g, ", ");
+const { project } = Astro.props;
 
 const bgIcons = {
   "bgauss-ev-systems-internship": `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" /></svg>`,
@@ -24,54 +22,98 @@ const defaultIcon = `<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.3
 const bgIcon = bgIcons[project.id as keyof typeof bgIcons] || defaultIcon;
 ---
 
-<article class="project-card relative group flex flex-col h-full tilt-card-parent">
-  <div class="relative flex-1 flex flex-col rounded-xl border border-border bg-surface hover:border-primary/40 p-6 sm:p-7 transition-colors duration-300 tilt-card-inner overflow-hidden">
-    <div class="absolute -right-10 -bottom-10 w-48 h-48 text-primary/[0.06] group-hover:text-primary/[0.12] transition-colors duration-500 pointer-events-none -rotate-12" aria-hidden="true">
+<article class="project-card relative group flex flex-col h-full tilt-card-parent perspective-[1000px]">
+  <div class="relative items-start justify-between flex-1 flex flex-col bg-surface/20 hover:bg-surface/40 backdrop-blur-md rounded-2xl border border-border/40 hover:border-primary/30 p-6 sm:p-8 transition-all duration-300 ease-out transform-gpu tilt-card-inner overflow-hidden">
+    
+    <!-- Hover Gradient -->
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none z-0"></div>
+
+    <!-- Background Artifact -->
+    <div class="absolute -right-16 -bottom-16 w-64 h-64 text-primary/5 group-hover:text-primary/10 blur-[2px] transition-all duration-700 pointer-events-none z-0 -rotate-12 group-hover:rotate-0 group-hover:scale-110">
       <Fragment set:html={bgIcon} />
     </div>
 
-    <div class:list={["relative flex-1 grid gap-6", wide && "lg:grid-cols-2 lg:gap-10"]}>
-      <div class="flex flex-col">
-        <div class="flex items-start justify-between gap-4 mb-4">
-          <h3 class:list={["font-display font-semibold leading-snug tracking-tight text-heading group-hover:text-primary transition-colors", wide ? "text-2xl" : "text-xl"]}>
-            {project.title}
-          </h3>
-          {project.featured && (
-            <span class="shrink-0 px-2 py-0.5 text-xs font-medium text-primary rounded-full border border-primary/30">Featured</span>
-          )}
-        </div>
-        <p class="text-sm text-text leading-relaxed">{clean(project.shortDescription)}</p>
-        <ul class="flex flex-wrap gap-1.5 mt-5">
-          {project.domainTags.map((tag) => (
-            <li class="px-2 py-0.5 text-xs font-mono text-muted rounded-full border border-border">{tag}</li>
-          ))}
-        </ul>
-      </div>
-
-      {project.highlights.length > 0 && (
-        <ul class:list={["space-y-2.5 text-sm text-text", !wide && "pt-5 border-t border-border"]}>
-          {project.highlights.slice(0, wide ? 4 : 3).map((h) => (
-            <li class="flex gap-2.5 leading-relaxed">
-              <span class="mt-2 w-1 h-1 rounded-full bg-primary shrink-0" aria-hidden="true"></span>
-              <span>{clean(h)}</span>
-            </li>
-          ))}
-        </ul>
+    <!-- Content (z-10) -->
+    <div class="relative z-10 w-full flex flex-col h-full">
+      <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-6 w-full gap-4">
+      <h3 class="text-2xl font-display font-medium text-heading group-hover:text-primary transition-colors">
+        {project.title}
+      </h3>
+      {project.featured && (
+        <span class="px-2 py-1 text-[10px] font-mono tracking-widest uppercase bg-primary/5 text-primary rounded border border-primary/20 whitespace-nowrap">
+          Featured
+        </span>
       )}
     </div>
-
-    <div class="relative mt-6 pt-4 border-t border-border flex flex-wrap gap-x-5 gap-y-2">
-      {project.links.map((link) => (
-        <a
-          href={link.url}
-          target={link.url.startsWith('http') ? "_blank" : "_self"}
-          rel={link.url.startsWith('http') ? "noopener noreferrer" : undefined}
-          class="text-sm font-medium text-heading hover:text-primary transition-colors inline-flex items-center gap-1.5"
-        >
-          {link.label}
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
-        </a>
+    
+    <div class="flex flex-wrap gap-2 mb-6">
+      {project.domainTags.map((tag) => (
+        <span class="px-2 py-1 text-[10px] font-mono text-muted uppercase tracking-widest border border-border/40 bg-surface/50 rounded">
+          {tag}
+        </span>
       ))}
+    </div>
+    
+    <p class="text-sm text-text/80 leading-relaxed mb-8 flex-grow">
+      {project.shortDescription}
+    </p>
+    
+    {project.highlights.length > 0 && (
+      <ul class="space-y-2 mb-8 border-l border-primary/20 pl-3">
+        {project.highlights.slice(0, 3).map((highlight) => (
+          <li class="text-xs text-text/70 leading-relaxed flex items-start gap-2">
+            <span class="text-primary/40 select-none">✦</span>
+            <span>{highlight}</span>
+          </li>
+        ))}
+      </ul>
+    )}
+
+    <div class="mt-auto pt-5 w-full border-t border-border/40 flex items-center justify-between">
+      <div class="flex gap-4">
+        {project.links.map((link) => (
+          <a
+            href={link.url}
+            target={link.url.startsWith('http') ? "_blank" : "_self"}
+            rel={link.url.startsWith('http') ? "noopener noreferrer" : ""}
+            class="text-xs font-mono tracking-widest uppercase text-heading hover:text-primary transition-colors flex items-center gap-1"
+          >
+            {link.label}
+            <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
     </div>
   </div>
 </article>
+
+<script>
+  function initTilt() {
+    document.querySelectorAll('.tilt-card-parent').forEach(parent => {
+      const card = parent.querySelector('.tilt-card-inner') as HTMLElement;
+      if (!card) return;
+
+      parent.addEventListener('mousemove', (e: Event) => {
+        const mouseEvent = e as MouseEvent;
+        const rect = parent.getBoundingClientRect();
+        const x = mouseEvent.clientX - rect.left - rect.width / 2;
+        const y = mouseEvent.clientY - rect.top - rect.height / 2;
+        
+        const xRotate = 4 * (-y / (rect.height / 2));
+        const yRotate = 4 * (x / (rect.width / 2));
+        
+        card.style.transform = `perspective(1000px) rotateX(${xRotate}deg) rotateY(${yRotate}deg) scale3d(1.01, 1.01, 1.01)`;
+      });
+      
+      parent.addEventListener('mouseleave', () => {
+        card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+      });
+    });
+  }
+  
+  initTilt();
+  document.addEventListener('astro:page-load', initTilt);
+</script>

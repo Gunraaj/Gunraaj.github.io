@@ -132,10 +132,10 @@ export const siteConfig: SiteConfig = {
                 period: "Jun 2026 - Jul 2026",
                 type: "Industry R&D",
                 details: [
-                    "Built MATLAB/Simulink EV powertrain model covering longitudinal dynamics, acceleration verification (MAE 0.19s across 6 checkpoints), gradeability, traction limits, motor sizing, drive-cycle energy accounting, regenerative braking, and range estimation",
-                    "Developed a Python/Qt desktop test-automation prototype for ESP32-class embedded hardware: visual no-code sequence editor, structured serial protocol, CAN database signal conditions, explicit Pass/Fail/Timeout outcomes, and session logging",
-                    "Researched scan-to-CAD mechanical inspection feasibility using structured-light 3D scanning and ICP point-cloud registration; documented integration risks including reflective surfaces, occlusion, and alignment observability",
-                    "Mentored by Mayuresh Pant (Head - R&D); work spanned powertrain simulation, embedded controls verification, and manufacturing quality research"
+                    "Built a MATLAB/Simulink EV powertrain model (longitudinal dynamics, gradeability, traction limits, motor sizing, drive-cycle energy, regenerative braking, range) → acceleration verified to 0.19 s MAE across 6 real checkpoints",
+                    "Developed a Python/Qt test-automation prototype for ESP32-class hardware (no-code sequence editor, structured serial protocol, CAN database signal conditions) → every test ends in an explicit Pass, Fail or Timeout with a full session log",
+                    "Evaluated scan-to-CAD inspection using structured-light 3D scanning and ICP point-cloud registration → feasibility report covering reflective surfaces, occlusion and alignment observability",
+                    "Worked under Mayuresh Pant (Head - R&D) across three areas: powertrain simulation, embedded controls verification and manufacturing quality research"
                 ]
             },
             {
@@ -144,10 +144,10 @@ export const siteConfig: SiteConfig = {
                 period: "Jun 2025 - Present",
                 type: "Leadership",
                 details: [
-                    "Architecting strategic vision and operational roadmap for a 50+ member technical organization",
-                    "Managing 7 sub-committees (Technical, Design, PR, Logistics, Finance, Content, Outreach)",
-                    "Orchestrating flagship events: BREACH Hackathon (200+ participants) and INTROVIA technical fest",
-                    "Building cross-functional team synergy and resolving inter-committee conflicts"
+                    "Set the strategy and operating roadmap for a 50+ member technical club",
+                    "Coordinated 7 sub-committees: Technical, Design, PR, Logistics, Finance, Content and Outreach",
+                    "Delivered the club's flagship events → BREACH Hackathon (200+ participants) and the INTROVIA technical fest",
+                    "Resolved conflicts between committees to keep cross-functional teams aligned"
                 ]
             },
             {
@@ -156,10 +156,10 @@ export const siteConfig: SiteConfig = {
                 period: "Sep 2024 - Jun 2025",
                 type: "Creative Direction",
                 details: [
-                    "Defined and maintained complete visual brand identity across all organizational touchpoints",
-                    "Mentored a team of 15+ designers and video editors in professional workflows",
-                    "Produced high-production aftermovies and promotional content for university events",
-                    "Optimized creative pipelines for rapid asset deployment during event cycles"
+                    "Defined the club's visual identity → one consistent brand across every touchpoint",
+                    "Mentored 15+ designers and video editors → the team worked to professional workflows",
+                    "Produced aftermovies and promotional content → coverage for university events",
+                    "Streamlined the creative pipeline → assets delivered on time through busy event cycles"
                 ]
             },
             {
@@ -168,9 +168,9 @@ export const siteConfig: SiteConfig = {
                 period: "Oct 2024 - Aug 2025",
                 type: "Community Design",
                 details: [
-                    "Created design assets bridging complex tech topics for student audiences",
-                    "Designed event identities for workshops, seminars, and hackathons",
-                    "Produced motion graphics and technical visual content for event promotions"
+                    "Turned complex tech topics into design assets → content students could follow",
+                    "Designed identities for workshops, seminars and hackathons",
+                    "Produced motion graphics and technical visuals → promotion for club events"
                 ]
             }
         ],
@@ -224,7 +224,7 @@ export const siteConfig: SiteConfig = {
             title: "Control Systems",
             items: [
                 "PI and PID controllers",
-                "Closed-loop speed control",
+                "Closed the motor speed loop in MATLAB/Simulink",
                 "Load disturbance rejection",
                 "Stability and transient response analysis",
                 "Hybrid ANN + classical control approaches"
@@ -354,10 +354,10 @@ export const siteConfig: SiteConfig = {
             tools: ["MATLAB", "Simulink", "Python", "Qt", "ESP32", "CAN Bus", "Structured-Light 3D Scanning"],
             shortDescription: "Six-week R&D internship at BGauss Auto Pvt. Ltd. (Pune) covering EV powertrain simulation, ESP32-based CAN test automation, and mechanical inspection research - mentored by the Head of R&D.",
             highlights: [
-                "Acceleration model MAE of 0.19s across 6 real checkpoints",
-                "Built Python/Qt no-code CAN test sequencer with Pass/Fail/Timeout logging",
-                "Modelled full drive cycle: regen braking, range estimation, SOC accounting",
-                "Researched scan-to-CAD inspection pipeline using structured-light & ICP registration"
+                "Validated an EV acceleration model against 6 real checkpoints → 0.19 s mean absolute error",
+                "Built a no-code CAN test sequencer in Python/Qt → every run logged as Pass, Fail or Timeout",
+                "Modelled the full drive cycle with regen braking and SOC accounting → range estimates from one Simulink model",
+                "Assessed scan-to-CAD inspection with structured light and ICP registration → integration risks documented before any investment"
             ],
             links: [],
             featured: true,
@@ -424,11 +424,11 @@ def execute_step(step, serial_port, can_monitor):
             tools: ["Python", "OpenCV", "NumPy", "SciPy", "FFT", "Butterworth Filters"],
             shortDescription: "Non-contact vibration analysis using video input to extract meaningful frequency-domain and statistical features.",
             highlights: [
-                "ROI-based motion tracking from video",
-                "Time-domain signal extraction",
-                "Frequency-domain analysis using FFT",
-                "Harmonic identification",
-                "Statistical feature extraction (RMS, skewness, kurtosis)"
+                "Tracked region-of-interest motion in ordinary video → vibration measured with no contact sensors",
+                "Extracted displacement signals over time → raw pixels turned into a measurable waveform",
+                "Ran FFT on the extracted signal → dominant frequencies and harmonics identified",
+                "Identified the harmonic content of each spectrum",
+                "Computed RMS, skewness and kurtosis → statistical features ready for machine diagnostics"
             ],
             links: [],
             featured: true,
@@ -496,9 +496,9 @@ def execute_step(step, serial_port, can_monitor):
             tools: ["MATLAB", "Simulink"],
             shortDescription: "Hybrid ANN + PI controller for closed-loop speed control of PM-BLDC motor.",
             highlights: [
-                "Closed-loop speed control",
-                "Hybrid ANN + PI controller",
-                "Improved transient and steady-state performance"
+                "Closed the motor speed loop in MATLAB/Simulink",
+                "Designed a hybrid ANN + PI controller → 35% lower RMS speed error than static PI tuning",
+                "Let the ANN adapt PI gains online → faster transients and tighter steady-state tracking"
             ],
             links: [],
             featured: true,
@@ -541,10 +541,9 @@ def execute_step(step, serial_port, can_monitor):
             tools: ["React", "TypeScript", "Tailwind CSS", "Gemini AI", "Web Audio API"],
             shortDescription: "A productivity dashboard featuring AI-driven task breakdown and an embedded real-time audio brainwave entrainment engine.",
             highlights: [
-                "Automated task breakdowns leveraging Gemini AI",
-                "Dynamic binaural beat generator mapping brainwaves to work states",
-                "Immersive dark-mode UI with beautiful neon accents",
-                "Local-first state management with Zustand and LocalStorage"
+                "Used Gemini AI to break goals into actionable steps automatically",
+                "Built a binaural-beat generator with the Web Audio API → audio matched to each work state",
+                "Kept all state local with Zustand and LocalStorage → user data stays on the device"
             ],
             links: [],
             featured: true,
@@ -606,10 +605,9 @@ def execute_step(step, serial_port, can_monitor):
             tools: ["STM32", "Altium Designer", "MATLAB", "Simulink", "C++"],
             shortDescription: "End-to-end design, simulation, and hardware implementation of a 100W synchronous buck converter with custom magnetics.",
             highlights: [
-                "Custom 100W PCB design and fabrication",
-                "Hand-wound inductor for optimized magnetics",
-                "Cascaded PI control loops running on STM32",
-                "92% measured peak efficiency"
+                "Designed and fabricated a custom 100 W PCB → 92% measured peak efficiency",
+                "Hand-wound the inductor → magnetics tuned to this converter rather than an off-the-shelf part",
+                "Ran cascaded PI loops on an STM32 → regulated output under closed-loop control",
             ],
             links: [],
             featured: true,
@@ -648,9 +646,9 @@ def execute_step(step, serial_port, can_monitor):
             tools: ["Figma", "Illustrator", "After Effects"],
             shortDescription: "Complete visual identity and event branding for Anirveda PDEU from the start of the 24-25 committee reveal to just before the 25-26 reveal.",
             highlights: [
-                "Led a team of 15+ designers",
-                "Defined brand identity for 200+ attendee hackathon",
-                "Produced cinematic aftermovies and motion typography"
+                "Led 15+ designers → one consistent identity across the whole committee term",
+                "Defined the brand for a 200+ attendee hackathon → every touchpoint designed in one visual language",
+                "Produced aftermovies and motion typography → event recaps published on Instagram"
             ],
             links: [
                 { label: "View on Instagram", url: "https://instagram.com/anirvedapdeu" }

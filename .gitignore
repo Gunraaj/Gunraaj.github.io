@@ -35,3 +35,6 @@ pnpm-debug.log*
 fix_astro_extension.py
 read_docx.py
 COMPLETION_REPORT.md
+
+# brag video build output (poster is copied to public/og-image.jpg)
+brag-output/

@@ -35,14 +35,16 @@ const {
 		<meta property="og:url" content={Astro.url} />
 		<meta property="og:title" content={`${title} | ${siteConfig.profile.name}`} />
 		<meta property="og:description" content={description} />
-		<meta property="og:image" content={new URL('/profile.jpg', Astro.site || Astro.url.origin)} />
+		<meta property="og:image" content={new URL('/og-image.jpg', Astro.site || Astro.url.origin)} />
+		<meta property="og:image:width" content="1920" />
+		<meta property="og:image:height" content="1080" />
 		
 		<!-- Twitter -->
 		<meta property="twitter:card" content="summary_large_image" />
 		<meta property="twitter:url" content={Astro.url} />
 		<meta property="twitter:title" content={`${title} | ${siteConfig.profile.name}`} />
 		<meta property="twitter:description" content={description} />
-		<meta property="twitter:image" content={new URL('/profile.jpg', Astro.site || Astro.url.origin)} />
+		<meta property="twitter:image" content={new URL('/og-image.jpg', Astro.site || Astro.url.origin)} />
 
 		<!-- JSON-LD Structured Data -->
 		<script type="application/ld+json" set:html={JSON.stringify({
@@ -61,7 +63,7 @@ const {
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
-			href="https://fonts.googleapis.com/css2?family=Geist:wght@300..800&family=Geist+Mono:wght@400;500&family=Noto+Serif+Gurmukhi:wght@400;600&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap"
 			rel="stylesheet"
 		/>
 
@@ -98,13 +100,8 @@ const {
 					document.documentElement.classList.remove("dark");
 				}
 			};
-			const setMotion = () => {
-				if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches)
-					document.documentElement.classList.add("motion-ok");
-			};
 			setTheme();
-			setMotion();
-			document.addEventListener("astro:after-swap", () => { setTheme(); setMotion(); });
+			document.addEventListener("astro:after-swap", setTheme);
 		</script>
 
 		<title>{title} | {siteConfig.profile.name}</title>
@@ -112,12 +109,8 @@ const {
 	<body
 		class="bg-background text-text font-sans antialiased selection:bg-primary selection:text-white"
 	>
-		<div id="scroll-progress" aria-hidden="true"></div>
-		<div class="bg-dots" aria-hidden="true" transition:persist></div>
-		<div class="bg-dots-lit" aria-hidden="true" transition:persist></div>
-		<div class="ambient-glow" aria-hidden="true" transition:persist></div>
-		<div id="cursor-ring" class="cursor-ring" aria-hidden="true" transition:persist></div>
-		<div id="cursor-dot" class="cursor-dot" aria-hidden="true" transition:persist></div>
+		<div class="bg-noise"></div>
+		<div id="scroll-progress" style="width: 0%"></div>
 		<Navbar />
 
 		{
@@ -144,14 +137,14 @@ const {
 						<div class="h-32 flex items-center justify-center mb-8">
 							<div
 								id="loader-text"
-								class="text-5xl md:text-7xl font-serif text-heading"
+								class="text-6xl md:text-8xl font-serif italic text-heading transition-all duration-200 transform translate-y-4 opacity-0 scale-90"
 							/>
 						</div>
 						<div
 							id="loader-quote"
 							class="max-w-2xl mx-auto opacity-0 transition-opacity duration-500"
 						>
-							<p class="text-base md:text-lg font-mono text-muted">
+							<p class="text-lg md:text-xl font-serif text-muted italic leading-relaxed">
 								"Recognize the whole human race as one."
 							</p>
 						</div>
@@ -168,10 +161,34 @@ const {
 
 
 
+		<!-- Professional Cursor -->
+		<div
+			id="cursor-dot"
+			transition:persist
+			class="fixed top-0 left-0 w-2 h-2 rounded-full bg-primary pointer-events-none z-[9999] opacity-0 transition-opacity duration-300 shadow-[0_0_10px_rgba(var(--color-primary)/0.6)] mix-blend-screen"
+			style="transform: translate(-50%, -50%);"
+		>
+		</div>
+		<div
+			id="cursor-aura-1"
+			transition:persist
+			class="fixed top-0 left-0 w-8 h-8 border border-primary/20 bg-primary/[0.02] rounded-full pointer-events-none z-[9998] opacity-0 transition-opacity duration-300 mix-blend-screen"
+			style="transform: translate(-50%, -50%);"
+		>
+		</div>
+		<div
+			id="ambient-glow"
+			transition:persist
+			class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-500 opacity-0 bg-[radial-gradient(1000px_circle_at_var(--x)_var(--y),rgba(var(--color-primary)/0.06),transparent_50%)]"
+		>
+		</div>
+
 		<main
 			id="main-content"
-			class="min-h-screen relative z-10"
-			data-preloading={showPreloader ? "" : undefined}
+			class:list={[
+				"min-h-screen relative z-10 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]",
+				showPreloader ? "opacity-0 scale-[0.98]" : "",
+			]}
 		>
 			<slot />
 		</main>
@@ -203,10 +220,122 @@ const {
 		</div>
 
 		<script>
-			import { initMotion } from "../scripts/motion";
+			const picked = [
+				"ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ",
+				"Gunraaj Singh",
+				"\u0A35\u0A3E\u0A39\u0A3F\u0A17\u0A41\u0A30\u0A42" // WAHEGURU
+			];
 
 			function initCore() {
-				// --- SCROLL REVEAL (project pages) ---
+				const preloader = document.getElementById("preloader");
+				const loaderText = document.getElementById("loader-text");
+				const loaderQuote = document.getElementById("loader-quote");
+				const progress = document.getElementById("loader-progress");
+				const mainContent = document.getElementById("main-content");
+				const dot = document.getElementById("cursor-dot");
+				const aura1 = document.getElementById("cursor-aura-1");
+				const ambientGlow = document.getElementById("ambient-glow");
+
+				// --- PRELOADER (only runs if element exists = home page) ---
+				if (preloader && loaderText) {
+					let idx = 0;
+					if (progress) progress.style.width = "100%";
+
+					const cycle = () => {
+						loaderText.style.opacity = "0";
+						loaderText.style.transform =
+							"translateY(6px) scale(0.97)";
+						setTimeout(() => {
+							loaderText.innerText = picked[idx];
+							loaderText.style.opacity = "1";
+							loaderText.style.transform =
+								"translateY(0) scale(1.02)";
+							idx++;
+							if (idx < picked.length) setTimeout(cycle, 250);
+							else setTimeout(finishPreloader, 250);
+						}, 80);
+					};
+
+					const finishPreloader = () => {
+						preloader.style.opacity = "0";
+						preloader.style.pointerEvents = "none";
+						if (mainContent) {
+							mainContent.style.opacity = "1";
+							mainContent.style.transform = "scale(1)";
+						}
+						setTimeout(() => preloader.remove(), 500);
+					};
+					setTimeout(() => {
+						if (loaderQuote) loaderQuote.style.opacity = "1";
+						cycle();
+					}, 80);
+				}
+
+
+
+				// --- CURSOR ---
+				if (!window.cursorInitialized) {
+					let mouseX = 0,
+						mouseY = 0;
+					let dots = [
+						{ x: 0, y: 0, el: dot, lag: 0.6 },
+						{ x: 0, y: 0, el: aura1, lag: 0.25 }
+					];
+					let isHovering = false;
+
+					const attach = () => {
+						document
+							.querySelectorAll(
+								'a, button, [role="button"], input, .tilt-card-parent',
+							)
+							.forEach((el) => {
+								el.addEventListener(
+									"mouseenter",
+									() => (isHovering = true),
+								);
+								el.addEventListener(
+									"mouseleave",
+									() => (isHovering = false),
+								);
+							});
+					};
+					attach();
+					document.addEventListener("astro:after-swap", attach);
+
+					window.addEventListener("mousemove", (e) => {
+						mouseX = e.clientX;
+						mouseY = e.clientY;
+						dots.forEach((d) => {
+							if (d.el) d.el.style.opacity = "1";
+						});
+						if (ambientGlow) {
+							ambientGlow.style.opacity = "1";
+							document.documentElement.style.setProperty(
+								"--x",
+								`${mouseX}px`,
+							);
+							document.documentElement.style.setProperty(
+								"--y",
+								`${mouseY}px`,
+							);
+						}
+					});
+
+					const run = () => {
+						dots.forEach((d) => {
+							if (!d.el) return;
+							d.x += (mouseX - d.x) * d.lag;
+							d.y += (mouseY - d.y) * d.lag;
+							const scale = isHovering ? 1.5 + d.lag * 5 : 1;
+							d.el.style.transform = `translate(calc(${d.x}px - 50%), calc(${d.y}px - 50%)) scale(${scale})`;
+						});
+						requestAnimationFrame(run);
+					};
+					run();
+					window.cursorInitialized = true;
+				}
+
+				// --- SCROLL REVEAL ---
 				const observer = new IntersectionObserver(
 					(entries) => {
 						entries.forEach((entry) => {
@@ -278,29 +407,46 @@ const {
 				}
 			}
 
-			document.addEventListener("astro:page-load", () => { initCore(); initMotion(); });
+			document.addEventListener("astro:page-load", initCore);
+			initCore();
 		</script>
 	</body>
 </html>
 
 <style is:global>
+	@media (pointer: fine) {
+		* {
+			cursor: none !important;
+		}
+	}
 
 
+	body {
+		font-family: "Inter", sans-serif;
+		letter-spacing: -0.01em;
+	}
 	h1,
 	h2,
 	h3,
 	h4 {
-		font-family: "Geist", system-ui, sans-serif;
+		font-family: "Space Grotesk", sans-serif;
+		letter-spacing: -0.02em;
+	}
+	.font-display {
+		font-family: "Instrument Serif", serif;
+	}
+	.font-heading {
+		font-family: "Space Grotesk", sans-serif;
 	}
 
-	.motion-ok .scroll-reveal {
+	.scroll-reveal {
 		opacity: 0;
 		transform: translateY(24px);
 		transition:
 			opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
 			transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 	}
-	.motion-ok .scroll-reveal.is-visible {
+	.scroll-reveal.is-visible {
 		opacity: 1;
 		transform: translateY(0);
 	}
